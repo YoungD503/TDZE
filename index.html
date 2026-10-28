@@ -3,265 +3,225 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>The Desert Zone</title>
-<meta name="description" content="Herramientas, comunidad y servicios para emprendedores que construyen un mejor futuro para el planeta. Tools, community and services for entrepreneurs.">
-<meta property="og:title" content="The Desert Zone">
-<meta property="og:description" content="Herramientas, comunidad y servicios para emprendedores que construyen un mejor futuro para el planeta.">
-<meta name="theme-color" content="#0a5bd3">
+<title>The Desert Zone · Todos pueden construir</title>
+<meta name="description" content="Herramientas para emprendedores elegidas por la comunidad, la mayoría gratis para empezar. Vota por tus favoritas, mira el Top 10 y agrega las que faltan.">
+<meta property="og:title" content="The Desert Zone · Todos pueden construir">
+<meta property="og:description" content="Herramientas para emprendedores elegidas por la comunidad. Vota, mira el Top 10 y agrega las que faltan.">
+<meta name="theme-color" content="#050a14">
+<meta name="color-scheme" content="dark">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>html{-webkit-text-size-adjust:100%;background:#050a14}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Michroma&display=swap">
 <style>
-/* Layout: brand header with language switch, centered thesis over the desert ridge, then tools (filtered, paged), community, services and a deep-blue join band. */
+/* Layout: a deep-blue workshop. Left-aligned manifesto with a live tally, the community scoreboard (Top 10), the full directory with a free-to-start switch, the suggest band, a quiet footer. One deliberate dark look in blues: bright sky blue for what the community decides, royal blue for your own votes. */
 :root{
-  --bg:#ffffff;--surface:#f4f6fa;--card:#ffffff;--line:#e3e7ef;--ink:#0d1420;--ink2:#465166;--muted:#6f7a8e;
-  --blue:#0a5bd3;--blue-hover:#0849ab;--blue-soft:#e8f0fd;--blue-text:#0a4cb0;--band:#062b66;--band-soft:#b9cdf0;
-  --sand:#c98a3d;--sand-soft:#fbf1e3;--sand-text:#8a5410;--green-soft:#e6f4ec;--green-text:#1b6b40;--ai-soft:#efeafd;--ai-text:#5b3cc4;--shadow:rgba(13,20,32,.08);--header:rgba(255,255,255,.82);
+  color-scheme:dark;
+  --bg:#050a14;--surface:#0a1324;--card:#0d182c;--raise:#14223b;--line:#1b2b47;--line2:#2a3f63;
+  --ink:#eef4ff;--ink2:#a8b9d6;--muted:#7387a8;
+  --sand:#4d9dff;--sand-soft:rgba(77,157,255,.14);--sand-ink:#03101f;
+  --blue:#1f5fd6;--blue-soft:rgba(31,95,214,.18);
+  --ai:#b9a5f7;--ai-soft:rgba(185,165,247,.12);--planet:#7fd1a2;--planet-soft:rgba(127,209,162,.12);--place:#9cc4f5;
   --display:'Michroma','Geist',system-ui,sans-serif;--body:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0a0e15;--surface:#121822;--card:#161d29;--line:#252e3d;--ink:#eef2f8;--ink2:#b3bccb;--muted:#8792a5;
-  --blue:#3d84f0;--blue-hover:#5b97f3;--blue-soft:#14233d;--blue-text:#8db6f7;--band:#0c2350;--band-soft:#a9bfe6;
-  --sand:#e0a65c;--sand-soft:#2a2116;--sand-text:#ecbd80;--green-soft:#13291d;--green-text:#7fd1a2;--ai-soft:#221a3d;--ai-text:#b9a5f7;--shadow:rgba(0,0,0,.4);--header:rgba(10,14,21,.8);color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0a0e15;--surface:#121822;--card:#161d29;--line:#252e3d;--ink:#eef2f8;--ink2:#b3bccb;--muted:#8792a5;
-  --blue:#3d84f0;--blue-hover:#5b97f3;--blue-soft:#14233d;--blue-text:#8db6f7;--band:#0c2350;--band-soft:#a9bfe6;
-  --sand:#e0a65c;--sand-soft:#2a2116;--sand-text:#ecbd80;--green-soft:#13291d;--green-text:#7fd1a2;--ai-soft:#221a3d;--ai-text:#b9a5f7;--shadow:rgba(0,0,0,.4);--header:rgba(10,14,21,.8);color-scheme:dark}
 *{box-sizing:border-box}
-html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 110px)}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px)}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
-a{color:var(--blue-text)}
-a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+a{color:var(--ink)}
+::selection{background:var(--sand);color:var(--sand-ink)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--sand);outline-offset:3px}
 h1,h2,h3{text-wrap:balance}
-.wrap{max-width:1120px;margin:0 auto;padding-left:max(22px,env(safe-area-inset-left,0px));padding-right:max(22px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(22px,env(safe-area-inset-left,0px));padding-right:max(22px,env(safe-area-inset-right,0px))}
+.hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.label{font-family:var(--display);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
 
 /* Header */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--header);-webkit-backdrop-filter:saturate(180%) blur(18px);backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid var(--line)}
-.top .wrap{min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:8px 18px;flex-wrap:wrap}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:rgba(5,10,20,.82);-webkit-backdrop-filter:saturate(160%) blur(16px);backdrop-filter:saturate(160%) blur(16px);border-bottom:1px solid var(--line)}
+.top .wrap{min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:8px 18px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none}
 .brand .mono{display:block;height:34px;width:auto}
-.word{font-family:var(--display);font-size:14px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;line-height:1}
+.word{font-family:var(--display);font-size:13px;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap;line-height:1}
 .word .light{color:var(--muted)}
-.nav{display:flex;gap:22px;font-size:14px}
+.nav{display:flex;gap:24px;font-size:14px}
 .nav a{color:var(--ink2);text-decoration:none;padding:8px 0;white-space:nowrap}.nav a:hover{color:var(--ink)}
 .right{display:flex;align-items:center;gap:10px}
-.lang{display:flex;padding:3px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.lang{display:flex;padding:3px;border-radius:999px;border:1px solid var(--line)}
 .lang button{font:inherit;font-size:12px;font-weight:600;letter-spacing:.06em;height:28px;padding:0 10px;border:0;border-radius:999px;background:transparent;color:var(--muted);cursor:pointer}
-.lang button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 3px var(--shadow)}
-.pill{display:inline-block;padding:8px 16px;border-radius:999px;background:var(--blue);color:#fff;text-decoration:none;font-size:14px;font-weight:500;white-space:nowrap}
-.pill:hover{background:var(--blue-hover)}
+.lang button[aria-pressed="true"]{background:var(--raise);color:var(--ink)}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--sand);color:var(--sand-ink);text-decoration:none;font-size:14px;font-weight:600;white-space:nowrap}
+.pill:hover{background:#7ab6ff}
 
 /* Hero */
-.hero{position:relative;overflow:hidden;text-align:center}
-.hero .wrap{padding-block:84px 40px;display:flex;flex-direction:column;align-items:center;gap:22px}
-.eyebrow{margin:0;font-family:var(--display);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--blue-text)}
-.hero h1{margin:0;font-size:clamp(40px,6.6vw,76px);line-height:1.02;font-weight:700;letter-spacing:-.035em;max-width:920px}
-.hero h1 em{font-style:normal;color:var(--blue)}
-.dek{margin:0;font-size:clamp(18px,2.2vw,22px);line-height:1.45;color:var(--ink2);max-width:720px}
-.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding-top:4px}
-.btn{display:inline-block;padding:13px 24px;border-radius:999px;background:var(--blue);color:#fff;text-decoration:none;font-size:17px;font-weight:500;border:1px solid var(--blue)}
-.btn:hover{background:var(--blue-hover);border-color:var(--blue-hover)}
-.btn.ghost{background:transparent;color:var(--blue-text);border-color:var(--blue-text)}
-.btn.ghost:hover{background:var(--blue-soft)}
-.ridge{display:block;width:100%;height:auto;max-width:100%;margin-top:8px}
-.ridge .sun{fill:var(--sand)}
-.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.pillars a{display:flex;flex-direction:column;gap:4px;padding:26px 22px;text-decoration:none;color:var(--ink);text-align:left;border-left:1px solid var(--line)}
-.pillars a:first-child{border-left:0}
-.pillars a:hover{background:var(--surface)}
-.pillars b{font-size:20px;font-weight:700;letter-spacing:-.015em}
-.pillars span{font-size:15px;color:var(--ink2)}
-.pillars i{font-style:normal;font-family:var(--display);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:radial-gradient(80% 70% at 85% 0%,rgba(31,95,214,.28),transparent 65%),radial-gradient(60% 60% at 0% 100%,rgba(77,157,255,.10),transparent 60%)}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:72px 72px;opacity:.35;-webkit-mask-image:radial-gradient(ellipse at 30% 20%,#000 0%,transparent 70%);mask-image:radial-gradient(ellipse at 30% 20%,#000 0%,transparent 70%);pointer-events:none}
+.hero .wrap{position:relative;padding-block:88px 0;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:40px 56px;align-items:end}
+.hero h1{margin:16px 0 0;font-size:clamp(52px,9vw,124px);line-height:.92;font-weight:800;letter-spacing:-.05em}
+.hero h1 .s{color:var(--sand)}
+.dek{margin:24px 0 0;font-size:clamp(18px,2vw,21px);line-height:1.5;color:var(--ink2);max-width:46ch}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:999px;background:var(--sand);color:var(--sand-ink);text-decoration:none;font-size:16px;font-weight:600;border:1px solid var(--sand)}
+.btn:hover{background:#7ab6ff;border-color:#7ab6ff}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line2)}
+.btn.ghost:hover{border-color:var(--ink)}
+.manifesto{list-style:none;margin:0;padding:0;border-left:1px solid var(--line);display:flex;flex-direction:column}
+.manifesto li{padding:14px 0 14px 22px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+.manifesto li:last-child{border-bottom:0}
+.manifesto b{font-size:17px;letter-spacing:-.01em}
+.manifesto span{font-size:14px;color:var(--muted)}
+.tally{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);margin-top:28px}
+.tally div{padding:22px 16px 26px 0;display:flex;flex-direction:column;gap:6px}
+.tally div + div{padding-left:20px;border-left:1px solid var(--line)}
+.tally b{font-family:var(--display);font-weight:400;font-size:clamp(26px,3.6vw,40px);line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.tally div:nth-child(2) b{color:var(--sand)}
+.tally span{font-size:13px;color:var(--muted)}
+.ridge{position:relative;display:block;width:100%;height:56px;margin-top:-10px}
+.ridge polyline{stroke:var(--sand)}
 
 /* Sections */
-section.block{padding-block:88px 0}
-.head{margin-bottom:28px}
-.h2{margin:0 0 10px;font-size:clamp(32px,4.4vw,48px);line-height:1.06;font-weight:700;letter-spacing:-.03em}
-.lead{margin:0;font-size:18px;color:var(--ink2);max-width:62ch}
+section.block{padding-block:96px 0}
+.head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 32px;align-items:end;margin-bottom:32px}
+.head .label{display:block;margin-bottom:12px;color:var(--sand)}
+.h2{margin:0;font-size:clamp(36px,5vw,60px);line-height:1;font-weight:800;letter-spacing:-.04em}
+.lead{margin:14px 0 0;font-size:18px;color:var(--ink2);max-width:58ch}
+.preview-note{margin:16px 0 0;font-size:14px;color:var(--sand);border:1px dashed rgba(77,157,255,.45);border-radius:12px;padding:10px 14px;max-width:62ch}
 
-/* Tools */
-.toolbar{display:flex;flex-direction:column;gap:12px;margin-bottom:22px}
+/* Vote */
+.vote{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:15px;font-weight:600;height:40px;padding:0 14px 0 12px;border-radius:999px;border:1px solid var(--line2);background:transparent;color:var(--ink);cursor:pointer;font-variant-numeric:tabular-nums;position:relative;z-index:1;transition:background .15s ease,border-color .15s ease,color .15s ease}
+.vote svg{width:13px;height:13px;transition:transform .2s ease}
+.vote:hover{border-color:var(--blue);color:#fff}
+.vote[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.vote.bump svg{transform:translateY(-3px)}
+
+/* Scoreboard */
+.board{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:20px}
+.winner{position:relative;overflow:hidden;border:1px solid var(--sand);border-radius:24px;padding:30px;display:flex;flex-direction:column;gap:14px;min-height:430px;background:radial-gradient(120% 80% at 100% 0%,rgba(77,157,255,.20),transparent 60%),var(--card)}
+.winner .label{color:var(--sand)}
+.winner .rank{font-family:var(--display);font-size:clamp(72px,10vw,120px);line-height:.85;color:var(--sand);letter-spacing:-.04em}
+.winner h3{margin:0;font-size:clamp(30px,4vw,46px);line-height:1.02;letter-spacing:-.035em}
+.winner h3 a{text-decoration:none}.winner h3 a:hover{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px}
+.winner p{margin:0;color:var(--ink2);font-size:16px;max-width:40ch}
+.winner .tags{display:flex;flex-wrap:wrap;gap:6px}
+.winner .foot{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.winner .count b{display:block;font-family:var(--display);font-weight:400;font-size:38px;line-height:1;font-variant-numeric:tabular-nums}
+.winner .count span{font-size:13px;color:var(--muted)}
+.winner .empty-cta{margin-top:auto;align-self:flex-start;position:relative;z-index:1}
+.winner svg.ridge3{position:absolute;left:0;right:0;bottom:0;width:100%;height:64px;opacity:.3;pointer-events:none}
+.winner svg.ridge3 polyline{stroke:var(--sand)}
+.winner .foot{position:relative;z-index:1}
+.ranklist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.ranklist li{display:grid;grid-template-columns:56px minmax(0,1fr) auto;align-items:center;gap:6px 16px;padding:14px 4px;border-bottom:1px solid var(--line)}
+.ranklist .n{font-family:var(--display);font-size:22px;color:var(--muted);font-variant-numeric:tabular-nums}
+.ranklist li:nth-child(-n+2) .n{color:var(--sand)}
+.ranklist .main{min-width:0;display:flex;flex-direction:column;gap:8px}
+.ranklist .name{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.ranklist .name a{font-weight:700;font-size:19px;letter-spacing:-.015em;text-decoration:none}
+.ranklist .name a:hover{color:var(--sand)}
+.ranklist .name small{font-size:13px;color:var(--muted)}
+.ranklist .meter{height:4px;border-radius:999px;background:var(--raise);overflow:hidden}
+.ranklist .meter span{display:block;height:100%;border-radius:999px;background:var(--sand);transition:width .4s ease}
+.board-empty{display:flex;flex-direction:column;justify-content:center;gap:12px;padding:32px;border:1px dashed var(--line2);border-radius:24px;color:var(--ink2)}
+.board-empty b{font-size:24px;color:var(--ink);letter-spacing:-.02em}
+.board-empty ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+
+/* Directory */
+.toolbar{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
 .toolbar .line{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.group-label{font-family:var(--display);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);min-width:84px}
+.group-label{min-width:84px}
 .filters{display:flex;flex-wrap:wrap;gap:8px}
-.filter{font:inherit;font-size:14px;font-weight:500;height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
-.filter:hover{border-color:var(--blue-text);color:var(--ink)}
+.filter{font:inherit;font-size:14px;font-weight:500;height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink2);cursor:pointer}
+.filter:hover{border-color:var(--line2);color:var(--ink)}
 .filter[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
 .filter .num{font-variant-numeric:tabular-nums;opacity:.6;margin-left:2px}
-.search{flex:1 1 220px;min-width:0;margin-left:auto;max-width:320px}
-.search input{width:100%;font:inherit;font-size:15px;height:38px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
-.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
-.tool{position:relative;display:flex;flex-direction:column;gap:10px;background:var(--surface);border-radius:22px;padding:22px;transition:transform .2s ease,box-shadow .2s ease}
-.tool:hover{transform:translateY(-2px);box-shadow:0 12px 30px var(--shadow)}
+.switch{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:var(--ink);cursor:pointer;height:38px;padding:0 14px 0 6px;border-radius:999px;border:1px solid var(--line)}
+.switch input{position:absolute;opacity:0;width:1px;height:1px}
+.switch .knob{width:38px;height:22px;border-radius:999px;background:var(--raise);border:1px solid var(--line2);position:relative;transition:background .2s ease}
+.switch .knob::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--ink2);transition:transform .2s ease,background .2s ease}
+.switch input:checked + .knob{background:var(--sand);border-color:var(--sand)}
+.switch input:checked + .knob::after{transform:translateX(16px);background:var(--sand-ink)}
+.switch input:focus-visible + .knob{outline:2px solid var(--sand);outline-offset:3px}
+.switch .num{color:var(--muted);font-variant-numeric:tabular-nums}
+.search{flex:1 1 220px;min-width:0;margin-left:auto;max-width:300px}
+.search input,.sort select{width:100%;font:inherit;font-size:15px;height:38px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.sort{flex:0 0 auto}
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.tool{position:relative;display:flex;flex-direction:column;gap:10px;background:var(--bg);padding:24px;transition:background .2s ease}
+.tool:hover{background:var(--surface)}
 .tool .row{display:flex;flex-wrap:wrap;gap:6px}
-.tool h3{margin:0;font-size:20px;font-weight:700;letter-spacing:-.015em}
-.tool h3 a{color:var(--ink);text-decoration:none}
-.tool h3 a::after{content:"";position:absolute;inset:0;border-radius:22px}
+.tool h3{margin:0;font-size:21px;font-weight:700;letter-spacing:-.02em}
+.tool h3 a{text-decoration:none}
+.tool h3 a::after{content:"";position:absolute;inset:0}
+.tool:hover h3 a{color:var(--sand)}
 .tool p{margin:0;font-size:15px;color:var(--ink2)}
-.tool .meta{margin-top:auto;font-size:13px;color:var(--muted)}
-.tag{font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--blue-soft);color:var(--blue-text);white-space:nowrap}
-.tag.planet{background:var(--sand-soft);color:var(--sand-text)}
-.tag.ai{background:var(--ai-soft);color:var(--ai-text)}
-.tag.place{background:var(--green-soft);color:var(--green-text)}
-.empty{grid-column:1/-1;padding:30px;border-radius:22px;background:var(--surface);color:var(--ink2);text-align:center}
+.tool .bottom{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:8px}
+.tool .meta{font-size:13px;color:var(--muted);min-width:0}
+.tool .meta.free{color:var(--planet)}
+.tool .rankbadge{position:absolute;top:18px;right:18px;font-family:var(--display);font-size:10px;letter-spacing:.14em;color:var(--sand-ink);background:var(--sand);padding:4px 8px;border-radius:999px}
+.tag{font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;border:1px solid var(--line2);color:var(--ink2);white-space:nowrap}
+.tag.ai{border-color:transparent;background:var(--ai-soft);color:var(--ai)}
+.tag.planet{border-color:transparent;background:var(--planet-soft);color:var(--planet)}
+.tag.place{border-color:transparent;color:var(--place);padding-left:0;padding-right:0}
+.tag.comm{border-color:transparent;background:var(--sand);color:var(--sand-ink)}
+.empty{grid-column:1/-1;padding:30px;background:var(--bg);color:var(--ink2);text-align:center}
 .pager{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:24px}
 .pager .count{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
 .pages{display:flex;flex-wrap:wrap;gap:6px}
-.pages button{font:inherit;font-size:14px;font-weight:600;min-width:40px;height:40px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer;font-variant-numeric:tabular-nums}
-.pages button:hover:not(:disabled){border-color:var(--blue-text);color:var(--ink)}
-.pages button[aria-current="page"]{background:var(--blue);border-color:var(--blue);color:#fff}
-.pages button:disabled{opacity:.4;cursor:default}
+.pages button{font:inherit;font-size:14px;font-weight:600;min-width:40px;height:40px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink2);cursor:pointer;font-variant-numeric:tabular-nums}
+.pages button:hover:not(:disabled){border-color:var(--line2);color:var(--ink)}
+.pages button[aria-current="page"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.pages button:disabled{opacity:.35;cursor:default}
 
-/* Community */
-.circles{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-top:1px solid var(--line)}
-.circle{display:grid;grid-template-columns:48px 1fr;gap:4px 16px;padding:24px 8px 24px 0;border-bottom:1px solid var(--line)}
-.circle svg{width:40px;height:40px;grid-row:span 2;color:var(--blue)}
-.circle h3{margin:0;font-size:20px;font-weight:700;letter-spacing:-.015em}
-.circle p{margin:0;font-size:15px;color:var(--ink2);min-width:0}
-.rhythm{margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.rhythm div{background:var(--blue-soft);border-radius:22px;padding:24px}
-.rhythm i{display:block;font-style:normal;font-family:var(--display);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue-text);margin-bottom:10px}
-.rhythm b{display:block;font-size:19px;letter-spacing:-.01em;margin-bottom:4px}
-.rhythm p{margin:0;font-size:15px;color:var(--ink2)}
-
-/* Services */
-.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
-.service{display:flex;flex-direction:column;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:26px}
-.service h3{margin:0;font-size:22px;font-weight:700;letter-spacing:-.018em}
-.service p{margin:0;font-size:15px;color:var(--ink2)}
-.service ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:15px}
-.service li{display:flex;gap:10px}
-.service li::before{content:"";flex:none;width:6px;height:6px;margin-top:9px;border-radius:50%;background:var(--sand)}
-.service button{margin-top:auto;align-self:flex-start;font:inherit;font-size:15px;font-weight:600;height:42px;padding:0 18px;border-radius:999px;border:1px solid var(--blue-text);background:transparent;color:var(--blue-text);cursor:pointer}
-.service button:hover{background:var(--blue-soft)}
-
-/* Pledge */
-.pledge{margin-top:88px;background:var(--sand-soft);border-radius:32px;padding:44px clamp(22px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px 40px}
-.pledge h2{margin:0;font-size:clamp(28px,3.6vw,38px);line-height:1.08;letter-spacing:-.025em}
-.pledge .intro p{margin:10px 0 0;color:var(--ink2)}
-.pledge ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:18px;counter-reset:p}
-.pledge li{counter-increment:p;display:grid;grid-template-columns:36px 1fr;gap:12px}
-.pledge li::before{content:counter(p);display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--sand);color:#fff;font-weight:700;font-size:15px}
-.pledge li b{display:block;font-size:17px}
-.pledge li span{font-size:15px;color:var(--ink2)}
-
-/* Join */
-.join{margin-top:96px;background:var(--band);color:#fff}
-.join .wrap{padding-block:88px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
-.join h2{margin:0;font-size:clamp(36px,5.4vw,58px);line-height:1.04;letter-spacing:-.032em}
-.join p{margin:0;font-size:19px;color:var(--band-soft);max-width:620px}
-form.sub{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%;max-width:640px;padding-top:12px;text-align:left}
-form.sub label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--band-soft);min-width:0}
-form.sub .full{grid-column:1/-1}
-form.sub input,form.sub select{font:inherit;font-size:16px;height:50px;padding:0 18px;border:0;border-radius:14px;background:#fff;color:#0d1420;width:100%;color-scheme:light}
-form.sub button{grid-column:1/-1;font:inherit;font-weight:600;font-size:17px;height:54px;border:0;border-radius:999px;background:#fff;color:var(--band);cursor:pointer}
-form.sub button:hover{background:#e8f0fd}
-.done{max-width:640px;background:rgba(255,255,255,.1);border-radius:20px;padding:22px 26px;text-align:left}
-.done b{display:block;font-size:20px;margin-bottom:4px;color:#fff}
-.done span{color:var(--band-soft)}
-
-
-
-/* Request + professional forms (on page surfaces) */
-.request{margin-top:40px;background:var(--surface);border-radius:28px;padding:clamp(22px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px 40px;align-items:start}
-.request .intro h3{margin:0 0 8px;font-size:clamp(24px,3vw,30px);letter-spacing:-.02em;line-height:1.1}
-.request .intro p{margin:0;color:var(--ink2)}
-.request .intro ul{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:15px;color:var(--ink2)}
-.request .intro li{display:flex;gap:10px}
-.request .intro li::before{content:"";flex:none;width:6px;height:6px;margin-top:9px;border-radius:50%;background:var(--blue)}
-form.pform{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;min-width:0}
-form.pform label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--ink2);min-width:0}
-form.pform .full{grid-column:1/-1}
-form.pform input,form.pform select,form.pform textarea{font:inherit;font-size:16px;padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);width:100%}
-form.pform input,form.pform select{height:50px;padding-block:0}
-form.pform textarea{min-height:120px;resize:vertical;line-height:1.45}
-form.pform .check{flex-direction:row;align-items:flex-start;gap:10px;font-size:14px;line-height:1.45}
-form.pform .check input{width:20px;height:20px;flex:none;margin-top:1px;accent-color:var(--blue)}
-form.pform button{grid-column:1/-1;font:inherit;font-weight:600;font-size:17px;height:54px;border:0;border-radius:999px;background:var(--blue);color:#fff;cursor:pointer}
-form.pform button:hover{background:var(--blue-hover)}
-form.pform button:disabled{opacity:.6;cursor:wait}
-.hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
-.notice{border-radius:18px;padding:18px 22px;background:var(--blue-soft);color:var(--ink)}
+/* Suggest */
+.suggest{margin-top:112px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:radial-gradient(70% 90% at 100% 0%,rgba(31,95,214,.22),transparent 60%),linear-gradient(180deg,var(--surface),var(--bg))}
+.suggest .wrap{padding-block:88px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px;align-items:start}
+.suggest .label{color:var(--sand)}
+.suggest h2{margin:12px 0 16px;font-size:clamp(38px,5.4vw,64px);line-height:.98;letter-spacing:-.04em;font-weight:800}
+.suggest .intro p{margin:0;color:var(--ink2);font-size:18px;max-width:42ch}
+.steps{list-style:none;margin:32px 0 0;padding:0;display:flex;flex-direction:column;counter-reset:st;border-top:1px solid var(--line)}
+.steps li{counter-increment:st;display:grid;grid-template-columns:44px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--line)}
+.steps li::before{content:"0" counter(st);font-family:var(--display);font-size:13px;color:var(--sand);padding-top:3px}
+.steps b{display:block;font-size:17px}
+.steps span{font-size:15px;color:var(--muted)}
+.card-form{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(22px,3.5vw,34px)}
+form.sform{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+form.sform label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--ink2);min-width:0}
+form.sform .full{grid-column:1/-1}
+form.sform input,form.sform select,form.sform textarea{font:inherit;font-size:16px;padding:12px 16px;border:1px solid var(--line2);border-radius:12px;background:var(--bg);color:var(--ink);width:100%}
+form.sform input::placeholder,form.sform textarea::placeholder{color:#5f7392}
+form.sform input,form.sform select{height:50px;padding-block:0}
+form.sform textarea{min-height:110px;resize:vertical;line-height:1.45}
+form.sform .hint{font-size:12px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+form.sform button{grid-column:1/-1;font:inherit;font-weight:600;font-size:17px;height:54px;border:0;border-radius:999px;background:var(--sand);color:var(--sand-ink);cursor:pointer}
+form.sform button:hover{background:#7ab6ff}
+form.sform button:disabled{opacity:.6;cursor:wait}
+.dup{grid-column:1/-1;font-size:14px;border:1px solid var(--sand);color:var(--ink);border-radius:12px;padding:10px 14px}
+.dup button{font:inherit;font-size:14px;background:none;border:0;color:var(--sand);text-decoration:underline;cursor:pointer;padding:0;height:auto;width:auto}
+.notice{border-radius:16px;padding:18px 22px;border:1px solid var(--blue);background:var(--blue-soft)}
 .notice b{display:block;font-size:18px;margin-bottom:4px}
-.notice.warn{background:var(--sand-soft)}
-
-/* Work with us view */
-.pro .wrap{padding-block:72px 0;display:flex;flex-direction:column;gap:20px}
-.pro h1{margin:0;font-size:clamp(40px,6vw,68px);line-height:1.02;letter-spacing:-.035em}
-.pro .dek{max-width:680px}
-.steps{margin:20px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;counter-reset:st}
-.steps li{counter-increment:st;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:6px}
-.steps li::before{content:counter(st);display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:15px;margin-bottom:6px}
-.steps b{font-size:18px;letter-spacing:-.01em}
-.steps span{font-size:15px;color:var(--ink2)}
-.pro .request{margin-top:20px}
-.backlink{font-size:15px;margin:12px 0 0}.backlink a{text-decoration:none}
-
-@media (max-width:760px){form.pform{grid-template-columns:1fr}}
+.notice.warn{border-color:var(--sand);background:var(--sand-soft)}
+.notice button{margin-top:10px;font:inherit;font-size:14px;font-weight:600;background:none;border:1px solid var(--line2);border-radius:999px;padding:6px 14px;color:var(--ink);cursor:pointer}
 
 /* Footer */
-footer.site{margin-top:0;background:var(--surface);border-top:1px solid var(--line);color:var(--ink2);font-size:15px}
-footer.site .wrap{padding-block:56px 0}
-.foot-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1.3fr);gap:36px 40px;align-items:start}
-.foot-brand{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+footer.site{color:var(--ink2);font-size:14px}
+footer.site .wrap{padding-block:56px 36px;display:flex;flex-direction:column;gap:28px}
+.foot-row{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:24px 40px}
+.foot-brand{display:flex;flex-direction:column;gap:14px;max-width:38ch}
 .foot-brand .mono{height:40px}
-.foot-brand .word{font-size:13px}
-.foot-brand p{margin:0;max-width:34ch;color:var(--ink2)}
-.foot-col{display:flex;flex-direction:column;gap:14px}
-.foot-col b{font-family:var(--display);font-size:10px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
-.foot-col nav{display:flex;flex-direction:column;gap:10px}
-.foot-col a{color:var(--ink);text-decoration:none;width:fit-content;background:linear-gradient(var(--blue),var(--blue)) 0 100%/0 1.5px no-repeat;transition:background-size .2s ease,color .2s ease}
-.foot-col a:hover{color:var(--blue-text);background-size:100% 1.5px}
-.foot-cta{display:flex;flex-direction:column;gap:8px;padding:24px;border-radius:24px;background:var(--band);color:#fff;text-decoration:none;transition:transform .2s ease}
-.foot-cta:hover{transform:translateY(-2px)}
-.foot-cta b{font-size:20px;letter-spacing:-.015em}
-.foot-cta span{font-size:15px;color:var(--band-soft)}
-.foot-cta i{font-style:normal;margin-top:8px;align-self:flex-start;padding:9px 16px;border-radius:999px;background:#fff;color:var(--band);font-size:14px;font-weight:600}
-.foot-mark{margin-top:56px;display:flex;flex-direction:column;gap:6px;overflow:hidden}
-.foot-mark .big{font-family:var(--display);text-transform:uppercase;white-space:nowrap;font-size:clamp(22px,6.1vw,70px);letter-spacing:.14em;line-height:1;color:var(--ink);opacity:.9}
-.foot-mark .big .light{color:var(--muted)}
-.foot-mark svg{display:block;width:100%;height:36px;stroke:var(--sand)}
-.foot-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;padding-block:20px 32px;margin-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.foot-brand p{margin:0}
+.foot-links{display:flex;flex-wrap:wrap;gap:10px 28px}
+.foot-links a{text-decoration:none;color:var(--ink)}
+.foot-links a:hover{color:var(--sand)}
+.foot-mark{font-family:var(--display);text-transform:uppercase;white-space:nowrap;font-size:clamp(22px,6.4vw,78px);letter-spacing:.14em;line-height:1;color:var(--raise);overflow:hidden;-webkit-user-select:none;user-select:none}
+.foot-bar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
 .foot-bar .legal{flex:1 1 320px;min-width:0}
 .foot-bar a{color:var(--ink2);text-decoration:none}.foot-bar a:hover{color:var(--ink)}
-@media (max-width:900px){.foot-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.foot-brand,.foot-cta{grid-column:1/-1}}
-@media (max-width:480px){.foot-grid{grid-template-columns:1fr}}
-@media (prefers-reduced-motion:reduce){.foot-cta,.foot-col a{transition:none}}
 
-/* Newsletter modal */
-dialog.nl{border:0;padding:0;margin:auto;width:min(520px,calc(100% - 32px));max-height:calc(100% - 32px);border-radius:28px;background:var(--card);color:var(--ink);box-shadow:0 30px 80px rgba(6,20,45,.35);overflow:auto}
-dialog.nl::backdrop{background:rgba(6,18,40,.55);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
-.nl-top{position:relative;background:var(--band);color:#fff;padding:30px 30px 0;overflow:hidden}
-.nl-top .tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--band-soft)}
-.nl-top .tag .mono{height:22px;width:auto;color:#fff}
-.nl-top h2{margin:16px 0 8px;font-size:clamp(26px,5vw,34px);line-height:1.08;letter-spacing:-.03em}
-.nl-top p{margin:0;color:var(--band-soft);font-size:16px;line-height:1.5;max-width:42ch}
-.nl-top svg.ridge2{display:block;width:calc(100% + 60px);margin:22px -30px 0;height:44px}
-.nl-body{padding:24px 30px 28px;display:flex;flex-direction:column;gap:14px}
-.nl-body ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:15px;color:var(--ink2)}
-.nl-body li{display:flex;gap:10px}
-.nl-body li::before{content:"";flex:none;width:6px;height:6px;margin-top:9px;border-radius:50%;background:var(--sand)}
-form.nl-form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px}
-form.nl-form label{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--ink2);min-width:0}
-form.nl-form input,form.nl-form select{font:inherit;font-size:16px;height:50px;padding:0 16px;border:1px solid var(--line);border-radius:14px;background:var(--bg);color:var(--ink);width:100%}
-form.nl-form button{grid-column:1/-1;font:inherit;font-weight:600;font-size:17px;height:52px;border:0;border-radius:999px;background:var(--blue);color:#fff;cursor:pointer}
-form.nl-form button:hover{background:var(--blue-hover)}
-form.nl-form button:disabled{opacity:.6;cursor:wait}
-.nl-skip{align-self:center;font:inherit;font-size:14px;background:none;border:0;color:var(--muted);cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:4px}
-.nl-skip:hover{color:var(--ink)}
-.nl-close{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;font-size:20px;line-height:1;cursor:pointer;display:grid;place-items:center}
-.nl-close:hover{background:rgba(255,255,255,.22)}
-.nl-fine{margin:0;font-size:12px;color:var(--muted);text-align:center}
-.nl-fine a{color:var(--ink2)}
-.nl-done{display:flex;flex-direction:column;gap:6px;padding:18px 20px;border-radius:18px;background:var(--blue-soft)}
-.nl-done b{font-size:18px}
-.nl-done.warn{background:var(--sand-soft)}
-@media (prefers-reduced-motion:no-preference){dialog.nl[open]{animation:nlIn .35s cubic-bezier(.2,.8,.2,1)}}
-@keyframes nlIn{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
-@media (max-width:480px){form.nl-form{grid-template-columns:1fr}.nl-top{padding:26px 22px 0}.nl-top svg.ridge2{width:calc(100% + 44px);margin:18px -22px 0}.nl-body{padding:20px 22px 24px}}
-
+@media (prefers-reduced-motion:no-preference){
+  .hero h1 .ln{display:block;animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
+  .hero h1 .ln:nth-child(2){animation-delay:.08s}.hero h1 .ln:nth-child(3){animation-delay:.16s}
+  @keyframes rise{from{transform:translateY(18px)}to{transform:none}}
+}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.manifesto{border-left:0;border-top:1px solid var(--line)}.manifesto li{padding-left:0}.board{grid-template-columns:1fr}.winner{min-height:0}.suggest .wrap{grid-template-columns:1fr}.tally{grid-template-columns:repeat(2,minmax(0,1fr))}.tally div:nth-child(3){padding-left:0;border-left:0}.tally div:nth-child(n+3){border-top:1px solid var(--line)}}
 @media (max-width:760px){
   .top .wrap{display:grid;grid-template-columns:1fr auto;padding-top:8px}
   .nav{grid-column:1/-1;grid-row:2;overflow-x:auto;gap:18px;scrollbar-width:none}
@@ -269,16 +229,17 @@ form.nl-form button:disabled{opacity:.6;cursor:wait}
   .pill{display:none}
   .word{font-size:11px;letter-spacing:.14em}
   .brand .mono{height:30px}
-  .hero .wrap{padding-block:52px 28px}
-  .pillars{grid-template-columns:1fr}
-  .pillars a{border-left:0;border-top:1px solid var(--line)}.pillars a:first-child{border-top:0}
-  section.block{padding-block:64px 0}
+  .hero .wrap{padding-block:52px 0}
+  section.block{padding-block:72px 0}
+  .head{grid-template-columns:1fr}
   .group-label{min-width:0;flex-basis:100%}
   .search{max-width:none;margin-left:0}
-  form.sub{grid-template-columns:1fr}
-  .join .wrap{padding-block:64px}
+  form.sform{grid-template-columns:1fr}
+  .suggest .wrap{padding-block:64px}
 }
-@media (prefers-reduced-motion:reduce){.tool{transition:none}}
+@media (max-width:480px){.ranklist li{grid-template-columns:40px minmax(0,1fr) auto;gap:6px 10px}.tally div + div{padding-left:14px}}
+@media (prefers-reduced-motion:reduce){.tool,.vote,.vote svg,.ranklist .meter span,.switch .knob,.switch .knob::after{transition:none}}
+
 </style>
 
 </head>
@@ -286,141 +247,96 @@ form.nl-form button:disabled{opacity:.6;cursor:wait}
 <header class="top"><div class="wrap">
   <a class="brand" href="#top" aria-label="The Desert Zone"><svg class="mono" viewBox="0 0 99 219" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M3.25 216.34C2.28 215.95 2.00 207.51 2.00 178.92L2.00 142.00L8.25 142.01L14.50 142.01L47.22 167.01C65.22 180.75 80.17 192.00 80.45 192.00C80.73 192.00 81.08 181.31 81.23 168.25L81.50 144.50L89.00 144.50L96.50 144.50L96.76 180.25L97.03 216.00L90.62 216.00L84.22 216.00L50.86 190.54L17.50 165.08L17.23 191.04L16.97 217.00L10.73 216.92C7.31 216.88 3.94 216.62 3.25 216.34ZM40.58 136.95C27.02 134.84 13.93 125.40 8.08 113.51C3.16 103.52 2.04 96.14 2.02 73.75L2.00 54.00L41.50 54.00C80.33 54.00 81.00 53.97 81.00 52.00C81.00 50.03 80.33 50.00 41.50 50.00L2.00 50.00L2.00 41.50L2.00 33.00L41.47 33.00L80.95 33.00L81.22 17.75L81.50 2.50L89.33 2.21L97.17 1.91L96.73 49.21C96.36 88.98 96.03 97.51 94.64 102.82C90.04 120.44 80.77 131.03 66.19 135.35C59.27 137.40 48.01 138.11 40.58 136.95ZM64.79 117.04C67.83 115.71 71.54 113.02 73.49 110.74C78.75 104.60 80.20 99.30 80.75 84.25L81.23 71.00L48.96 71.00L16.70 71.00L17.27 83.25C18.27 104.41 23.27 113.54 36.41 118.23C43.65 120.81 57.51 120.23 64.79 117.04Z"/></svg><span class="word">The Desert <span class="light">Zone</span></span></a>
   <nav class="nav" aria-label="Sections">
-    <a href="#tools" data-t="navTools">Tools</a><a href="#community" data-t="navCommunity">Community</a><a href="#services" data-t="navServices">Services</a><a href="#pledge" data-t="navPledge">Our pledge</a>
+    <a href="#top10" data-t="navTop">Top 10</a><a href="#tools" data-t="navTools">Tools</a><a href="#suggest" data-t="navSuggest">Suggest</a>
   </nav>
   <div class="right">
     <div class="lang" role="group" aria-label="Language / Idioma">
       <button type="button" id="lang-es" data-lang="es" lang="es" aria-pressed="false">ES</button>
       <button type="button" id="lang-en" data-lang="en" lang="en" aria-pressed="true">EN</button>
     </div>
-    <a class="pill" href="#join" data-t="joinPill">Join the Zone</a>
+    <a class="pill" href="#suggest" data-t="pill">Add a tool</a>
   </div>
 </div></header>
 
 <main id="top">
-<section class="hero home" aria-labelledby="hero-title">
+<section class="hero" aria-labelledby="hero-title">
   <div class="wrap">
-    <p class="eyebrow" data-t="eyebrow">For founders, makers and dreamers</p>
-    <h1 id="hero-title" data-h="heroTitle">Build what the <em>future</em> needs.</h1>
-    <p class="dek" data-t="heroDek">The Desert Zone brings together the tools, the people and the services you need to take an idea from a sketch to something real.</p>
-    <div class="actions"><a class="btn" href="#tools" data-t="ctaTools">Explore the tools</a><a class="btn ghost" href="#join" data-t="ctaJoin">Join the community</a></div>
-    <svg class="ridge" viewBox="0 0 1200 170" aria-hidden="true" preserveAspectRatio="xMidYMax meet">
-      <circle class="sun" cx="600" cy="92" r="44" opacity=".9"/>
-      <polyline points="0,168 400,128 470,142 600,62 730,142 800,128 1200,168" fill="none" stroke-width="3" stroke-linejoin="miter" stroke-linecap="round" style="stroke:var(--ink)"/>
-    </svg>
-  </div>
-  <div class="wrap">
-    <div class="pillars">
-      <a href="#tools"><i data-t="p1i">01 · Tools</i><b id="tool-count">Tools</b><span id="tool-sub">Hand-picked software and guides.</span></a>
-      <a href="#community"><i data-t="p2i">02 · Community</i><b data-t="p2b">Six circles to join</b><span data-t="p2s">Meet people working on the same problems you are.</span></a>
-      <a href="#services"><i data-t="p3i">03 · Services</i><b data-t="p3b">Help when you need it</b><span data-t="p3s">Mentors and specialists for the hard parts.</span></a>
+    <div>
+      <span class="label" data-t="eyebrow">Community tools · Built by entrepreneurs</span>
+      <h1 id="hero-title"><span class="ln" data-t="h1a">Anyone</span><span class="ln" data-t="h1b">can build.</span><span class="ln s" data-t="h1c">Start now.</span></h1>
+      <p class="dek" data-t="heroDek"></p>
+      <div class="actions"><a class="btn" href="#tools" data-t="ctaTools">Find your tools</a><a class="btn ghost" href="#top10" data-t="ctaTop">See the community Top 10</a></div>
+    </div>
+    <ul class="manifesto" id="manifesto"></ul>
+    <div class="tally">
+      <div><b id="st-tools">—</b><span data-t="stTools">tools in the directory</span></div>
+      <div><b id="st-free">—</b><span data-t="stFree">free to start</span></div>
+      <div><b id="st-countries">—</b><span data-t="stCountries">countries where they were made</span></div>
+      <div><b id="st-votes">—</b><span data-t="stVotes">community votes</span></div>
     </div>
   </div>
+  <svg class="ridge" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,55 420,40 490,47 600,6 710,47 780,40 1200,55" fill="none" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
 </section>
 
-<section class="block home" id="tools" aria-labelledby="tools-title"><div class="wrap">
-  <div class="head"><h2 class="h2" id="tools-title" data-t="toolsTitle">Tools</h2><p class="lead" data-t="toolsLead">A curated list.</p></div>
+<section class="block" id="top10" aria-labelledby="top-title"><div class="wrap">
+  <div class="head"><div><span class="label" data-t="topEyebrow">Decided by the community</span><h2 class="h2" id="top-title" data-t="topTitle">Top 10</h2><p class="lead" data-t="topLead"></p><p class="preview-note" id="preview-note" hidden data-t="previewNote"></p></div></div>
+  <div class="board" id="board"></div>
+</div></section>
+
+<section class="block" id="tools" aria-labelledby="tools-title"><div class="wrap">
+  <div class="head"><div><span class="label" data-t="toolsEyebrow">The directory</span><h2 class="h2" id="tools-title" data-t="toolsTitle">Everything you need to create</h2><p class="lead" data-t="toolsLead"></p></div></div>
   <div class="toolbar">
-    <div class="line"><span class="group-label" data-t="lblType">Type</span><div class="filters" id="cat-filters" role="group" aria-label="Category"></div>
-      <label class="search"><input id="tool-search" type="search" placeholder="Search tools" aria-label="Search tools"></label></div>
-    <div class="line" id="area-line" hidden><span class="group-label" data-t="lblArea">AI area</span><div class="filters" id="area-filters" role="group" aria-label="AI area"></div></div>
+    <div class="line"><span class="group-label label" data-t="lblType">Type</span><div class="filters" id="cat-filters" role="group" aria-label="Category"></div></div>
+    <div class="line" id="area-line" hidden><span class="group-label label" data-t="lblArea">AI area</span><div class="filters" id="area-filters" role="group" aria-label="AI area"></div></div>
+    <div class="line">
+      <label class="switch"><input type="checkbox" id="free-only"><span class="knob" aria-hidden="true"></span><span data-t="freeOnly">Free to start</span> <span class="num" id="free-num"></span></label>
+      <label class="search"><input id="tool-search" type="search" placeholder="Search tools" aria-label="Search tools"></label>
+      <label class="sort"><select id="tool-sort" aria-label="Sort"></select></label>
+    </div>
   </div>
   <div class="tools" id="tool-grid" aria-live="polite"></div>
-  <nav class="pager" id="pager" aria-label="Tool pages"><span class="count" id="page-count"></span><div class="pages" id="pages"></div></nav>
+  <nav class="pager" aria-label="Tool pages"><span class="count" id="page-count"></span><div class="pages" id="pages"></div></nav>
 </div></section>
 
-<section class="block home" id="community" aria-labelledby="community-title"><div class="wrap">
-  <div class="head"><h2 class="h2" id="community-title" data-t="commTitle">Community</h2><p class="lead" data-t="commLead"></p></div>
-  <div class="circles" id="circles"></div>
-  <div class="rhythm" id="rhythm"></div>
-</div></section>
-
-<section class="block home" id="services" aria-labelledby="services-title"><div class="wrap">
-  <div class="head"><h2 class="h2" id="services-title" data-t="servTitle">Services</h2><p class="lead" data-t="servLead"></p></div>
-  <div class="services" id="service-grid"></div>
-  <div class="request" id="request">
-    <div class="intro"><h3 data-t="reqTitle">Request a service</h3><p data-t="reqLead"></p><ul id="req-points"></ul></div>
-    <div>
-      <form class="pform" id="request-form" novalidate>
-        <label><span data-t="rName">Your name</span><input id="r-name" name="name" required autocomplete="name"></label>
-        <label><span data-t="rEmail">Email</span><input id="r-email" name="email" type="email" required autocomplete="email"></label>
-        <label><span data-t="rPhone">Phone (optional)</span><input id="r-phone" name="phone" type="tel" autocomplete="tel"></label>
-        <label><span data-t="rService">Service</span><select id="r-service" name="service"></select></label>
-        <label class="full"><span data-t="rBudget">Budget</span><select id="r-budget" name="budget"></select></label>
-        <label class="full"><span data-t="rDesc">Tell us about your project</span><textarea id="r-desc" name="description" required></textarea></label>
-        <div class="hp" aria-hidden="true"><label>Web<input type="text" id="r-web" name="website" tabindex="-1" autocomplete="off"></label></div>
-        <button type="submit" data-t="rSubmit">Send request</button>
-      </form>
-      <div class="notice" id="request-done" role="status" hidden><b></b><span></span></div>
-    </div>
+<section class="suggest" id="suggest" aria-labelledby="suggest-title"><div class="wrap">
+  <div class="intro">
+    <span class="label" data-t="sgEyebrow">Open to everyone</span>
+    <h2 id="suggest-title" data-t="sgTitle">Add the tool that helped you build.</h2>
+    <p data-t="sgLead"></p>
+    <ol class="steps" id="sg-steps"></ol>
   </div>
-  <div class="pledge" id="pledge">
-    <div class="intro"><h2 data-t="pledgeTitle">The Zone pledge</h2><p data-t="pledgeLead"></p></div>
-    <ol id="pledge-list"></ol>
+  <div class="card-form">
+    <form class="sform" id="sg-form" novalidate>
+      <label><span data-t="fName">Tool name</span><input id="s-name" name="name" required maxlength="80" autocomplete="off"></label>
+      <label><span data-t="fUrl">Website</span><input id="s-url" name="url" type="url" required placeholder="https://"></label>
+      <div class="dup" id="s-dup" hidden></div>
+      <label><span data-t="fCat">Category</span><select id="s-cat" name="category"></select></label>
+      <label id="s-area-wrap"><span data-t="fArea">AI area</span><select id="s-area" name="area"></select></label>
+      <label class="full"><span data-t="fCountry">Country where it was created</span><input id="s-country" name="country" maxlength="60"></label>
+      <label class="full"><span data-t="fDesc">What does it do and why do you recommend it?</span><textarea id="s-desc" name="description" required maxlength="400"></textarea><span class="hint" id="s-count">0 / 400</span></label>
+      <label><span data-t="fBy">Your name (optional)</span><input id="s-by" name="by" maxlength="80" autocomplete="name"></label>
+      <label><span data-t="fEmail">Email to tell you when it's live (optional)</span><input id="s-email" name="email" type="email" autocomplete="email"></label>
+      <div class="hp" aria-hidden="true"><label>Web<input type="text" id="s-web" name="website" tabindex="-1" autocomplete="off"></label></div>
+      <button type="submit" data-t="fSubmit">Send suggestion</button>
+    </form>
+    <div class="notice" id="sg-done" role="status" hidden><b></b><span></span><br><button type="button" id="sg-again" data-t="sgAgain">Suggest another tool</button></div>
   </div>
-</div></section>
-
-<section class="join home" id="join" aria-labelledby="join-title"><div class="wrap">
-  <h2 id="join-title" data-t="joinTitle">Your idea belongs here.</h2>
-  <p data-t="joinLead"></p>
-  <form class="sub" id="join-form" novalidate>
-    <label><span data-t="fName">Your name</span><input id="j-name" name="name" required autocomplete="name" placeholder="Ana Martínez"></label>
-    <label><span data-t="fEmail">Email</span><input id="j-email" name="email" type="email" required autocomplete="email" placeholder="ana@project.com"></label>
-    <label><span data-t="fPhone">Phone (optional)</span><input id="j-phone" name="phone" type="tel" autocomplete="tel" placeholder="+503 7000 0000"></label>
-    <label><span data-t="fRole">I am a</span><select id="j-role" name="role"></select></label>
-    <label class="full"><span data-t="fInterest">Most interested in</span><select id="j-interest" name="interest"></select></label>
-    <label class="full"><span data-t="fProject">What are you building? (optional)</span><input id="j-project" name="project"></label>
-    <button type="submit" data-t="fSubmit">Join the Zone</button>
-  </form>
-  <div class="done" id="done" role="status" hidden><b id="done-title"></b><span id="done-text"></span></div>
-</div></section>
-
-<section class="pro" id="trabaja" hidden aria-labelledby="pro-title"><div class="wrap">
-  <p class="eyebrow" data-t="proEyebrow">For professionals</p>
-  <h1 id="pro-title" data-t="proTitle">Work with us</h1>
-  <p class="dek" data-t="proLead"></p>
-  <ol class="steps" id="pro-steps"></ol>
-  <div class="request">
-    <div class="intro"><h3 data-t="proFormTitle">Apply</h3><p data-t="proFormLead"></p><ul id="pro-points"></ul></div>
-    <div>
-      <form class="pform" id="pro-form" novalidate>
-        <label><span data-t="rName">Your name</span><input id="p-name" name="name" required autocomplete="name"></label>
-        <label><span data-t="rEmail">Email</span><input id="p-email" name="email" type="email" required autocomplete="email"></label>
-        <label><span data-t="rPhone">Phone (optional)</span><input id="p-phone" name="phone" type="tel" autocomplete="tel"></label>
-        <label><span data-t="pCountry">Country</span><input id="p-country" name="country" autocomplete="country-name"></label>
-        <label><span data-t="pService">Service you offer</span><select id="p-service" name="service"></select></label>
-        <label><span data-t="pLang">Languages you work in</span><select id="p-lang" name="lang"></select></label>
-        <label><span data-t="pRate">Hourly rate (USD)</span><input id="p-rate" name="rate" inputmode="decimal" placeholder="35"></label>
-        <label><span data-t="pYears">Years of experience</span><input id="p-years" name="years" inputmode="numeric" placeholder="5"></label>
-        <label class="full"><span data-t="pPortfolio">Portfolio or website</span><input id="p-portfolio" name="portfolio" type="url" placeholder="https://"></label>
-        <label class="full"><span data-t="pSpecialty">What do you do best?</span><textarea id="p-specialty" name="specialty" required></textarea></label>
-        <label class="full check"><input id="p-terms" name="terms" type="checkbox"><span data-t="pTerms"></span></label>
-        <div class="hp" aria-hidden="true"><label>Web<input type="text" id="p-web" name="website" tabindex="-1" autocomplete="off"></label></div>
-        <button type="submit" data-t="pSubmit">Send application</button>
-      </form>
-      <div class="notice" id="pro-done" role="status" hidden><b></b><span></span></div>
-    </div>
-  </div>
-  <p class="backlink"><a href="#top" data-t="backHome">← Back to The Desert Zone</a></p>
 </div></section>
 </main>
 
 <footer class="site">
   <div class="wrap">
-    <div class="foot-grid">
+    <div class="foot-row">
       <div class="foot-brand">
         <a class="brand" href="#top" aria-label="The Desert Zone"><svg class="mono" viewBox="0 0 99 219" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M3.25 216.34C2.28 215.95 2.00 207.51 2.00 178.92L2.00 142.00L8.25 142.01L14.50 142.01L47.22 167.01C65.22 180.75 80.17 192.00 80.45 192.00C80.73 192.00 81.08 181.31 81.23 168.25L81.50 144.50L89.00 144.50L96.50 144.50L96.76 180.25L97.03 216.00L90.62 216.00L84.22 216.00L50.86 190.54L17.50 165.08L17.23 191.04L16.97 217.00L10.73 216.92C7.31 216.88 3.94 216.62 3.25 216.34ZM40.58 136.95C27.02 134.84 13.93 125.40 8.08 113.51C3.16 103.52 2.04 96.14 2.02 73.75L2.00 54.00L41.50 54.00C80.33 54.00 81.00 53.97 81.00 52.00C81.00 50.03 80.33 50.00 41.50 50.00L2.00 50.00L2.00 41.50L2.00 33.00L41.47 33.00L80.95 33.00L81.22 17.75L81.50 2.50L89.33 2.21L97.17 1.91L96.73 49.21C96.36 88.98 96.03 97.51 94.64 102.82C90.04 120.44 80.77 131.03 66.19 135.35C59.27 137.40 48.01 138.11 40.58 136.95ZM64.79 117.04C67.83 115.71 71.54 113.02 73.49 110.74C78.75 104.60 80.20 99.30 80.75 84.25L81.23 71.00L48.96 71.00L16.70 71.00L17.27 83.25C18.27 104.41 23.27 113.54 36.41 118.23C43.65 120.81 57.51 120.23 64.79 117.04Z"/></svg><span class="word">The Desert <span class="light">Zone</span></span></a>
         <p data-t="footTag"></p>
-        <div class="lang" role="group" aria-label="Language / Idioma"><button type="button" data-lang="es" lang="es" aria-pressed="false">ES</button><button type="button" data-lang="en" lang="en" aria-pressed="true">EN</button></div>
       </div>
-      <div class="foot-col"><b data-t="footExplore">Explore</b><nav aria-label="Explore"><a href="#tools" data-t="navTools">Tools</a><a href="#community" data-t="navCommunity">Community</a><a href="#services" data-t="navServices">Services</a><a href="#pledge" data-t="navPledge">Our pledge</a><a href="#join" data-t="navJoin">Join</a><a href="#newsletter" data-t="navNews">Newsletter</a></nav></div>
-      <div class="foot-col"><b data-t="footPros">For professionals</b><nav aria-label="For professionals"><a href="#trabaja" data-t="footWork">Work with us</a><a href="#trabaja" data-t="footHow">How the commission works</a><a href="#request" data-t="footReq">Request a service</a></nav></div>
-      <a class="foot-cta" href="#trabaja"><b data-t="footCtaTitle">Are you a professional?</b><span data-t="footCtaText"></span><i data-t="footCtaBtn">Apply</i></a>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="#top10" data-t="navTop">Top 10</a><a href="#tools" data-t="navTools">Tools</a><a href="#suggest" data-t="navSuggest">Suggest</a><a href="https://noticias.youngdesert.com/" target="_blank" rel="noopener" data-t="navNews">Newsletter ↗</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language / Idioma"><button type="button" data-lang="es" lang="es" aria-pressed="false">ES</button><button type="button" data-lang="en" lang="en" aria-pressed="true">EN</button></div>
     </div>
-    <div class="foot-mark" aria-hidden="true">
-      <span class="big">The Desert <span class="light">Zone</span></span>
-      <svg viewBox="0 0 1200 60" preserveAspectRatio="none"><polyline points="0,58 400,44 470,50 600,6 730,50 800,44 1200,58" fill="none" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
-    </div>
+    <div class="foot-mark" aria-hidden="true">The Desert Zone</div>
     <div class="foot-bar">
       <span>© <span id="year">2026</span> The Desert Zone</span>
       <span class="legal" data-t="footLegal"></span>
@@ -429,136 +345,81 @@ form.nl-form button:disabled{opacity:.6;cursor:wait}
   </div>
 </footer>
 
-<dialog class="nl" id="nl" aria-labelledby="nl-title">
-  <div class="nl-top">
-    <button class="nl-close" type="button" id="nl-x" data-t-aria="nlClose" aria-label="Close">×</button>
-    <span class="tag"><svg class="mono" viewBox="0 0 99 219" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M3.25 216.34C2.28 215.95 2.00 207.51 2.00 178.92L2.00 142.00L8.25 142.01L14.50 142.01L47.22 167.01C65.22 180.75 80.17 192.00 80.45 192.00C80.73 192.00 81.08 181.31 81.23 168.25L81.50 144.50L89.00 144.50L96.50 144.50L96.76 180.25L97.03 216.00L90.62 216.00L84.22 216.00L50.86 190.54L17.50 165.08L17.23 191.04L16.97 217.00L10.73 216.92C7.31 216.88 3.94 216.62 3.25 216.34ZM40.58 136.95C27.02 134.84 13.93 125.40 8.08 113.51C3.16 103.52 2.04 96.14 2.02 73.75L2.00 54.00L41.50 54.00C80.33 54.00 81.00 53.97 81.00 52.00C81.00 50.03 80.33 50.00 41.50 50.00L2.00 50.00L2.00 41.50L2.00 33.00L41.47 33.00L80.95 33.00L81.22 17.75L81.50 2.50L89.33 2.21L97.17 1.91L96.73 49.21C96.36 88.98 96.03 97.51 94.64 102.82C90.04 120.44 80.77 131.03 66.19 135.35C59.27 137.40 48.01 138.11 40.58 136.95ZM64.79 117.04C67.83 115.71 71.54 113.02 73.49 110.74C78.75 104.60 80.20 99.30 80.75 84.25L81.23 71.00L48.96 71.00L16.70 71.00L17.27 83.25C18.27 104.41 23.27 113.54 36.41 118.23C43.65 120.81 57.51 120.23 64.79 117.04Z"/></svg><span data-t="nlTag">The Desert Zone · News</span></span>
-    <h2 id="nl-title" data-t="nlTitle">What moves the region. Every morning.</h2>
-    <p data-t="nlText"></p>
-    <svg class="ridge2" viewBox="0 0 600 44" preserveAspectRatio="none" aria-hidden="true"><circle cx="300" cy="30" r="16" fill="var(--sand)" opacity=".95"/><polyline points="0,44 200,32 235,37 300,8 365,37 400,32 600,44" fill="none" stroke="#fff" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
-  </div>
-  <div class="nl-body">
-    <ul id="nl-points"></ul>
-    <form class="nl-form" id="nl-form" novalidate>
-      <label><span data-t="nlEmail">Your email</span><input id="nl-email" name="email" type="email" required autocomplete="email" placeholder="nombre@empresa.com"></label>
-      <label><span data-t="nlLang">Language</span><select id="nl-lang" name="lang"></select></label>
-      <div class="hp" aria-hidden="true"><label>Web<input type="text" id="nl-web" name="website" tabindex="-1" autocomplete="off"></label></div>
-      <button type="submit" data-t="nlSubmit">Subscribe</button>
-    </form>
-    <div class="nl-done" id="nl-done" role="status" hidden><b></b><span></span></div>
-    <button class="nl-skip" type="button" id="nl-skip" data-t="nlSkip">No thanks, take me to the site</button>
-    <p class="nl-fine"><span data-t="nlFine">Free. Unsubscribe anytime.</span> <a href="https://noticias.youngdesert.com/" target="_blank" rel="noopener" data-t="nlSee">See today's edition ↗</a></p>
-  </div>
-</dialog>
-
 
 <script>
+// Pega aquí la URL /exec de tu Apps Script (ver Codigo.gs). Vacía = vista previa (los votos se guardan solo en este navegador).
+const SHEET_ENDPOINT = '';
+
 const STR = {
   en: {
-    navNews:'Newsletter',nlClose:'Close',nlTag:'The Desert Zone · News',nlTitle:'What moves the region. Every morning.',
-    nlText:'Up to eight stories on tech, fintech and business in El Salvador and Central America, checked against their sources. In Spanish, English or both.',
-    nlPoints:['Free, every morning in your inbox','The news founders in the region need to know','Unsubscribe with one click'],
-    nlEmail:'Your email',nlLang:'Newsletter language',nlLangs:[['both','Both'],['es','Spanish'],['en','English']],nlSubmit:'Subscribe',
-    nlSkip:'No thanks, take me to the site',nlFine:'Free. Unsubscribe anytime.',nlSee:'See today\'s edition ↗',
-    nlOkTitle:'Almost done.',nlOkText:e=>`We sent an email to ${e}. Open it and confirm your subscription to start receiving the newsletter.`,
-    nlFailTitle:'We could not subscribe you from here.',nlFailText:'Subscribe directly on the newsletter site: noticias.youngdesert.com/suscribirse',
-
-    reqTitle:'Request a service',reqLead:'Tell us what you need. We review every request and connect you with an approved professional from the Zone, who will write to you by email.',
-    reqPoints:['Every professional is reviewed before joining','You agree on price and timing directly with them','Sending a request is free'],
-    rName:'Your name',rEmail:'Email',rPhone:'Phone (optional)',rService:'Service',rBudget:'Budget',rDesc:'Tell us about your project',rDescPh:'What you need, by when, and anything we should know.',rSubmit:'Send request',
-    budgets:['Not sure yet','Under $500','$500 to $2,000','$2,000 to $5,000','Over $5,000'],reqAsk:'Request this service',
-    proEyebrow:'For professionals',proTitle:'Work with us',
-    proLead:'Are you a mentor, designer, lawyer, developer or impact specialist? Join the Zone and receive client requests from entrepreneurs who are building something that matters.',
-    proSteps:[['Apply','Tell us what you do, your rate and where we can see your work.'],['We review your profile','We check your portfolio and experience, and send you the agreement.'],['Receive requests by email','When a client asks for your service and we approve it, we send you their details.'],['Work and get paid','You agree on the work with the client. The Zone keeps the commission set in your agreement.']],
-    proFormTitle:'Apply to the Zone',proFormLead:'It takes about five minutes. We reply to every application.',
-    proPoints:['The commission is written in your agreement before you start','You set your own rates','You can pause or leave at any time'],
-    pCountry:'Country',pService:'Service you offer',pLang:'Languages you work in',pLangs:['Spanish','English','Spanish and English'],pRate:'Hourly rate (USD)',pYears:'Years of experience',pPortfolio:'Portfolio or website',pSpecialty:'What do you do best?',pSpecialtyPh:'Your specialty, the kind of clients you help and a project you are proud of.',
-    pTerms:'I understand that The Desert Zone keeps a commission on work that comes through the site, and that the percentage will be set in my agreement.',pSubmit:'Send application',
-    errTerms:'Please accept the commission terms to apply.',errFields:'Fill in the required fields.',
-    sentReqTitle:'Request received.',sentReqText:'We will review it and connect you with a professional by email.',
-    sentProTitle:'Application received.',sentMemText:'We will write to you soon with your circle and the next build night.',sentProText:'We will review your profile and write to you soon.',
-    previewTitle:'Preview only.',previewText:'This form is not connected yet, so nothing was sent.',
-    failTitle:'We could not send it.',failText:'Check your connection and try again.',
-    backHome:'← Back to The Desert Zone',footExplore:'Explore',footPros:'For professionals',footWork:'Work with us',footHow:'How the commission works',
-    navTools:'Tools',navCommunity:'Community',navServices:'Services',navPledge:'Our pledge',navJoin:'Join',joinPill:'Join the Zone',
-    eyebrow:'For founders, makers and dreamers',heroTitle:'Build what the <em>future</em> needs.',
-    heroDek:'The Desert Zone brings together the tools, the people and the services you need to take an idea from a sketch to something real. Everyone is welcome, as long as you want to leave the planet better than you found it.',
-    ctaTools:'Explore the tools',ctaJoin:'Join the community',
-    p1i:'01 · Tools',toolCount:n=>`${n} tools to build with`,toolSub:(n,a)=>`Software, guides and ${a} AI tools, with ${n} made in Latin America.`,
-    p2i:'02 · Community',p2b:'Six circles to join',p2s:'Meet people working on the same problems you are.',
-    p3i:'03 · Services',p3b:'Help when you need it',p3s:'Mentors and specialists for the hard parts.',
-    toolsTitle:'Tools',toolsLead:'A curated list from around the world: AI for every part of your business, plus a strong set made in Latin America for founders who sell, get paid and grow in the region.',
-    lblType:'Type',lblArea:'AI area',search:'Search tools',
+    navTop:'Top 10',navTools:'Tools',navSuggest:'Suggest',navNews:'Newsletter ↗',pill:'Add a tool',
+    eyebrow:'Community tools · Built by entrepreneurs',h1a:'Anyone',h1b:'can build.',h1c:'Start now.',
+    heroDek:'The tools to create a business, an app or a project already exist, and most of them are free to start. The community shares the ones that work and votes for the best. You just have to begin.',
+    ctaTools:'Find your tools',ctaTop:'See the community Top 10',
+    manifesto:[['No permission needed','Free plans, open courses and public data. Start today with what you have.'],['Chosen by people who build','Every tool here is ranked by the votes of entrepreneurs who use it.'],['Open to everyone','Know a tool that helped you? Add it so the next person can use it too.']],
+    stTools:'tools in the directory',stFree:'free to start',stCountries:'countries where they were made',stVotes:'community votes',
+    topEyebrow:'Decided by the community',topTitle:'Top 10',topLead:'The ten most-voted tools right now. It changes with every vote: one vote per tool on each device, and you can take it back.',
+    previewNote:'Preview: until the site is connected to the Google Sheet, votes are saved only in this browser.',
+    winnerLabel:'Community favorite',rankOne:'#1',votes:n=>n === 1 ? 'vote' : 'votes',
+    voteFor:n=>`Vote for ${n}`,unvote:n=>`Remove your vote for ${n}`,loading:'Loading votes…',
+    emptyTitle:'The ranking starts with your vote.',emptyText:'No one has voted yet. This is how the Top 10 works:',
+    emptySteps:['Find the tools you use in the directory below.','Press the arrow to vote. One vote per tool on each device.','The most-voted tools climb, and the leader takes #1.'],
+    emptyCta:'Go to the directory',emptyWinner:'#1 is up to the community',emptyWinnerText:'The most-voted tool will appear here.',
+    toolsEyebrow:'The directory',toolsTitle:'Everything you need to create',toolsLead:'From your first idea to your first sale: tools to build, launch, get paid, learn and care for the planet, with AI for every part of the work.',
+    lblType:'Type',lblArea:'AI area',search:'Search tools',freeOnly:'Free to start',
+    sorts:[['votes','Most voted'],['az','A to Z'],['new','Newest from the community']],
     cats:{all:'All',AI:'AI',Build:'Build',Launch:'Launch',Money:'Money',Learn:'Learn',Planet:'Planet'},
     areas:{all:'All AI',writing:'Writing',research:'Research',marketing:'Marketing',images:'Images',audio:'Audio',video:'Video',organize:'Organize',code:'Code & apps',support:'Customer support'},
-    empty:'No tools match. Try another word, or choose All.',
+    community:'Community',suggestedBy:n=>n ? `Added by ${n}` : 'Added by the community',
+    empty:'No tools match. Try another word, turn off "Free to start", or choose All.',
     showing:(a,b,n)=>`Showing ${a}–${b} of ${n} tools`,prev:'Previous',next:'Next',page:n=>`Page ${n}`,
-    commTitle:'Community',commLead:'Ideas grow faster around other people. Pick the circles that match your work, share what you are building and learn from those a step ahead.',
-    servTitle:'Services',servLead:'When a task is bigger than your team, we connect you with people who have done it before.',
-    ask:s=>`Ask about ${s.toLowerCase()}`,
-    pledgeTitle:'The Zone pledge',pledgeLead:'Everyone who joins agrees to three simple commitments. They keep the community generous and the work pointed in the right direction.',
-    joinTitle:'Your idea belongs here.',joinLead:'Tell us who you are and what you are working on. We will match you with a circle and the tools and services that fit your stage.',
-    fName:'Your name',fEmail:'Email',fPhone:'Phone (optional)',fRole:'I am a',fInterest:'Most interested in',fProject:'What are you building? (optional)',fSubmit:'Join the Zone',
-    phProject:'Solar-powered water filters for rural schools',
-    roles:['Founder with a project','Maker or creator','Expert who wants to help','Investor or funder','Curious, just starting'],
-    interestCommunity:'The community',circlePrefix:'Circle',servicePrefix:'Service',
-    errName:'Enter your name',errEmail:'Enter an email like name@project.com',
-    doneTitle:f=>`Thanks, ${f}. Sign-ups open at launch.`,doneText:i=>`This is a preview of the site, so your details were not saved. Please come back when we launch to join ${i}.`,
-    footTag:'A home for entrepreneurs building a better way to live on this planet.',footLegal:'Tools listed here are independent products. We are not paid to include them.',
-    footReq:'Request a service',footCtaTitle:'Are you a professional?',footCtaText:'Mentors, designers, lawyers and developers: get client requests from founders across the region.',footCtaBtn:'Apply →',footTop:'Back to top ↑'
+    sgEyebrow:'Open to everyone',sgTitle:'Add the tool that helped you build.',
+    sgLead:'The directory grows with the community. Share a tool that made your work easier, and if others find it useful, their votes will take it to the Top 10.',
+    sgSteps:[['Suggest it','Name, website and why you recommend it.'],['We review it','We check that it exists and is not repeated.'],['The community votes','It appears in the directory and can climb to the Top 10.']],
+    fName:'Tool name',fUrl:'Website',fCat:'Category',fArea:'AI area',fCountry:'Country where it was created',fDesc:'What does it do and why do you recommend it?',fBy:'Your name (optional)',fEmail:'Email to tell you when it\'s live (optional)',fSubmit:'Send suggestion',
+    descPh:'Example: lets small shops take card payments from a phone. We use it every day.',
+    dupText:n=>`${n} is already in the directory.`,dupBtn:'Show it and vote',
+    errFields:'Fill in the required fields.',errUrl:'Enter the full website, starting with https://',errEmail:'Enter an email like name@company.com',
+    sentTitle:'Thanks! We received your suggestion.',sentText:'We will review it and, once approved, it will appear in the directory for the community to vote on.',
+    previewTitle:'Preview only.',previewText:'This form is not connected to the Google Sheet yet, so nothing was sent.',
+    failTitle:'We could not send it.',failText:'Check your connection and try again.',sgAgain:'Suggest another tool',
+    footTag:'A directory of tools for entrepreneurs, built and ranked by the community, so anyone can start creating.',
+    footLegal:'Tools listed here are independent products. We are not paid to include them, and the ranking comes only from community votes.',footTop:'Back to top ↑'
   },
   es: {
-    navNews:'Newsletter',nlClose:'Cerrar',nlTag:'The Desert Zone · Noticias',nlTitle:'Lo que mueve a la región. Cada mañana.',
-    nlText:'Hasta ocho historias de tecnología, fintech y negocios de El Salvador y Centroamérica, verificadas contra sus fuentes. En español, inglés o ambos.',
-    nlPoints:['Gratis, cada mañana en tu correo','Las noticias que un emprendedor de la región necesita saber','Te das de baja con un clic'],
-    nlEmail:'Tu correo',nlLang:'Idioma del newsletter',nlLangs:[['both','Ambos'],['es','Español'],['en','Inglés']],nlSubmit:'Suscribirme',
-    nlSkip:'No, gracias, ir al sitio',nlFine:'Gratis. Puedes darte de baja cuando quieras.',nlSee:'Ver la edición de hoy ↗',
-    nlOkTitle:'Ya casi.',nlOkText:e=>`Te enviamos un correo a ${e}. Ábrelo y confirma tu suscripción para empezar a recibir el newsletter.`,
-    nlFailTitle:'No pudimos suscribirte desde aquí.',nlFailText:'Suscríbete directamente en el sitio del newsletter: noticias.youngdesert.com/suscribirse',
-
-    reqTitle:'Solicita un servicio',reqLead:'Cuéntanos qué necesitas. Revisamos cada solicitud y te conectamos con un profesional aprobado de la Zona, que te escribirá por correo.',
-    reqPoints:['Cada profesional pasa por una revisión antes de entrar','Acuerdas el precio y los tiempos directamente con él','Enviar una solicitud es gratis'],
-    rName:'Tu nombre',rEmail:'Correo',rPhone:'Teléfono (opcional)',rService:'Servicio',rBudget:'Presupuesto',rDesc:'Cuéntanos de tu proyecto',rDescPh:'Qué necesitas, para cuándo y cualquier detalle importante.',rSubmit:'Enviar solicitud',
-    budgets:['Aún no lo sé','Menos de $500','De $500 a $2,000','De $2,000 a $5,000','Más de $5,000'],reqAsk:'Solicitar este servicio',
-    proEyebrow:'Para profesionales',proTitle:'Trabaja con nosotros',
-    proLead:'¿Eres mentor, diseñador, abogado, desarrollador o especialista en impacto? Únete a la Zona y recibe solicitudes de emprendedores que están construyendo algo que importa.',
-    proSteps:[['Postúlate','Cuéntanos qué haces, tu tarifa y dónde podemos ver tu trabajo.'],['Revisamos tu perfil','Revisamos tu portafolio y experiencia, y te enviamos el contrato.'],['Recibe solicitudes por correo','Cuando un cliente pide tu servicio y lo aprobamos, te enviamos sus datos.'],['Trabaja y cobra','Acuerdas el trabajo con el cliente. La Zona recibe la comisión que fija tu contrato.']],
-    proFormTitle:'Postúlate a la Zona',proFormLead:'Toma unos cinco minutos. Respondemos todas las postulaciones.',
-    proPoints:['La comisión queda escrita en tu contrato antes de empezar','Tú pones tus tarifas','Puedes pausar o salir cuando quieras'],
-    pCountry:'País',pService:'Servicio que ofreces',pLang:'Idiomas en que trabajas',pLangs:['Español','Inglés','Español e inglés'],pRate:'Tarifa por hora (USD)',pYears:'Años de experiencia',pPortfolio:'Portafolio o sitio web',pSpecialty:'¿En qué eres mejor?',pSpecialtyPh:'Tu especialidad, el tipo de clientes que ayudas y un proyecto del que estés orgulloso.',
-    pTerms:'Entiendo que The Desert Zone recibe una comisión por los trabajos que llegan a través del sitio, y que el porcentaje quedará fijado en mi contrato.',pSubmit:'Enviar postulación',
-    errTerms:'Acepta las condiciones de la comisión para postularte.',errFields:'Completa los campos obligatorios.',
-    sentReqTitle:'Recibimos tu solicitud.',sentReqText:'La revisaremos y te conectaremos con un profesional por correo.',
-    sentProTitle:'Recibimos tu postulación.',sentMemText:'Pronto te escribiremos con tu círculo y la próxima noche de trabajo.',sentProText:'Revisaremos tu perfil y te escribiremos pronto.',
-    previewTitle:'Solo vista previa.',previewText:'Este formulario aún no está conectado, así que no se envió nada.',
-    failTitle:'No pudimos enviarlo.',failText:'Revisa tu conexión e inténtalo de nuevo.',
-    backHome:'← Volver a The Desert Zone',footExplore:'Explora',footPros:'Para profesionales',footWork:'Trabaja con nosotros',footHow:'Cómo funciona la comisión',
-    navTools:'Herramientas',navCommunity:'Comunidad',navServices:'Servicios',navPledge:'Nuestro compromiso',navJoin:'Únete',joinPill:'Únete a la Zona',
-    eyebrow:'Para emprendedores, creadores y soñadores',heroTitle:'Construye lo que el <em>futuro</em> necesita.',
-    heroDek:'The Desert Zone reúne las herramientas, las personas y los servicios que necesitas para llevar una idea del boceto a la realidad. Todos son bienvenidos, siempre que quieran dejar el planeta mejor de lo que lo encontraron.',
-    ctaTools:'Explora las herramientas',ctaJoin:'Únete a la comunidad',
-    p1i:'01 · Herramientas',toolCount:n=>`${n} herramientas para construir`,toolSub:(n,a)=>`Software, guías y ${a} herramientas de IA, con ${n} hechas en Latinoamérica.`,
-    p2i:'02 · Comunidad',p2b:'Seis círculos para unirte',p2s:'Conoce a personas que trabajan en los mismos problemas que tú.',
-    p3i:'03 · Servicios',p3b:'Ayuda cuando la necesites',p3s:'Mentores y especialistas para las partes difíciles.',
-    toolsTitle:'Herramientas',toolsLead:'Una lista seleccionada de todo el mundo: IA para cada área de tu negocio y muchas opciones hechas en Latinoamérica para quienes venden, cobran y crecen en la región.',
-    lblType:'Tipo',lblArea:'Área de IA',search:'Buscar herramientas',
+    navTop:'Top 10',navTools:'Herramientas',navSuggest:'Proponer',navNews:'Newsletter ↗',pill:'Agregar herramienta',
+    eyebrow:'Herramientas de la comunidad · Hecho por emprendedores',h1a:'Todos',h1b:'pueden construir.',h1c:'Empieza hoy.',
+    heroDek:'Las herramientas para crear un negocio, una app o un proyecto ya existen, y la mayoría son gratis para empezar. La comunidad comparte las que funcionan y vota por las mejores. Solo tienes que empezar.',
+    ctaTools:'Encuentra tus herramientas',ctaTop:'Ver el Top 10 de la comunidad',
+    manifesto:[['Sin pedir permiso','Planes gratis, cursos abiertos y datos públicos. Empieza hoy con lo que tienes.'],['Elegidas por quienes construyen','Cada herramienta se ordena con los votos de emprendedores que la usan.'],['Abierto a todos','¿Una herramienta te ayudó? Agrégala para que la siguiente persona también la use.']],
+    stTools:'herramientas en el directorio',stFree:'gratis para empezar',stCountries:'países donde se crearon',stVotes:'votos de la comunidad',
+    topEyebrow:'Lo decide la comunidad',topTitle:'Top 10',topLead:'Las diez herramientas con más votos en este momento. Cambia con cada voto: un voto por herramienta en cada dispositivo, y puedes retirarlo.',
+    previewNote:'Vista previa: mientras el sitio no esté conectado a la hoja de Google, los votos se guardan solo en este navegador.',
+    winnerLabel:'Favorita de la comunidad',rankOne:'N.º 1',votes:n=>n === 1 ? 'voto' : 'votos',
+    voteFor:n=>`Votar por ${n}`,unvote:n=>`Quitar tu voto a ${n}`,loading:'Cargando votos…',
+    emptyTitle:'El ranking empieza con tu voto.',emptyText:'Todavía nadie ha votado. Así funciona el Top 10:',
+    emptySteps:['Busca en el directorio las herramientas que usas.','Presiona la flecha para votar. Un voto por herramienta en cada dispositivo.','Las más votadas suben y la líder ocupa el N.º 1.'],
+    emptyCta:'Ir al directorio',emptyWinner:'El N.º 1 lo decide la comunidad',emptyWinnerText:'Aquí aparecerá la herramienta con más votos.',
+    toolsEyebrow:'El directorio',toolsTitle:'Todo lo que necesitas para crear',toolsLead:'De tu primera idea a tu primera venta: herramientas para construir, lanzar, cobrar, aprender y cuidar el planeta, con IA para cada parte del trabajo.',
+    lblType:'Tipo',lblArea:'Área de IA',search:'Buscar herramientas',freeOnly:'Gratis para empezar',
+    sorts:[['votes','Más votadas'],['az','De la A a la Z'],['new','Nuevas de la comunidad']],
     cats:{all:'Todas',AI:'IA',Build:'Construir',Launch:'Lanzar',Money:'Dinero',Learn:'Aprender',Planet:'Planeta'},
     areas:{all:'Toda la IA',writing:'Escritura',research:'Investigación',marketing:'Marketing',images:'Imágenes',audio:'Audio',video:'Video',organize:'Organización',code:'Código y apps',support:'Atención al cliente'},
-    empty:'Ninguna herramienta coincide. Prueba otra palabra o elige Todas.',
+    community:'Comunidad',suggestedBy:n=>n ? `Agregada por ${n}` : 'Agregada por la comunidad',
+    empty:'Ninguna herramienta coincide. Prueba otra palabra, apaga "Gratis para empezar" o elige Todas.',
     showing:(a,b,n)=>`Mostrando ${a}–${b} de ${n} herramientas`,prev:'Anterior',next:'Siguiente',page:n=>`Página ${n}`,
-    commTitle:'Comunidad',commLead:'Las ideas crecen más rápido rodeadas de otras personas. Elige los círculos que van con tu trabajo, comparte lo que construyes y aprende de quienes van un paso adelante.',
-    servTitle:'Servicios',servLead:'Cuando una tarea es más grande que tu equipo, te conectamos con personas que ya lo han hecho.',
-    ask:s=>`Pregunta por ${s.toLowerCase()}`,
-    pledgeTitle:'El compromiso de la Zona',pledgeLead:'Todos los que se unen aceptan tres compromisos sencillos. Mantienen a la comunidad generosa y el trabajo en la dirección correcta.',
-    joinTitle:'Tu idea tiene un lugar aquí.',joinLead:'Cuéntanos quién eres y en qué trabajas. Te conectaremos con un círculo y con las herramientas y servicios adecuados para tu etapa.',
-    fName:'Tu nombre',fEmail:'Correo',fPhone:'Teléfono (opcional)',fRole:'Soy',fInterest:'Me interesa más',fProject:'¿Qué estás construyendo? (opcional)',fSubmit:'Únete a la Zona',
-    phProject:'Filtros de agua solares para escuelas rurales',
-    roles:['Emprendedor con un proyecto','Creador o artesano','Experto que quiere ayudar','Inversionista o financiador','Curioso, apenas empiezo'],
-    interestCommunity:'La comunidad',circlePrefix:'Círculo',servicePrefix:'Servicio',
-    errName:'Escribe tu nombre',errEmail:'Escribe un correo como nombre@proyecto.com',
-    doneTitle:f=>`Gracias, ${f}. Las inscripciones abren con el lanzamiento.`,doneText:i=>`Esta es una vista previa del sitio, así que tus datos no se guardaron. Vuelve cuando lancemos para unirte a ${i}.`,
-    footTag:'Un hogar para emprendedores que construyen una mejor forma de vivir en este planeta.',footLegal:'Las herramientas de esta lista son productos independientes. No nos pagan por incluirlas.',
-    footReq:'Solicitar un servicio',footCtaTitle:'¿Eres profesional?',footCtaText:'Mentores, diseñadores, abogados y desarrolladores: recibe solicitudes de emprendedores de toda la región.',footCtaBtn:'Postúlate →',footTop:'Volver arriba ↑'
+    sgEyebrow:'Abierto a todos',sgTitle:'Agrega la herramienta que te ayudó a construir.',
+    sgLead:'El directorio crece con la comunidad. Comparte una herramienta que te facilitó el trabajo y, si a otros les sirve, sus votos la llevarán al Top 10.',
+    sgSteps:[['Propónla','Nombre, sitio web y por qué la recomiendas.'],['La revisamos','Comprobamos que exista y que no esté repetida.'],['La comunidad vota','Aparece en el directorio y puede subir al Top 10.']],
+    fName:'Nombre de la herramienta',fUrl:'Sitio web',fCat:'Categoría',fArea:'Área de IA',fCountry:'País donde se creó',fDesc:'¿Qué hace y por qué la recomiendas?',fBy:'Tu nombre (opcional)',fEmail:'Correo para avisarte cuando esté publicada (opcional)',fSubmit:'Enviar propuesta',
+    descPh:'Ejemplo: permite a tiendas pequeñas cobrar con tarjeta desde el celular. La usamos todos los días.',
+    dupText:n=>`${n} ya está en el directorio.`,dupBtn:'Verla y votar',
+    errFields:'Completa los campos obligatorios.',errUrl:'Escribe el sitio completo, empezando con https://',errEmail:'Escribe un correo como nombre@empresa.com',
+    sentTitle:'¡Gracias! Recibimos tu propuesta.',sentText:'La revisaremos y, cuando la aprobemos, aparecerá en el directorio para que la comunidad la vote.',
+    previewTitle:'Solo vista previa.',previewText:'Este formulario aún no está conectado a la hoja de Google, así que no se envió nada.',
+    failTitle:'No pudimos enviarla.',failText:'Revisa tu conexión e inténtalo de nuevo.',sgAgain:'Proponer otra herramienta',
+    footTag:'Un directorio de herramientas para emprendedores, construido y ordenado por la comunidad, para que cualquiera pueda empezar a crear.',
+    footLegal:'Las herramientas de esta lista son productos independientes. No nos pagan por incluirlas y el ranking sale solo de los votos de la comunidad.',footTop:'Volver arriba ↑'
   }
 };
 
@@ -714,278 +575,239 @@ TOOLS.push(
   A('Tidio','support','freePlan','https://www.tidio.com','Live chat and AI chatbot for small online stores and websites.','Chat en vivo y chatbot con IA para tiendas en línea y sitios pequeños.')
 );
 
-const CIRCLES = [
-  {n:{en:'Climate & Energy',es:'Clima y energía'},d:{en:'Solar, storage, efficiency and the business models that make clean power affordable.',es:'Energía solar, almacenamiento, eficiencia y los modelos de negocio que hacen accesible la energía limpia.'},i:'<circle cx="20" cy="20" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 3v6M20 31v6M3 20h6M31 20h6M8 8l4 4M28 28l4 4M8 32l4-4M28 12l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'},
-  {n:{en:'Food & Water',es:'Alimentos y agua'},d:{en:'Farming, food systems and clean water for growing communities.',es:'Agricultura, sistemas alimentarios y agua limpia para comunidades que crecen.'},i:'<path d="M20 5c6 8 10 13 10 19a10 10 0 0 1-20 0c0-6 4-11 10-19z" fill="none" stroke="currentColor" stroke-width="2"/>'},
-  {n:{en:'Fintech & Inclusion',es:'Fintech e inclusión'},d:{en:'Payments, savings and credit for the people banks have left out.',es:'Pagos, ahorro y crédito para las personas que los bancos han dejado fuera.'},i:'<rect x="5" y="11" width="30" height="20" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 18h30" stroke="currentColor" stroke-width="2"/>'},
-  {n:{en:'Creators & Culture',es:'Creadores y cultura'},d:{en:'Artists, writers and media makers turning their craft into a business.',es:'Artistas, escritores y creadores de medios que convierten su oficio en un negocio.'},i:'<path d="M8 32l6-16 12 6-6 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 16l8-10 10 8-6 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>'},
-  {n:{en:'Builders',es:'Constructores'},d:{en:'Software, hardware and AI. Bring your prototype and get it reviewed.',es:'Software, hardware e inteligencia artificial. Trae tu prototipo y recibe opiniones.'},i:'<path d="M14 12l-8 8 8 8M26 12l8 8-8 8M23 8l-6 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'},
-  {n:{en:'First-time founders',es:'Primeros emprendedores'},d:{en:'No experience needed. Validate the idea, find a first customer, take the first step.',es:'No necesitas experiencia. Valida la idea, encuentra tu primer cliente y da el primer paso.'},i:'<path d="M20 4l4 10 10 1-8 7 3 11-9-6-9 6 3-11-8-7 10-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>'}
-];
-const RHYTHM = [
-  {i:{en:'Every week',es:'Cada semana'},b:{en:'Build nights',es:'Noches de trabajo'},p:{en:'Two focused hours online, working side by side on your own project. Share a goal at the start and your progress at the end.',es:'Dos horas de enfoque en línea, trabajando lado a lado en tu propio proyecto. Comparte una meta al inicio y tu avance al final.'}},
-  {i:{en:'Every month',es:'Cada mes'},b:{en:'Show & tell',es:'Muestra tu avance'},p:{en:'Five-minute demos of real work in progress, followed by honest feedback from the circle.',es:'Demostraciones de cinco minutos de trabajo real en curso, seguidas de opiniones sinceras del círculo.'}},
-  {i:{en:'Every quarter',es:'Cada trimestre'},b:{en:'Impact review',es:'Revisión de impacto'},p:{en:'Look back at what your project changed for people and for the planet, and set the next target.',es:'Revisa qué cambió tu proyecto para las personas y el planeta, y fija la siguiente meta.'}}
-];
-const SERVICES = [
-  {n:{en:'Mentorship',es:'Mentoría'},d:{en:'Regular sessions with an operator who has built and run a company.',es:'Sesiones periódicas con alguien que ya creó y dirigió una empresa.'},b:{en:['Matched by industry and stage','Monthly one-hour calls','Help with priorities and hard decisions'],es:['Asignada según tu industria y etapa','Llamadas mensuales de una hora','Ayuda con prioridades y decisiones difíciles']}},
-  {n:{en:'Brand & design',es:'Marca y diseño'},d:{en:'A clear identity that people remember and trust.',es:'Una identidad clara que la gente recuerde y en la que confíe.'},b:{en:['Logo, colors and type','Website and pitch deck design','Packaging with lower-impact materials'],es:['Logo, colores y tipografía','Diseño de sitio web y presentación para inversionistas','Empaques con materiales de menor impacto']}},
-  {n:{en:'Legal setup',es:'Asesoría legal'},d:{en:'Start on solid ground and protect what you create.',es:'Empieza con bases sólidas y protege lo que creas.'},b:{en:['Choosing and registering your company','Founder and partner agreements','Trademarks and simple contracts'],es:['Elegir y registrar tu empresa','Acuerdos entre socios fundadores','Marcas y contratos sencillos']}},
-  {n:{en:'Funding readiness',es:'Preparación para financiamiento'},d:{en:'Get ready to raise money from grants, loans or investors.',es:'Prepárate para conseguir fondos, préstamos o inversionistas.'},b:{en:['Financial model and budget','Pitch deck review and practice','Introductions to aligned funders'],es:['Modelo financiero y presupuesto','Revisión y práctica de tu presentación','Contactos con financiadores afines']}},
-  {n:{en:'Impact measurement',es:'Medición de impacto'},d:{en:'Show, with numbers, the good your project does.',es:'Demuestra con números el bien que hace tu proyecto.'},b:{en:['Choosing the metrics that matter','Carbon footprint estimate','An impact report you can share'],es:['Elegir los indicadores que importan','Estimación de huella de carbono','Un informe de impacto para compartir']}},
-  {n:{en:'Tech build',es:'Desarrollo tecnológico'},d:{en:'Turn the plan into a working product.',es:'Convierte el plan en un producto que funcione.'},b:{en:['Websites and online stores','Apps and prototypes','Automation and AI tools'],es:['Sitios web y tiendas en línea','Aplicaciones y prototipos','Automatización y herramientas de IA']}}
-];
-const PLEDGE = [
-  {b:{en:'Build for people and planet',es:'Construye para las personas y el planeta'},s:{en:'Ask what your project costs the earth, and work to make that number smaller each year.',es:'Pregúntate cuánto le cuesta tu proyecto a la Tierra y trabaja para reducir esa cifra cada año.'}},
-  {b:{en:'Share what you learn',es:'Comparte lo que aprendes'},s:{en:'Your mistakes and shortcuts can save someone else months. Post them in your circle.',es:'Tus errores y atajos pueden ahorrarle meses a otra persona. Compártelos en tu círculo.'}},
-  {b:{en:'Open the door behind you',es:'Abre la puerta a quien viene detrás'},s:{en:'When you get help, give some back. Mentor, review or introduce someone new.',es:'Cuando recibas ayuda, devuelve un poco. Sé mentor, revisa proyectos o presenta a alguien nuevo.'}}
-];
 
-const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const PER_PAGE = 12;
-const CATS = ['all','AI','Build','Launch','Money','Learn','Planet'];
-const AREAS = ['all','writing','research','marketing','images','audio','video','organize','code','support'];
 const ORIGIN = {"US": ["Figma", "Notion", "GitHub", "Trello", "Airtable", "Zapier", "Bubble", "Cloudflare", "Webflow", "Mailchimp", "Substack", "Google Business Profile", "WordPress.com", "Product Hunt", "Calendly", "Stripe", "Kiva", "QuickBooks", "PayPal", "Square", "Kickstarter", "Patreon", "SCORE", "Startup School", "Khan Academy", "Coursera", "Grow with Google", "HubSpot Academy", "freeCodeCamp", "U.S. SBA", "Project Drawdown", "B Lab", "1% for the Planet", "Climate TRACE", "Global Forest Watch", "Climatebase", "ChatGPT", "Claude", "Gemini", "Perplexity", "NotebookLM", "Jasper", "Copy.ai", "AdCreative.ai", "Gamma", "Midjourney", "Adobe Firefly", "Suno", "Descript", "Adobe Podcast", "Runway", "HeyGen", "OpusClip", "Otter.ai", "Fireflies.ai", "Motion", "Reclaim.ai", "GitHub Copilot", "Cursor"], "CA": ["Slack", "Shopify", "Wave", "Ideogram"], "GB": ["Buffer", "Wise", "Ellen MacArthur Foundation", "Our World in Data", "Ecologi", "Synthesia"], "DE": ["Ecosia", "DeepL"], "AU": ["Canva"], "ES": ["Typeform"], "CH": ["Strategyzer"], "DK": ["Too Good To Go"], "NL": ["Miro"], "UA": ["Grammarly"], "PL": ["ElevenLabs", "Tidio"], "AT": ["remove.bg"], "CN": ["CapCut"], "SE": ["Lovable"], "IE": ["Intercom Fin"]};
 for (const [c, names] of Object.entries(ORIGIN)) for (const t of TOOLS) if (names.includes(t.n)) t.r = c;
-let lang = 'en', cat = 'all', area = 'all', query = '', page = 1;
-TOOLS.sort((x, y) => CATS.indexOf(x.c) - CATS.indexOf(y.c));
-try { const saved = localStorage.getItem('tdz-lang'); lang = saved || ((navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en'); } catch (e) { lang = (navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en'; }
+
+
+/* ---------- Helpers ---------- */
+const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safeUrl = (u) => /^https?:\/\//i.test(String(u || '')) ? String(u) : '#';
+const slug = (s) => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80);
+const fmt = (n) => new Intl.NumberFormat(lang === 'es' ? 'es' : 'en').format(n || 0);
+const store = { get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
+
+TOOLS.forEach((t) => { t.id = slug(t.n); });
+const CATS = ['all','AI','Build','Launch','Money','Learn','Planet'];
+const AREAS = ['all','writing','research','marketing','images','audio','video','organize','code','support'];
+const PER_PAGE = 12;
+
+let lang = store.get('tdz-lang', null) || ((navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en');
+let cat = 'all', area = 'all', query = '', sort = 'votes', page = 1, freeOnly = false;
+const FREE_PRICES = new Set(Object.keys(PRICE).filter((k) => k.startsWith('free') || k === 'gov'));
+const isFree = (t) => !t.comm && FREE_PRICES.has(t.p);
+let community = [];                 // approved suggestions from the sheet
+let serverVotes = {};               // { toolId: count } from the sheet
+let loaded = !SHEET_ENDPOINT;       // preview has nothing to load
+const myVotes = new Set(store.get('tdz-myvotes', []));
+const device = store.get('tdz-device', null) || (() => { const id = 'd-' + (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2) + Date.now().toString(36)); store.set('tdz-device', id); return id; })();
+const pending = {};                 // toolId -> +1/-1 not yet reflected by the sheet
+
+const allTools = () => TOOLS.concat(community);
+const votesOf = (id) => SHEET_ENDPOINT ? Math.max(0, (serverVotes[id] || 0) + (pending[id] || 0)) : (myVotes.has(id) ? 1 : 0);
+const totalVotes = () => allTools().reduce((s, t) => s + votesOf(t.id), 0);
+const ranked = () => allTools().filter((t) => votesOf(t.id) > 0).sort((a, b) => votesOf(b.id) - votesOf(a.id) || a.n.localeCompare(b.n));
+const placeLabel = (r) => (PLACE[r] && PLACE[r][lang]) || r || '';
+const desc = (t) => (t.d && (t.d[lang] || t.d.en || t.d.es)) || '';
+
+/* ---------- Sheet ---------- */
+async function loadState(){
+  if (!SHEET_ENDPOINT) return;
+  try {
+    const res = await fetch(SHEET_ENDPOINT, { method: 'GET' });
+    const data = await res.json();
+    if (!data.ok) throw new Error('bad');
+    serverVotes = data.votos || {};
+    community = (data.comunidad || []).map((c) => ({ id: c.id, n: c.n, u: c.u, c: CATS.includes(c.c) ? c.c : 'Build', a: c.a || '', r: c.r || '', d: { en: c.d, es: c.d }, by: c.by, at: c.at, comm: true }));
+    Object.keys(pending).forEach((k) => delete pending[k]);
+  } catch (e) { /* keep what we have */ }
+  loaded = true;
+  renderVotesAll();
+}
+async function post(data){
+  if (!SHEET_ENDPOINT) return 'preview';
+  try { await fetch(SHEET_ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data) }); return 'sent'; }
+  catch (e) { return 'error'; }
+}
+let syncTimer = null;
+function toggleVote(id){
+  const on = !myVotes.has(id);
+  on ? myVotes.add(id) : myVotes.delete(id);
+  store.set('tdz-myvotes', [...myVotes]);
+  pending[id] = (pending[id] || 0) + (on ? 1 : -1);
+  post({ type: 'vote', tool: id, device, on });
+  renderVotesAll(id);
+  clearTimeout(syncTimer);
+  syncTimer = setTimeout(loadState, 6000);
+}
+
+/* ---------- Rendering ---------- */
+const arrow = '<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 2 12.5 9H1.5Z" fill="currentColor"/></svg>';
+function voteBtn(t){
+  const S = STR[lang], on = myVotes.has(t.id), n = votesOf(t.id);
+  return `<button type="button" class="vote" data-vote="${esc(t.id)}" aria-pressed="${on}" aria-label="${esc(on ? S.unvote(t.n) : S.voteFor(t.n))}">${arrow}<span class="vc">${loaded ? fmt(n) : '–'}</span></button>`;
+}
+function tags(t, onDark){
+  const S = STR[lang];
+  const c = `<span class="tag${t.c === 'Planet' ? ' planet' : t.c === 'AI' ? ' ai' : ''}">${esc(S.cats[t.c] || t.c)}${t.a ? ' · ' + esc(S.areas[t.a] || t.a) : ''}</span>`;
+  const p = t.r ? `<span class="tag place">${esc(placeLabel(t.r))}</span>` : '';
+  const m = t.comm ? `<span class="tag comm">${esc(S.community)}</span>` : '';
+  return c + p + m;
+}
+
+function renderBoard(){
+  const S = STR[lang], el = document.getElementById('board');
+  if (!loaded) { el.innerHTML = `<div class="board-empty" style="grid-column:1/-1"><b>${esc(S.loading)}</b></div>`; return; }
+  const top = ranked().slice(0, 10);
+  if (!top.length) {
+    el.innerHTML = `<article class="winner"><span class="label">${esc(S.winnerLabel)}</span><span class="rank">${esc(S.rankOne)}</span><h3>${esc(S.emptyWinner)}</h3><p>${esc(S.emptyWinnerText)}</p><a class="btn empty-cta" href="#tools">${esc(S.emptyCta)}</a>${ridgeSvg}</article>
+      <div class="board-empty"><b>${esc(S.emptyTitle)}</b><span>${esc(S.emptyText)}</span><ol>${S.emptySteps.map((x) => `<li>${esc(x)}</li>`).join('')}</ol></div>`;
+    return;
+  }
+  const [w, ...rest] = top, max = votesOf(w.id);
+  const nW = votesOf(w.id);
+  el.innerHTML = `<article class="winner" aria-label="${esc(S.winnerLabel)}"><span class="label">${esc(S.winnerLabel)}</span><span class="rank">${esc(S.rankOne)}</span>
+      <h3><a href="${esc(safeUrl(w.u))}" target="_blank" rel="noopener">${esc(w.n)} ↗</a></h3><div class="tags">${tags(w)}</div><p>${esc(desc(w))}</p>
+      <div class="foot"><div class="count"><b data-count="${esc(w.id)}">${fmt(nW)}</b><span>${esc(S.votes(nW))}</span></div>${voteBtn(w)}</div>${ridgeSvg}</article>
+    <ol class="ranklist" start="2">${rest.map((t, i) => { const n = votesOf(t.id); return `<li><span class="n">${i + 2}</span>
+      <div class="main"><div class="name"><a href="${esc(safeUrl(t.u))}" target="_blank" rel="noopener">${esc(t.n)}</a><small>${esc(S.cats[t.c] || t.c)}${t.r ? ' · ' + esc(placeLabel(t.r)) : ''}</small></div>
+      <div class="meter" aria-hidden="true"><span style="width:${Math.max(4, n / max * 100)}%"></span></div></div>${voteBtn(t)}</li>`; }).join('')}</ol>`;
+}
+const ridgeSvg = '<svg class="ridge3" viewBox="0 0 600 60" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,60 200,44 235,50 300,10 365,50 400,44 600,60" fill="none" stroke="#fff" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>';
 
 function filtered(){
   const q = query.trim().toLowerCase();
-  return TOOLS.filter(t => (cat === 'all' || t.c === cat) && (cat !== 'AI' || area === 'all' || t.a === area) &&
-    (!q || [t.n, t.d.en, t.d.es, t.r && PLACE[t.r].en, t.r && PLACE[t.r].es, t.a && STR.en.areas[t.a], t.a && STR.es.areas[t.a]].join(' ').toLowerCase().includes(q)));
+  const list = allTools().filter((t) => (!freeOnly || isFree(t)) && (cat === 'all' || t.c === cat) && (cat !== 'AI' || area === 'all' || t.a === area) &&
+    (!q || [t.n, t.d && t.d.en, t.d && t.d.es, placeLabel(t.r), t.a && STR.en.areas[t.a], t.a && STR.es.areas[t.a]].join(' ').toLowerCase().includes(q)));
+  if (sort === 'az') return list.sort((a, b) => a.n.localeCompare(b.n));
+  if (sort === 'new') return list.sort((a, b) => (b.comm ? 1 : 0) - (a.comm ? 1 : 0) || String(b.at || '').localeCompare(String(a.at || '')) || a.n.localeCompare(b.n));
+  return list.sort((a, b) => votesOf(b.id) - votesOf(a.id) || CATS.indexOf(a.c) - CATS.indexOf(b.c));
 }
 
 function renderFilters(){
-  const S = STR[lang];
-  document.getElementById('cat-filters').innerHTML = CATS.map(c => {
-    const n = TOOLS.filter(t => c === 'all' || t.c === c).length;
-    return `<button class="filter" type="button" data-cat="${c}" aria-pressed="${c === cat}">${S.cats[c]} <span class="num">${n}</span></button>`;
-  }).join('');
+  const S = STR[lang], all = allTools();
+  document.getElementById('cat-filters').innerHTML = CATS.map((c) => `<button class="filter" type="button" data-cat="${c}" aria-pressed="${c === cat}">${esc(S.cats[c])} <span class="num">${all.filter((t) => c === 'all' || t.c === c).length}</span></button>`).join('');
   document.getElementById('area-line').hidden = cat !== 'AI';
-  document.getElementById('area-filters').innerHTML = AREAS.map(a => {
-    const n = TOOLS.filter(t => t.c === 'AI' && (a === 'all' || t.a === a)).length;
-    return `<button class="filter" type="button" data-area="${a}" aria-pressed="${a === area}">${S.areas[a]} <span class="num">${n}</span></button>`;
-  }).join('');
+  document.getElementById('area-filters').innerHTML = AREAS.map((a) => `<button class="filter" type="button" data-area="${a}" aria-pressed="${a === area}">${esc(S.areas[a])} <span class="num">${all.filter((t) => t.c === 'AI' && (a === 'all' || t.a === a)).length}</span></button>`).join('');
 }
 
 function renderTools(){
   const S = STR[lang], list = filtered(), pages = Math.max(1, Math.ceil(list.length / PER_PAGE));
   page = Math.min(page, pages);
   const start = (page - 1) * PER_PAGE, slice = list.slice(start, start + PER_PAGE);
-  document.getElementById('tool-grid').innerHTML = slice.length ? slice.map(t => `
-    <article class="tool"><div class="row"><span class="tag${t.c === 'Planet' ? ' planet' : t.c === 'AI' ? ' ai' : ''}">${esc(S.cats[t.c])}${t.a ? ' · ' + esc(S.areas[t.a]) : ''}</span>${t.r ? `<span class="tag place">${esc(PLACE[t.r][lang])}</span>` : ''}</div>
-      <h3><a href="${esc(t.u)}" target="_blank" rel="noopener">${esc(t.n)} ↗</a></h3>
-      <p>${esc(t.d[lang])}</p><span class="meta">${esc(PRICE[t.p][lang])}</span></article>`).join('')
-    : `<p class="empty">${esc(S.empty)}</p>`;
+  const rankOf = new Map(ranked().slice(0, 10).map((t, i) => [t.id, i + 1]));
+  document.getElementById('tool-grid').innerHTML = slice.length ? slice.map((t) => {
+    const meta = t.comm ? S.suggestedBy(t.by) : (PRICE[t.p] ? PRICE[t.p][lang] : '');
+    const free = isFree(t);
+    const r = rankOf.get(t.id);
+    return `<article class="tool" id="tool-${esc(t.id)}">${r ? `<span class="rankbadge">TOP ${r}</span>` : ''}<div class="row">${tags(t)}</div>
+      <h3><a href="${esc(safeUrl(t.u))}" target="_blank" rel="noopener">${esc(t.n)} ↗</a></h3>
+      <p>${esc(desc(t))}</p><div class="bottom"><span class="meta${free ? ' free' : ''}">${esc(meta)}</span>${voteBtn(t)}</div></article>`;
+  }).join('') : `<p class="empty">${esc(S.empty)}</p>`;
   document.getElementById('page-count').textContent = list.length ? S.showing(start + 1, start + slice.length, list.length) : '';
-  const btns = [];
-  btns.push(`<button type="button" data-page="${page - 1}" ${page === 1 ? 'disabled' : ''}>← ${S.prev}</button>`);
-  for (let i = 1; i <= pages; i++) btns.push(`<button type="button" data-page="${i}" aria-label="${S.page(i)}" ${i === page ? 'aria-current="page"' : ''}>${i}</button>`);
-  btns.push(`<button type="button" data-page="${page + 1}" ${page === pages ? 'disabled' : ''}>${S.next} →</button>`);
-  document.getElementById('pages').innerHTML = pages > 1 ? btns.join('') : '';
+  const b = [`<button type="button" data-page="${page - 1}" ${page === 1 ? 'disabled' : ''}>← ${esc(S.prev)}</button>`];
+  for (let i = 1; i <= pages; i++) b.push(`<button type="button" data-page="${i}" aria-label="${esc(S.page(i))}" ${i === page ? 'aria-current="page"' : ''}>${i}</button>`);
+  b.push(`<button type="button" data-page="${page + 1}" ${page === pages ? 'disabled' : ''}>${esc(S.next)} →</button>`);
+  document.getElementById('pages').innerHTML = pages > 1 ? b.join('') : '';
+}
+
+function renderStats(){
+  document.getElementById('st-tools').textContent = fmt(allTools().length);
+  document.getElementById('st-votes').textContent = loaded ? fmt(totalVotes()) : '—';
+  document.getElementById('st-free').textContent = fmt(allTools().filter(isFree).length);
+  document.getElementById('st-countries').textContent = fmt(new Set(allTools().map((t) => t.r).filter((r) => r && r !== 'LA')).size);
+  document.getElementById('free-num').textContent = allTools().filter(isFree).length;
+}
+
+function renderVotesAll(bumpId){
+  renderStats(); renderBoard(); renderFilters(); renderTools();
+  if (bumpId) document.querySelectorAll(`[data-vote="${CSS.escape(bumpId)}"]`).forEach((b) => { b.classList.add('bump'); setTimeout(() => b.classList.remove('bump'), 250); });
 }
 
 function renderStatic(){
   const S = STR[lang];
   document.documentElement.lang = lang;
-  document.title = 'The Desert Zone';
-  document.querySelectorAll('[data-t]').forEach(el => { const v = S[el.dataset.t]; if (typeof v === 'string') el.textContent = v; });
-  document.querySelectorAll('[data-h]').forEach(el => { el.innerHTML = S[el.dataset.h]; });
-  document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
-  const LATAM = ['AR','BR','CL','CO','EC','MX','PE','UY','SV','CR','PA','LA'];
-  const latam = TOOLS.filter(t => LATAM.includes(t.r)).length;
-  document.getElementById('tool-count').textContent = S.toolCount(TOOLS.length);
-  document.getElementById('tool-sub').textContent = S.toolSub(latam, TOOLS.filter(t => t.c === 'AI').length);
-  const search = document.getElementById('tool-search');
-  search.placeholder = S.search; search.setAttribute('aria-label', S.search);
-  document.getElementById('circles').innerHTML = CIRCLES.map(c => `<div class="circle"><svg viewBox="0 0 40 40" aria-hidden="true">${c.i}</svg><h3>${esc(c.n[lang])}</h3><p>${esc(c.d[lang])}</p></div>`).join('');
-  document.getElementById('rhythm').innerHTML = RHYTHM.map(r => `<div><i>${esc(r.i[lang])}</i><b>${esc(r.b[lang])}</b><p>${esc(r.p[lang])}</p></div>`).join('');
-  document.getElementById('service-grid').innerHTML = SERVICES.map((s, k) => `<article class="service"><h3>${esc(s.n[lang])}</h3><p>${esc(s.d[lang])}</p><ul>${s.b[lang].map(x => `<li>${esc(x)}</li>`).join('')}</ul><button type="button" data-service="${k}">${esc(S.reqAsk)}</button></article>`).join('');
-  document.getElementById('pledge-list').innerHTML = PLEDGE.map(p => `<li><div><b>${esc(p.b[lang])}</b><span>${esc(p.s[lang])}</span></div></li>`).join('');
-  const role = document.getElementById('j-role'), ri = role.selectedIndex;
-  role.innerHTML = S.roles.map((r, k) => `<option value="${k}">${esc(r)}</option>`).join(''); if (ri >= 0) role.selectedIndex = ri;
-  const interest = document.getElementById('j-interest'), iv = interest.value;
-  interest.innerHTML = [`<option value="community">${esc(S.interestCommunity)}</option>`,
-    ...CIRCLES.map((c, k) => `<option value="c${k}">${esc(S.circlePrefix + ': ' + c.n[lang])}</option>`),
-    ...SERVICES.map((s, k) => `<option value="s${k}">${esc(S.servicePrefix + ': ' + s.n[lang])}</option>`)].join('');
-  if (iv) interest.value = iv;
-  document.getElementById('j-project').placeholder = S.phProject;
-  const pts = (id, list) => { document.getElementById(id).innerHTML = list.map(x => `<li>${esc(x)}</li>`).join(''); };
-  pts('req-points', S.reqPoints); pts('pro-points', S.proPoints);
-  document.getElementById('pro-steps').innerHTML = S.proSteps.map(([b, t]) => `<li><b>${esc(b)}</b><span>${esc(t)}</span></li>`).join('');
-  const fillSelect = (id, opts) => { const el = document.getElementById(id), v = el.value; el.innerHTML = opts.map(([val, label]) => `<option value="${esc(val)}">${esc(label)}</option>`).join(''); if (v) el.value = v; };
-  fillSelect('r-service', SERVICES.map((x, k) => [k, x.n[lang]]));
-  fillSelect('p-service', SERVICES.map((x, k) => [k, x.n[lang]]));
-  fillSelect('r-budget', S.budgets.map((b, k) => [k, b]));
-  fillSelect('p-lang', S.pLangs.map((b, k) => [k, b]));
-  document.getElementById('r-desc').placeholder = S.rDescPh;
-  document.getElementById('p-specialty').placeholder = S.pSpecialtyPh;
-  document.getElementById('nl-points').innerHTML = S.nlPoints.map(x => `<li>${esc(x)}</li>`).join('');
-  { const sel = document.getElementById('nl-lang'), v = sel.value;
-    sel.innerHTML = S.nlLangs.map(([val, label]) => `<option value="${val}">${esc(label)}</option>`).join('');
-    sel.value = v || (lang === 'es' ? 'es' : 'en'); }
-  document.querySelectorAll('[data-t-aria]').forEach(el => el.setAttribute('aria-label', S[el.dataset.tAria]));
+  document.querySelectorAll('[data-t]').forEach((el) => { const v = S[el.dataset.t]; if (typeof v === 'string') el.textContent = v; });
+  document.querySelectorAll('[data-h]').forEach((el) => { el.innerHTML = S[el.dataset.h]; });
+  document.querySelectorAll('[data-t-aria]').forEach((el) => el.setAttribute('aria-label', S[el.dataset.tAria]));
+  document.querySelectorAll('.lang button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+  document.getElementById('preview-note').hidden = !!SHEET_ENDPOINT;
+  const search = document.getElementById('tool-search'); search.placeholder = S.search; search.setAttribute('aria-label', S.search);
+  const so = document.getElementById('tool-sort'); so.innerHTML = S.sorts.map(([v, l]) => `<option value="${v}">${esc(l)}</option>`).join(''); so.value = sort;
+  document.getElementById('sg-steps').innerHTML = S.sgSteps.map(([b, t]) => `<li><div><b>${esc(b)}</b><span>${esc(t)}</span></div></li>`).join('');
+  const sc = document.getElementById('s-cat'), cv = sc.value;
+  sc.innerHTML = CATS.filter((c) => c !== 'all').map((c) => `<option value="${c}">${esc(S.cats[c])}</option>`).join(''); sc.value = cv || 'AI';
+  const sa = document.getElementById('s-area'), av = sa.value;
+  sa.innerHTML = AREAS.filter((a) => a !== 'all').map((a) => `<option value="${a}">${esc(S.areas[a])}</option>`).join(''); if (av) sa.value = av;
+  document.getElementById('s-area-wrap').hidden = sc.value !== 'AI';
+  document.getElementById('s-desc').placeholder = S.descPh;
+  document.getElementById('manifesto').innerHTML = S.manifesto.map(([b, x]) => `<li><b>${esc(b)}</b><span>${esc(x)}</span></li>`).join('');
+  checkDup();
 }
+function renderAll(){ renderStatic(); renderVotesAll(); }
 
-function renderAll(){ renderStatic(); renderFilters(); renderTools(); }
-
-document.querySelectorAll('.lang').forEach(g => g.addEventListener('click', e => {
+/* ---------- Events ---------- */
+document.querySelectorAll('.lang').forEach((g) => g.addEventListener('click', (e) => {
   const b = e.target.closest('button[data-lang]'); if (!b || b.dataset.lang === lang) return;
-  lang = b.dataset.lang; try { localStorage.setItem('tdz-lang', lang); } catch (err) {}
-  document.getElementById('done').hidden = true; document.getElementById('join-form').hidden = false;
-  renderAll();
+  lang = b.dataset.lang; store.set('tdz-lang', lang); renderAll();
 }));
-document.getElementById('cat-filters').addEventListener('click', e => { const b = e.target.closest('button[data-cat]'); if (!b) return; cat = b.dataset.cat; area = 'all'; page = 1; renderFilters(); renderTools(); });
-document.getElementById('area-filters').addEventListener('click', e => { const b = e.target.closest('button[data-area]'); if (!b) return; area = b.dataset.area; page = 1; renderFilters(); renderTools(); });
-document.getElementById('tool-search').addEventListener('input', e => { query = e.target.value; page = 1; renderTools(); });
-document.getElementById('pages').addEventListener('click', e => {
+document.addEventListener('click', (e) => {
+  const v = e.target.closest('button[data-vote]');
+  if (v) { e.preventDefault(); toggleVote(v.dataset.vote); }
+});
+document.getElementById('cat-filters').addEventListener('click', (e) => { const b = e.target.closest('button[data-cat]'); if (!b) return; cat = b.dataset.cat; area = 'all'; page = 1; renderFilters(); renderTools(); });
+document.getElementById('area-filters').addEventListener('click', (e) => { const b = e.target.closest('button[data-area]'); if (!b) return; area = b.dataset.area; page = 1; renderFilters(); renderTools(); });
+document.getElementById('tool-search').addEventListener('input', (e) => { query = e.target.value; page = 1; renderTools(); });
+document.getElementById('free-only').addEventListener('change', (e) => { freeOnly = e.target.checked; page = 1; renderTools(); });
+document.getElementById('tool-sort').addEventListener('change', (e) => { sort = e.target.value; page = 1; renderTools(); });
+document.getElementById('pages').addEventListener('click', (e) => {
   const b = e.target.closest('button[data-page]'); if (!b || b.disabled) return;
   page = +b.dataset.page; renderTools();
-  document.getElementById('tools-title').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start'});
+  document.getElementById('tools-title').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
 });
-document.getElementById('service-grid').addEventListener('click', e => {
-  const b = e.target.closest('button[data-service]'); if (!b) return;
-  document.getElementById('r-service').value = b.dataset.service;
-  document.getElementById('request-form').hidden = false; document.getElementById('request-done').hidden = true;
-  document.getElementById('request').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start'});
-  document.getElementById('r-name').focus({preventScroll:true});
+
+/* ---------- Suggest form ---------- */
+const sf = document.getElementById('sg-form');
+function checkDup(){
+  const S = STR[lang], name = sf.elements.name.value.trim(), box = document.getElementById('s-dup');
+  const hit = name.length > 1 && allTools().find((t) => t.id === slug(name));
+  box.hidden = !hit;
+  if (hit) box.innerHTML = `${esc(S.dupText(hit.n))} <button type="button" data-find="${esc(hit.n)}">${esc(S.dupBtn)}</button>`;
+}
+sf.elements.name.addEventListener('input', checkDup);
+document.getElementById('s-dup').addEventListener('click', (e) => {
+  const b = e.target.closest('button[data-find]'); if (!b) return;
+  cat = 'all'; area = 'all'; query = b.dataset.find; page = 1;
+  document.getElementById('tool-search').value = query; renderFilters(); renderTools();
+  document.getElementById('tools').scrollIntoView({ block: 'start' });
 });
-document.getElementById('join-form').addEventListener('submit', async e => {
+document.getElementById('s-cat').addEventListener('change', (e) => { document.getElementById('s-area-wrap').hidden = e.target.value !== 'AI'; });
+document.getElementById('s-desc').addEventListener('input', (e) => { document.getElementById('s-count').textContent = e.target.value.length + ' / 400'; });
+sf.querySelectorAll('input,textarea').forEach((el) => el.addEventListener('input', () => el.setCustomValidity('')));
+sf.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const S = STR[lang], f = e.target, E = f.elements, name = E.name.value.trim(), email = E.email.value.trim();
-  if (!name || !/^\S+@\S+\.\S+$/.test(email)) {
-    const el = name ? E.email : E.name;
-    el.setCustomValidity(name ? S.errEmail : S.errName); f.reportValidity(); el.focus(); return;
-  }
-  const iv = E.interest.value;
-  const interestEs = iv === 'community' ? STR.es.interestCommunity : iv[0] === 'c' ? 'Círculo: ' + CIRCLES[+iv.slice(1)].n.es : 'Servicio: ' + SERVICES[+iv.slice(1)].n.es;
-  const btn = f.querySelector('button'); btn.disabled = true;
-  const result = await sendToSheet({type:'member', name, email, phone:E.phone.value, role: STR.es.roles[+E.role.value], interest: interestEs, project: E.project.value, lang});
+  const S = STR[lang], E = sf.elements;
+  const fail = (el, msg) => { el.setCustomValidity(msg); sf.reportValidity(); el.focus(); };
+  if (!E.name.value.trim()) return fail(E.name, S.errFields);
+  if (!/^https?:\/\/\S+\.\S+/.test(E.url.value.trim())) return fail(E.url, S.errUrl);
+  if (!E.description.value.trim()) return fail(E.description, S.errFields);
+  if (E.email.value.trim() && !/^\S+@\S+\.\S+$/.test(E.email.value.trim())) return fail(E.email, S.errEmail);
+  const btn = sf.querySelector('button[type=submit]'); btn.disabled = true;
+  const result = await post({ type: 'tool', name: E.name.value.trim(), url: E.url.value.trim(), category: E.category.value, area: E.category.value === 'AI' ? E.area.value : '',
+    country: E.country.value.trim(), description: E.description.value.trim(), by: E.by.value.trim(), email: E.email.value.trim(), lang, website: E.website.value });
   btn.disabled = false;
-  if (result === 'sent') { STR.en.sentMemTitle = 'Welcome to the Zone, ' + name.split(/\s+/)[0] + '.'; STR.es.sentMemTitle = 'Bienvenido a la Zona, ' + name.split(/\s+/)[0] + '.'; }
-  showResult('join-form', 'done', result, 'Mem');
-});
-['j-name','j-email'].forEach(id => document.getElementById(id).addEventListener('input', e => e.target.setCustomValidity('')));
-
-
-// Pega aquí la URL /exec de tu Apps Script (ver Codigo.gs). Vacía = vista previa.
-const SHEET_ENDPOINT = '';
-const ES_LANG = ['Español','Inglés','Español e inglés'];
-const ES_BUDGET = ['Aún no lo sé','Menos de $500','De $500 a $2,000','De $2,000 a $5,000','Más de $5,000'];
-
-async function sendToSheet(data){
-  if (!SHEET_ENDPOINT) return 'preview';
-  try {
-    await fetch(SHEET_ENDPOINT, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(data)});
-    return 'sent';
-  } catch (err) { return 'error'; }
-}
-function showResult(formId, boxId, result, kind){
-  const S = STR[lang], box = document.getElementById(boxId);
-  const [t, x] = result === 'sent' ? [S['sent' + kind + 'Title'], S['sent' + kind + 'Text']] : result === 'preview' ? [S.previewTitle, S.previewText] : [S.failTitle, S.failText];
+  const box = document.getElementById('sg-done');
+  const [t, x] = result === 'sent' ? [S.sentTitle, S.sentText] : result === 'preview' ? [S.previewTitle, S.previewText] : [S.failTitle, S.failText];
   box.querySelector('b').textContent = t; box.querySelector('span').textContent = x;
-  box.classList.toggle('warn', result !== 'sent');
-  box.hidden = false;
-  if (result !== 'error') document.getElementById(formId).hidden = true;
-}
-function checkForm(f, extra){
-  const S = STR[lang];
-  for (const el of f.querySelectorAll('[required]')) {
-    el.setCustomValidity('');
-    const bad = !el.value.trim() || (el.type === 'email' && !/^\S+@\S+\.\S+$/.test(el.value.trim()));
-    if (bad) { el.setCustomValidity(el.type === 'email' ? S.errEmail : S.errFields); f.reportValidity(); el.focus(); return false; }
-  }
-  return extra ? extra() : true;
-}
-document.querySelectorAll('form.pform [required]').forEach(el => el.addEventListener('input', () => el.setCustomValidity('')));
-
-document.getElementById('request-form').addEventListener('submit', async e => {
-  e.preventDefault();
-  const f = e.target; if (!checkForm(f)) return;
-  const btn = f.querySelector('button'); btn.disabled = true;
-  const k = +f.elements.service.value;
-  const result = await sendToSheet({type:'request', name:f.elements.name.value, email:f.elements.email.value, phone:f.elements.phone.value,
-    service: SERVICES[k].n.es, budget: ES_BUDGET[+f.elements.budget.value], description: f.elements.description.value, lang, website: f.elements.website.value});
-  btn.disabled = false; showResult('request-form', 'request-done', result, 'Req');
+  box.classList.toggle('warn', result !== 'sent'); box.hidden = false;
+  if (result !== 'error') { sf.hidden = true; if (result === 'sent') sf.reset(); }
 });
+document.getElementById('sg-again').addEventListener('click', () => { sf.hidden = false; document.getElementById('sg-done').hidden = true; sf.elements.name.focus(); });
 
-document.getElementById('pro-form').addEventListener('submit', async e => {
-  e.preventDefault();
-  const f = e.target, terms = f.elements.terms;
-  if (!checkForm(f, () => { terms.setCustomValidity(terms.checked ? '' : STR[lang].errTerms); if (!terms.checked) { f.reportValidity(); return false; } return true; })) return;
-  const btn = f.querySelector('button'); btn.disabled = true;
-  const result = await sendToSheet({type:'professional', name:f.elements.name.value, email:f.elements.email.value, phone:f.elements.phone.value, country:f.elements.country.value,
-    service: SERVICES[+f.elements.service.value].n.es, specialty:f.elements.specialty.value, portfolio:f.elements.portfolio.value, rate:f.elements.rate.value, years:f.elements.years.value,
-    lang: ES_LANG[+f.elements.lang.value], website: f.elements.website.value});
-  btn.disabled = false; showResult('pro-form', 'pro-done', result, 'Pro');
-});
-document.getElementById('p-terms').addEventListener('change', e => e.target.setCustomValidity(''));
-
-// Two views: the home page and "Work with us" (#trabaja)
-function route(){
-  const pro = location.hash === '#trabaja';
-  document.querySelectorAll('.home').forEach(el => { el.hidden = pro; });
-  document.getElementById('trabaja').hidden = !pro;
-  if (pro) { window.scrollTo(0, 0); return; }
-  const target = location.hash && location.hash.length > 1 && document.getElementById(location.hash.slice(1));
-  if (target) requestAnimationFrame(() => target.scrollIntoView({block: 'start'}));
-}
-window.addEventListener('hashchange', route);
 
 document.getElementById('year').textContent = new Date().getFullYear();
-
-// Newsletter popup: posts to the subscribe form of noticias.youngdesert.com
-const NEWSLETTER_URL = 'https://noticias.youngdesert.com/suscribirse';
-const NL_KEY = 'tdz-newsletter';
-const NL_SNOOZE_DAYS = 7;
-const nl = document.getElementById('nl');
-const nlState = () => { try { return JSON.parse(localStorage.getItem(NL_KEY) || 'null'); } catch (e) { return null; } };
-const nlSave = (v) => { try { localStorage.setItem(NL_KEY, JSON.stringify({ v, at: Date.now() })); } catch (e) {} };
-function openNewsletter(){
-  if (!nl || nl.open) return;
-  try { nl.showModal(); } catch (e) { nl.setAttribute('open', ''); }
-  setTimeout(() => document.getElementById('nl-email').focus(), 50);
-}
-function closeNewsletter(remember){
-  if (remember && !(nlState() && nlState().v === 'subscribed')) nlSave('closed');
-  if (nl.open) nl.close();
-}
-document.getElementById('nl-x').addEventListener('click', () => closeNewsletter(true));
-document.getElementById('nl-skip').addEventListener('click', () => closeNewsletter(true));
-nl.addEventListener('cancel', () => nlSave(nlState() && nlState().v === 'subscribed' ? 'subscribed' : 'closed'));
-nl.addEventListener('click', (e) => { if (e.target === nl) closeNewsletter(true); });
-document.querySelectorAll('a[href="#newsletter"]').forEach(a => a.addEventListener('click', (e) => { e.preventDefault(); openNewsletter(); }));
-document.getElementById('nl-email').addEventListener('input', e => e.target.setCustomValidity(''));
-document.getElementById('nl-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const S = STR[lang], f = e.target, email = f.elements.email.value.trim();
-  if (!/^\S+@\S+\.\S+$/.test(email)) { f.elements.email.setCustomValidity(S.errEmail); f.reportValidity(); return; }
-  if (f.elements.website.value) return; // bots
-  const btn = f.querySelector('button'); btn.disabled = true;
-  let ok = true;
-  try {
-    await fetch(NEWSLETTER_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({ email, lang: f.elements.lang.value, website: '' }).toString() });
-  } catch (err) { ok = false; }
-  btn.disabled = false;
-  const box = document.getElementById('nl-done');
-  box.querySelector('b').textContent = ok ? S.nlOkTitle : S.nlFailTitle;
-  box.querySelector('span').textContent = ok ? S.nlOkText(email) : S.nlFailText;
-  box.classList.toggle('warn', !ok);
-  box.hidden = false;
-  if (ok) { f.hidden = true; nlSave('subscribed'); document.getElementById('nl-skip').textContent = lang === 'es' ? 'Ir al sitio' : 'Go to the site'; }
-});
-// Show once on arrival, unless they subscribed or closed it in the last week
-(() => {
-  const st = nlState();
-  if (st && (st.v === 'subscribed' || Date.now() - st.at < NL_SNOOZE_DAYS * 864e5)) return;
-  setTimeout(openNewsletter, 1200);
-})();
-
 renderAll();
-route();
+loadState();
 </script>
 
 </body>
