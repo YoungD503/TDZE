@@ -924,11 +924,8 @@ document.getElementById('nl-form').addEventListener('submit', (e) => {
   box.hidden = false; f.hidden = true;
   store.set(NL_KEY, { v: 'subscribed', at: Date.now() });
 });
-(() => {
-  const st = nlState();
-  if (st && (st.v === 'subscribed' || Date.now() - st.at < NL_SNOOZE_DAYS * 864e5)) return;
-  setTimeout(openNewsletter, NL_DELAY_MS);
-})();
+// Opens on every visit, right when the page loads
+setTimeout(openNewsletter, NL_DELAY_MS);
 
 document.getElementById('year').textContent = new Date().getFullYear();
 renderAll();
