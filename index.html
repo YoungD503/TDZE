@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Desert Zone</title>
+<meta name="description" content="Herramientas, comunidad y servicios para emprendedores que construyen un mejor futuro para el planeta. Tools, community and services for entrepreneurs.">
+<meta property="og:title" content="The Desert Zone">
+<meta property="og:description" content="Herramientas, comunidad y servicios para emprendedores que construyen un mejor futuro para el planeta.">
+<meta name="theme-color" content="#0a5bd3">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Michroma&display=swap">
+<style>
+/* Layout: brand header with language switch, centered thesis over the desert ridge, then tools (filtered, paged), community, services and a deep-blue join band. */
+:root{
+  --bg:#ffffff;--surface:#f4f6fa;--card:#ffffff;--line:#e3e7ef;--ink:#0d1420;--ink2:#465166;--muted:#6f7a8e;
+  --blue:#0a5bd3;--blue-hover:#0849ab;--blue-soft:#e8f0fd;--blue-text:#0a4cb0;--band:#062b66;--band-soft:#b9cdf0;
+  --sand:#c98a3d;--sand-soft:#fbf1e3;--sand-text:#8a5410;--green-soft:#e6f4ec;--green-text:#1b6b40;--ai-soft:#efeafd;--ai-text:#5b3cc4;--shadow:rgba(13,20,32,.08);--header:rgba(255,255,255,.82);
+  --display:'Michroma','Geist',system-ui,sans-serif;--body:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0a0e15;--surface:#121822;--card:#161d29;--line:#252e3d;--ink:#eef2f8;--ink2:#b3bccb;--muted:#8792a5;
+  --blue:#3d84f0;--blue-hover:#5b97f3;--blue-soft:#14233d;--blue-text:#8db6f7;--band:#0c2350;--band-soft:#a9bfe6;
+  --sand:#e0a65c;--sand-soft:#2a2116;--sand-text:#ecbd80;--green-soft:#13291d;--green-text:#7fd1a2;--ai-soft:#221a3d;--ai-text:#b9a5f7;--shadow:rgba(0,0,0,.4);--header:rgba(10,14,21,.8);color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0a0e15;--surface:#121822;--card:#161d29;--line:#252e3d;--ink:#eef2f8;--ink2:#b3bccb;--muted:#8792a5;
+  --blue:#3d84f0;--blue-hover:#5b97f3;--blue-soft:#14233d;--blue-text:#8db6f7;--band:#0c2350;--band-soft:#a9bfe6;
+  --sand:#e0a65c;--sand-soft:#2a2116;--sand-text:#ecbd80;--green-soft:#13291d;--green-text:#7fd1a2;--ai-soft:#221a3d;--ai-text:#b9a5f7;--shadow:rgba(0,0,0,.4);--header:rgba(10,14,21,.8);color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 110px)}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:var(--blue-text)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+h1,h2,h3{text-wrap:balance}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(22px,env(safe-area-inset-left,0px));padding-right:max(22px,env(safe-area-inset-right,0px))}
+
+/* Header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--header);-webkit-backdrop-filter:saturate(180%) blur(18px);backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid var(--line)}
+.top .wrap{min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:8px 18px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none}
+.brand .mono{display:block;height:34px;width:auto}
+.word{font-family:var(--display);font-size:14px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;line-height:1}
+.word .light{color:var(--muted)}
+.nav{display:flex;gap:22px;font-size:14px}
+.nav a{color:var(--ink2);text-decoration:none;padding:8px 0;white-space:nowrap}.nav a:hover{color:var(--ink)}
+.right{display:flex;align-items:center;gap:10px}
+.lang{display:flex;padding:3px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.lang button{font:inherit;font-size:12px;font-weight:600;letter-spacing:.06em;height:28px;padding:0 10px;border:0;border-radius:999px;background:transparent;color:var(--muted);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 3px var(--shadow)}
+.pill{display:inline-block;padding:8px 16px;border-radius:999px;background:var(--blue);color:#fff;text-decoration:none;font-size:14px;font-weight:500;white-space:nowrap}
+.pill:hover{background:var(--blue-hover)}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;text-align:center}
+.hero .wrap{padding-block:84px 40px;display:flex;flex-direction:column;align-items:center;gap:22px}
+.eyebrow{margin:0;font-family:var(--display);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--blue-text)}
+.hero h1{margin:0;font-size:clamp(40px,6.6vw,76px);line-height:1.02;font-weight:700;letter-spacing:-.035em;max-width:920px}
+.hero h1 em{font-style:normal;color:var(--blue)}
+.dek{margin:0;font-size:clamp(18px,2.2vw,22px);line-height:1.45;color:var(--ink2);max-width:720px}
+.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding-top:4px}
+.btn{display:inline-block;padding:13px 24px;border-radius:999px;background:var(--blue);color:#fff;text-decoration:none;font-size:17px;font-weight:500;border:1px solid var(--blue)}
+.btn:hover{background:var(--blue-hover);border-color:var(--blue-hover)}
+.btn.ghost{background:transparent;color:var(--blue-text);border-color:var(--blue-text)}
+.btn.ghost:hover{background:var(--blue-soft)}
+.ridge{display:block;width:100%;height:auto;max-width:100%;margin-top:8px}
+.ridge .sun{fill:var(--sand)}
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pillars a{display:flex;flex-direction:column;gap:4px;padding:26px 22px;text-decoration:none;color:var(--ink);text-align:left;border-left:1px solid var(--line)}
+.pillars a:first-child{border-left:0}
+.pillars a:hover{background:var(--surface)}
+.pillars b{font-size:20px;font-weight:700;letter-spacing:-.015em}
+.pillars span{font-size:15px;color:var(--ink2)}
+.pillars i{font-style:normal;font-family:var(--display);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+
+/* Sections */
+section.block{padding-block:88px 0}
+.head{margin-bottom:28px}
+.h2{margin:0 0 10px;font-size:clamp(32px,4.4vw,48px);line-height:1.06;font-weight:700;letter-spacing:-.03em}
+.lead{margin:0;font-size:18px;color:var(--ink2);max-width:62ch}
+
+/* Tools */
+.toolbar{display:flex;flex-direction:column;gap:12px;margin-bottom:22px}
+.toolbar .line{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.group-label{font-family:var(--display);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);min-width:84px}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filter{font:inherit;font-size:14px;font-weight:500;height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
+.filter:hover{border-color:var(--blue-text);color:var(--ink)}
+.filter[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.filter .num{font-variant-numeric:tabular-nums;opacity:.6;margin-left:2px}
+.search{flex:1 1 220px;min-width:0;margin-left:auto;max-width:320px}
+.search input{width:100%;font:inherit;font-size:15px;height:38px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.tool{position:relative;display:flex;flex-direction:column;gap:10px;background:var(--surface);border-radius:22px;padding:22px;transition:transform .2s ease,box-shadow .2s ease}
+.tool:hover{transform:translateY(-2px);box-shadow:0 12px 30px var(--shadow)}
+.tool .row{display:flex;flex-wrap:wrap;gap:6px}
+.tool h3{margin:0;font-size:20px;font-weight:700;letter-spacing:-.015em}
+.tool h3 a{color:var(--ink);text-decoration:none}
+.tool h3 a::after{content:"";position:absolute;inset:0;border-radius:22px}
+.tool p{margin:0;font-size:15px;color:var(--ink2)}
+.tool .meta{margin-top:auto;font-size:13px;color:var(--muted)}
+.tag{font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--blue-soft);color:var(--blue-text);white-space:nowrap}
+.tag.planet{background:var(--sand-soft);color:var(--sand-text)}
+.tag.ai{background:var(--ai-soft);color:var(--ai-text)}
+.tag.place{background:var(--green-soft);color:var(--green-text)}
+.empty{grid-column:1/-1;padding:30px;border-radius:22px;background:var(--surface);color:var(--ink2);text-align:center}
+.pager{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:24px}
+.pager .count{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.pages{display:flex;flex-wrap:wrap;gap:6px}
+.pages button{font:inherit;font-size:14px;font-weight:600;min-width:40px;height:40px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer;font-variant-numeric:tabular-nums}
+.pages button:hover:not(:disabled){border-color:var(--blue-text);color:var(--ink)}
+.pages button[aria-current="page"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.pages button:disabled{opacity:.4;cursor:default}
+
+/* Community */
+.circles{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-top:1px solid var(--line)}
+.circle{display:grid;grid-template-columns:48px 1fr;gap:4px 16px;padding:24px 8px 24px 0;border-bottom:1px solid var(--line)}
+.circle svg{width:40px;height:40px;grid-row:span 2;color:var(--blue)}
+.circle h3{margin:0;font-size:20px;font-weight:700;letter-spacing:-.015em}
+.circle p{margin:0;font-size:15px;color:var(--ink2);min-width:0}
+.rhythm{margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.rhythm div{background:var(--blue-soft);border-radius:22px;padding:24px}
+.rhythm i{display:block;font-style:normal;font-family:var(--display);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue-text);margin-bottom:10px}
+.rhythm b{display:block;font-size:19px;letter-spacing:-.01em;margin-bottom:4px}
+.rhythm p{margin:0;font-size:15px;color:var(--ink2)}
+
+/* Services */
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.service{display:flex;flex-direction:column;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:26px}
+.service h3{margin:0;font-size:22px;font-weight:700;letter-spacing:-.018em}
+.service p{margin:0;font-size:15px;color:var(--ink2)}
+.service ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:15px}
+.service li{display:flex;gap:10px}
+.service li::before{content:"";flex:none;width:6px;height:6px;margin-top:9px;border-radius:50%;background:var(--sand)}
+.service button{margin-top:auto;align-self:flex-start;font:inherit;font-size:15px;font-weight:600;height:42px;padding:0 18px;border-radius:999px;border:1px solid var(--blue-text);background:transparent;color:var(--blue-text);cursor:pointer}
+.service button:hover{background:var(--blue-soft)}
+
+/* Pledge */
+.pledge{margin-top:88px;background:var(--sand-soft);border-radius:32px;padding:44px clamp(22px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px 40px}
+.pledge h2{margin:0;font-size:clamp(28px,3.6vw,38px);line-height:1.08;letter-spacing:-.025em}
+.pledge .intro p{margin:10px 0 0;color:var(--ink2)}
+.pledge ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:18px;counter-reset:p}
+.pledge li{counter-increment:p;display:grid;grid-template-columns:36px 1fr;gap:12px}
+.pledge li::before{content:counter(p);display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--sand);color:#fff;font-weight:700;font-size:15px}
+.pledge li b{display:block;font-size:17px}
+.pledge li span{font-size:15px;color:var(--ink2)}
+
+/* Join */
+.join{margin-top:96px;background:var(--band);color:#fff}
+.join .wrap{padding-block:88px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
+.join h2{margin:0;font-size:clamp(36px,5.4vw,58px);line-height:1.04;letter-spacing:-.032em}
+.join p{margin:0;font-size:19px;color:var(--band-soft);max-width:620px}
+form.sub{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%;max-width:640px;padding-top:12px;text-align:left}
+form.sub label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--band-soft);min-width:0}
+form.sub .full{grid-column:1/-1}
+form.sub input,form.sub select{font:inherit;font-size:16px;height:50px;padding:0 18px;border:0;border-radius:14px;background:#fff;color:#0d1420;width:100%;color-scheme:light}
+form.sub button{grid-column:1/-1;font:inherit;font-weight:600;font-size:17px;height:54px;border:0;border-radius:999px;background:#fff;color:var(--band);cursor:pointer}
+form.sub button:hover{background:#e8f0fd}
+.done{max-width:640px;background:rgba(255,255,255,.1);border-radius:20px;padding:22px 26px;text-align:left}
+.done b{display:block;font-size:20px;margin-bottom:4px;color:#fff}
+.done span{color:var(--band-soft)}
+
+
+
+/* Request + professional forms (on page surfaces) */
+.request{margin-top:40px;background:var(--surface);border-radius:28px;padding:clamp(22px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px 40px;align-items:start}
+.request .intro h3{margin:0 0 8px;font-size:clamp(24px,3vw,30px);letter-spacing:-.02em;line-height:1.1}
+.request .intro p{margin:0;color:var(--ink2)}
+.request .intro ul{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:15px;color:var(--ink2)}
+.request .intro li{display:flex;gap:10px}
+.request .intro li::before{content:"";flex:none;width:6px;height:6px;margin-top:9px;border-radius:50%;background:var(--blue)}
+form.pform{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;min-width:0}
+form.pform label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--ink2);min-width:0}
+form.pform .full{grid-column:1/-1}
+form.pform input,form.pform select,form.pform textarea{font:inherit;font-size:16px;padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);width:100%}
+form.pform input,form.pform select{height:50px;padding-block:0}
+form.pform textarea{min-height:120px;resize:vertical;line-height:1.45}
+form.pform .check{flex-direction:row;align-items:flex-start;gap:10px;font-size:14px;line-height:1.45}
+form.pform .check input{width:20px;height:20px;flex:none;margin-top:1px;accent-color:var(--blue)}
+form.pform button{grid-column:1/-1;font:inherit;font-weight:600;font-size:17px;height:54px;border:0;border-radius:999px;background:var(--blue);color:#fff;cursor:pointer}
+form.pform button:hover{background:var(--blue-hover)}
+form.pform button:disabled{opacity:.6;cursor:wait}
+.hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.notice{border-radius:18px;padding:18px 22px;background:var(--blue-soft);color:var(--ink)}
+.notice b{display:block;font-size:18px;margin-bottom:4px}
+.notice.warn{background:var(--sand-soft)}
+
+/* Work with us view */
+.pro .wrap{padding-block:72px 0;display:flex;flex-direction:column;gap:20px}
+.pro h1{margin:0;font-size:clamp(40px,6vw,68px);line-height:1.02;letter-spacing:-.035em}
+.pro .dek{max-width:680px}
+.steps{margin:20px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;counter-reset:st}
+.steps li{counter-increment:st;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:6px}
+.steps li::before{content:counter(st);display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:15px;margin-bottom:6px}
+.steps b{font-size:18px;letter-spacing:-.01em}
+.steps span{font-size:15px;color:var(--ink2)}
+.pro .request{margin-top:20px}
+.backlink{font-size:15px;margin:12px 0 0}.backlink a{text-decoration:none}
+
+@media (max-width:760px){form.pform{grid-template-columns:1fr}}
+
+/* Footer */
+footer.site{margin-top:0;background:var(--surface);border-top:1px solid var(--line);color:var(--ink2);font-size:15px}
+footer.site .wrap{padding-block:56px 0}
+.foot-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1.3fr);gap:36px 40px;align-items:start}
+.foot-brand{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.foot-brand .mono{height:40px}
+.foot-brand .word{font-size:13px}
+.foot-brand p{margin:0;max-width:34ch;color:var(--ink2)}
+.foot-col{display:flex;flex-direction:column;gap:14px}
+.foot-col b{font-family:var(--display);font-size:10px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.foot-col nav{display:flex;flex-direction:column;gap:10px}
+.foot-col a{color:var(--ink);text-decoration:none;width:fit-content;background:linear-gradient(var(--blue),var(--blue)) 0 100%/0 1.5px no-repeat;transition:background-size .2s ease,color .2s ease}
+.foot-col a:hover{color:var(--blue-text);background-size:100% 1.5px}
+.foot-cta{display:flex;flex-direction:column;gap:8px;padding:24px;border-radius:24px;background:var(--band);color:#fff;text-decoration:none;transition:transform .2s ease}
+.foot-cta:hover{transform:translateY(-2px)}
+.foot-cta b{font-size:20px;letter-spacing:-.015em}
+.foot-cta span{font-size:15px;color:var(--band-soft)}
+.foot-cta i{font-style:normal;margin-top:8px;align-self:flex-start;padding:9px 16px;border-radius:999px;background:#fff;color:var(--band);font-size:14px;font-weight:600}
+.foot-mark{margin-top:56px;display:flex;flex-direction:column;gap:6px;overflow:hidden}
+.foot-mark .big{font-family:var(--display);text-transform:uppercase;white-space:nowrap;font-size:clamp(22px,6.1vw,70px);letter-spacing:.14em;line-height:1;color:var(--ink);opacity:.9}
+.foot-mark .big .light{color:var(--muted)}
+.foot-mark svg{display:block;width:100%;height:36px;stroke:var(--sand)}
+.foot-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;padding-block:20px 32px;margin-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.foot-bar .legal{flex:1 1 320px;min-width:0}
+.foot-bar a{color:var(--ink2);text-decoration:none}.foot-bar a:hover{color:var(--ink)}
+@media (max-width:900px){.foot-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.foot-brand,.foot-cta{grid-column:1/-1}}
+@media (max-width:480px){.foot-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.foot-cta,.foot-col a{transition:none}}
+
+@media (max-width:760px){
+  .top .wrap{display:grid;grid-template-columns:1fr auto;padding-top:8px}
+  .nav{grid-column:1/-1;grid-row:2;overflow-x:auto;gap:18px;scrollbar-width:none}
+  .nav::-webkit-scrollbar{display:none}
+  .pill{display:none}
+  .word{font-size:11px;letter-spacing:.14em}
+  .brand .mono{height:30px}
+  .hero .wrap{padding-block:52px 28px}
+  .pillars{grid-template-columns:1fr}
+  .pillars a{border-left:0;border-top:1px solid var(--line)}.pillars a:first-child{border-top:0}
+  section.block{padding-block:64px 0}
+  .group-label{min-width:0;flex-basis:100%}
+  .search{max-width:none;margin-left:0}
+  form.sub{grid-template-columns:1fr}
+  .join .wrap{padding-block:64px}
+}
+@media (prefers-reduced-motion:reduce){.tool{transition:none}}
+</style>
+
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="#top" aria-label="The Desert Zone"><svg class="mono" viewBox="0 0 99 219" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M3.25 216.34C2.28 215.95 2.00 207.51 2.00 178.92L2.00 142.00L8.25 142.01L14.50 142.01L47.22 167.01C65.22 180.75 80.17 192.00 80.45 192.00C80.73 192.00 81.08 181.31 81.23 168.25L81.50 144.50L89.00 144.50L96.50 144.50L96.76 180.25L97.03 216.00L90.62 216.00L84.22 216.00L50.86 190.54L17.50 165.08L17.23 191.04L16.97 217.00L10.73 216.92C7.31 216.88 3.94 216.62 3.25 216.34ZM40.58 136.95C27.02 134.84 13.93 125.40 8.08 113.51C3.16 103.52 2.04 96.14 2.02 73.75L2.00 54.00L41.50 54.00C80.33 54.00 81.00 53.97 81.00 52.00C81.00 50.03 80.33 50.00 41.50 50.00L2.00 50.00L2.00 41.50L2.00 33.00L41.47 33.00L80.95 33.00L81.22 17.75L81.50 2.50L89.33 2.21L97.17 1.91L96.73 49.21C96.36 88.98 96.03 97.51 94.64 102.82C90.04 120.44 80.77 131.03 66.19 135.35C59.27 137.40 48.01 138.11 40.58 136.95ZM64.79 117.04C67.83 115.71 71.54 113.02 73.49 110.74C78.75 104.60 80.20 99.30 80.75 84.25L81.23 71.00L48.96 71.00L16.70 71.00L17.27 83.25C18.27 104.41 23.27 113.54 36.41 118.23C43.65 120.81 57.51 120.23 64.79 117.04Z"/></svg><span class="word">The Desert <span class="light">Zone</span></span></a>
+  <nav class="nav" aria-label="Sections">
+    <a href="#tools" data-t="navTools">Tools</a><a href="#community" data-t="navCommunity">Community</a><a href="#services" data-t="navServices">Services</a><a href="#pledge" data-t="navPledge">Our pledge</a>
+  </nav>
+  <div class="right">
+    <div class="lang" role="group" aria-label="Language / Idioma">
+      <button type="button" id="lang-es" data-lang="es" lang="es" aria-pressed="false">ES</button>
+      <button type="button" id="lang-en" data-lang="en" lang="en" aria-pressed="true">EN</button>
+    </div>
+    <a class="pill" href="#join" data-t="joinPill">Join the Zone</a>
+  </div>
+</div></header>
+
+<main id="top">
+<section class="hero home" aria-labelledby="hero-title">
+  <div class="wrap">
+    <p class="eyebrow" data-t="eyebrow">For founders, makers and dreamers</p>
+    <h1 id="hero-title" data-h="heroTitle">Build what the <em>future</em> needs.</h1>
+    <p class="dek" data-t="heroDek">The Desert Zone brings together the tools, the people and the services you need to take an idea from a sketch to something real.</p>
+    <div class="actions"><a class="btn" href="#tools" data-t="ctaTools">Explore the tools</a><a class="btn ghost" href="#join" data-t="ctaJoin">Join the community</a></div>
+    <svg class="ridge" viewBox="0 0 1200 170" aria-hidden="true" preserveAspectRatio="xMidYMax meet">
+      <circle class="sun" cx="600" cy="92" r="44" opacity=".9"/>
+      <polyline points="0,168 400,128 470,142 600,62 730,142 800,128 1200,168" fill="none" stroke-width="3" stroke-linejoin="miter" stroke-linecap="round" style="stroke:var(--ink)"/>
+    </svg>
+  </div>
+  <div class="wrap">
+    <div class="pillars">
+      <a href="#tools"><i data-t="p1i">01 · Tools</i><b id="tool-count">Tools</b><span id="tool-sub">Hand-picked software and guides.</span></a>
+      <a href="#community"><i data-t="p2i">02 · Community</i><b data-t="p2b">Six circles to join</b><span data-t="p2s">Meet people working on the same problems you are.</span></a>
+      <a href="#services"><i data-t="p3i">03 · Services</i><b data-t="p3b">Help when you need it</b><span data-t="p3s">Mentors and specialists for the hard parts.</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="block home" id="tools" aria-labelledby="tools-title"><div class="wrap">
+  <div class="head"><h2 class="h2" id="tools-title" data-t="toolsTitle">Tools</h2><p class="lead" data-t="toolsLead">A curated list.</p></div>
+  <div class="toolbar">
+    <div class="line"><span class="group-label" data-t="lblType">Type</span><div class="filters" id="cat-filters" role="group" aria-label="Category"></div>
+      <label class="search"><input id="tool-search" type="search" placeholder="Search tools" aria-label="Search tools"></label></div>
+    <div class="line" id="area-line" hidden><span class="group-label" data-t="lblArea">AI area</span><div class="filters" id="area-filters" role="group" aria-label="AI area"></div></div>
+  </div>
+  <div class="tools" id="tool-grid" aria-live="polite"></div>
+  <nav class="pager" id="pager" aria-label="Tool pages"><span class="count" id="page-count"></span><div class="pages" id="pages"></div></nav>
+</div></section>
+
+<section class="block home" id="community" aria-labelledby="community-title"><div class="wrap">
+  <div class="head"><h2 class="h2" id="community-title" data-t="commTitle">Community</h2><p class="lead" data-t="commLead"></p></div>
+  <div class="circles" id="circles"></div>
+  <div class="rhythm" id="rhythm"></div>
+</div></section>
+
+<section class="block home" id="services" aria-labelledby="services-title"><div class="wrap">
+  <div class="head"><h2 class="h2" id="services-title" data-t="servTitle">Services</h2><p class="lead" data-t="servLead"></p></div>
+  <div class="services" id="service-grid"></div>
+  <div class="request" id="request">
+    <div class="intro"><h3 data-t="reqTitle">Request a service</h3><p data-t="reqLead"></p><ul id="req-points"></ul></div>
+    <div>
+      <form class="pform" id="request-form" novalidate>
+        <label><span data-t="rName">Your name</span><input id="r-name" name="name" required autocomplete="name"></label>
+        <label><span data-t="rEmail">Email</span><input id="r-email" name="email" type="email" required autocomplete="email"></label>
+        <label><span data-t="rPhone">Phone (optional)</span><input id="r-phone" name="phone" type="tel" autocomplete="tel"></label>
+        <label><span data-t="rService">Service</span><select id="r-service" name="service"></select></label>
+        <label class="full"><span data-t="rBudget">Budget</span><select id="r-budget" name="budget"></select></label>
+        <label class="full"><span data-t="rDesc">Tell us about your project</span><textarea id="r-desc" name="description" required></textarea></label>
+        <div class="hp" aria-hidden="true"><label>Web<input type="text" id="r-web" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <button type="submit" data-t="rSubmit">Send request</button>
+      </form>
+      <div class="notice" id="request-done" role="status" hidden><b></b><span></span></div>
+    </div>
+  </div>
+  <div class="pledge" id="pledge">
+    <div class="intro"><h2 data-t="pledgeTitle">The Zone pledge</h2><p data-t="pledgeLead"></p></div>
+    <ol id="pledge-list"></ol>
+  </div>
+</div></section>
+
+<section class="join home" id="join" aria-labelledby="join-title"><div class="wrap">
+  <h2 id="join-title" data-t="joinTitle">Your idea belongs here.</h2>
+  <p data-t="joinLead"></p>
+  <form class="sub" id="join-form" novalidate>
+    <label><span data-t="fName">Your name</span><input id="j-name" name="name" required autocomplete="name" placeholder="Ana Martínez"></label>
+    <label><span data-t="fEmail">Email</span><input id="j-email" name="email" type="email" required autocomplete="email" placeholder="ana@project.com"></label>
+    <label><span data-t="fPhone">Phone (optional)</span><input id="j-phone" name="phone" type="tel" autocomplete="tel" placeholder="+503 7000 0000"></label>
+    <label><span data-t="fRole">I am a</span><select id="j-role" name="role"></select></label>
+    <label class="full"><span data-t="fInterest">Most interested in</span><select id="j-interest" name="interest"></select></label>
+    <label class="full"><span data-t="fProject">What are you building? (optional)</span><input id="j-project" name="project"></label>
+    <button type="submit" data-t="fSubmit">Join the Zone</button>
+  </form>
+  <div class="done" id="done" role="status" hidden><b id="done-title"></b><span id="done-text"></span></div>
+</div></section>
+
+<section class="pro" id="trabaja" hidden aria-labelledby="pro-title"><div class="wrap">
+  <p class="eyebrow" data-t="proEyebrow">For professionals</p>
+  <h1 id="pro-title" data-t="proTitle">Work with us</h1>
+  <p class="dek" data-t="proLead"></p>
+  <ol class="steps" id="pro-steps"></ol>
+  <div class="request">
+    <div class="intro"><h3 data-t="proFormTitle">Apply</h3><p data-t="proFormLead"></p><ul id="pro-points"></ul></div>
+    <div>
+      <form class="pform" id="pro-form" novalidate>
+        <label><span data-t="rName">Your name</span><input id="p-name" name="name" required autocomplete="name"></label>
+        <label><span data-t="rEmail">Email</span><input id="p-email" name="email" type="email" required autocomplete="email"></label>
+        <label><span data-t="rPhone">Phone (optional)</span><input id="p-phone" name="phone" type="tel" autocomplete="tel"></label>
+        <label><span data-t="pCountry">Country</span><input id="p-country" name="country" autocomplete="country-name"></label>
+        <label><span data-t="pService">Service you offer</span><select id="p-service" name="service"></select></label>
+        <label><span data-t="pLang">Languages you work in</span><select id="p-lang" name="lang"></select></label>
+        <label><span data-t="pRate">Hourly rate (USD)</span><input id="p-rate" name="rate" inputmode="decimal" placeholder="35"></label>
+        <label><span data-t="pYears">Years of experience</span><input id="p-years" name="years" inputmode="numeric" placeholder="5"></label>
+        <label class="full"><span data-t="pPortfolio">Portfolio or website</span><input id="p-portfolio" name="portfolio" type="url" placeholder="https://"></label>
+        <label class="full"><span data-t="pSpecialty">What do you do best?</span><textarea id="p-specialty" name="specialty" required></textarea></label>
+        <label class="full check"><input id="p-terms" name="terms" type="checkbox"><span data-t="pTerms"></span></label>
+        <div class="hp" aria-hidden="true"><label>Web<input type="text" id="p-web" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <button type="submit" data-t="pSubmit">Send application</button>
+      </form>
+      <div class="notice" id="pro-done" role="status" hidden><b></b><span></span></div>
+    </div>
+  </div>
+  <p class="backlink"><a href="#top" data-t="backHome">← Back to The Desert Zone</a></p>
+</div></section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top" aria-label="The Desert Zone"><svg class="mono" viewBox="0 0 99 219" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M3.25 216.34C2.28 215.95 2.00 207.51 2.00 178.92L2.00 142.00L8.25 142.01L14.50 142.01L47.22 167.01C65.22 180.75 80.17 192.00 80.45 192.00C80.73 192.00 81.08 181.31 81.23 168.25L81.50 144.50L89.00 144.50L96.50 144.50L96.76 180.25L97.03 216.00L90.62 216.00L84.22 216.00L50.86 190.54L17.50 165.08L17.23 191.04L16.97 217.00L10.73 216.92C7.31 216.88 3.94 216.62 3.25 216.34ZM40.58 136.95C27.02 134.84 13.93 125.40 8.08 113.51C3.16 103.52 2.04 96.14 2.02 73.75L2.00 54.00L41.50 54.00C80.33 54.00 81.00 53.97 81.00 52.00C81.00 50.03 80.33 50.00 41.50 50.00L2.00 50.00L2.00 41.50L2.00 33.00L41.47 33.00L80.95 33.00L81.22 17.75L81.50 2.50L89.33 2.21L97.17 1.91L96.73 49.21C96.36 88.98 96.03 97.51 94.64 102.82C90.04 120.44 80.77 131.03 66.19 135.35C59.27 137.40 48.01 138.11 40.58 136.95ZM64.79 117.04C67.83 115.71 71.54 113.02 73.49 110.74C78.75 104.60 80.20 99.30 80.75 84.25L81.23 71.00L48.96 71.00L16.70 71.00L17.27 83.25C18.27 104.41 23.27 113.54 36.41 118.23C43.65 120.81 57.51 120.23 64.79 117.04Z"/></svg><span class="word">The Desert <span class="light">Zone</span></span></a>
+        <p data-t="footTag"></p>
+        <div class="lang" role="group" aria-label="Language / Idioma"><button type="button" data-lang="es" lang="es" aria-pressed="false">ES</button><button type="button" data-lang="en" lang="en" aria-pressed="true">EN</button></div>
+      </div>
+      <div class="foot-col"><b data-t="footExplore">Explore</b><nav aria-label="Explore"><a href="#tools" data-t="navTools">Tools</a><a href="#community" data-t="navCommunity">Community</a><a href="#services" data-t="navServices">Services</a><a href="#pledge" data-t="navPledge">Our pledge</a><a href="#join" data-t="navJoin">Join</a></nav></div>
+      <div class="foot-col"><b data-t="footPros">For professionals</b><nav aria-label="For professionals"><a href="#trabaja" data-t="footWork">Work with us</a><a href="#trabaja" data-t="footHow">How the commission works</a><a href="#request" data-t="footReq">Request a service</a></nav></div>
+      <a class="foot-cta" href="#trabaja"><b data-t="footCtaTitle">Are you a professional?</b><span data-t="footCtaText"></span><i data-t="footCtaBtn">Apply</i></a>
+    </div>
+    <div class="foot-mark" aria-hidden="true">
+      <span class="big">The Desert <span class="light">Zone</span></span>
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none"><polyline points="0,58 400,44 470,50 600,6 730,50 800,44 1200,58" fill="none" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
+    </div>
+    <div class="foot-bar">
+      <span>© <span id="year">2026</span> The Desert Zone</span>
+      <span class="legal" data-t="footLegal"></span>
+      <a href="#top" data-t="footTop">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const STR = {
+  en: {
+    reqTitle:'Request a service',reqLead:'Tell us what you need. We review every request and connect you with an approved professional from the Zone, who will write to you by email.',
+    reqPoints:['Every professional is reviewed before joining','You agree on price and timing directly with them','Sending a request is free'],
+    rName:'Your name',rEmail:'Email',rPhone:'Phone (optional)',rService:'Service',rBudget:'Budget',rDesc:'Tell us about your project',rDescPh:'What you need, by when, and anything we should know.',rSubmit:'Send request',
+    budgets:['Not sure yet','Under $500','$500 to $2,000','$2,000 to $5,000','Over $5,000'],reqAsk:'Request this service',
+    proEyebrow:'For professionals',proTitle:'Work with us',
+    proLead:'Are you a mentor, designer, lawyer, developer or impact specialist? Join the Zone and receive client requests from entrepreneurs who are building something that matters.',
+    proSteps:[['Apply','Tell us what you do, your rate and where we can see your work.'],['We review your profile','We check your portfolio and experience, and send you the agreement.'],['Receive requests by email','When a client asks for your service and we approve it, we send you their details.'],['Work and get paid','You agree on the work with the client. The Zone keeps the commission set in your agreement.']],
+    proFormTitle:'Apply to the Zone',proFormLead:'It takes about five minutes. We reply to every application.',
+    proPoints:['The commission is written in your agreement before you start','You set your own rates','You can pause or leave at any time'],
+    pCountry:'Country',pService:'Service you offer',pLang:'Languages you work in',pLangs:['Spanish','English','Spanish and English'],pRate:'Hourly rate (USD)',pYears:'Years of experience',pPortfolio:'Portfolio or website',pSpecialty:'What do you do best?',pSpecialtyPh:'Your specialty, the kind of clients you help and a project you are proud of.',
+    pTerms:'I understand that The Desert Zone keeps a commission on work that comes through the site, and that the percentage will be set in my agreement.',pSubmit:'Send application',
+    errTerms:'Please accept the commission terms to apply.',errFields:'Fill in the required fields.',
+    sentReqTitle:'Request received.',sentReqText:'We will review it and connect you with a professional by email.',
+    sentProTitle:'Application received.',sentMemText:'We will write to you soon with your circle and the next build night.',sentProText:'We will review your profile and write to you soon.',
+    previewTitle:'Preview only.',previewText:'This form is not connected yet, so nothing was sent.',
+    failTitle:'We could not send it.',failText:'Check your connection and try again.',
+    backHome:'← Back to The Desert Zone',footExplore:'Explore',footPros:'For professionals',footWork:'Work with us',footHow:'How the commission works',
+    navTools:'Tools',navCommunity:'Community',navServices:'Services',navPledge:'Our pledge',navJoin:'Join',joinPill:'Join the Zone',
+    eyebrow:'For founders, makers and dreamers',heroTitle:'Build what the <em>future</em> needs.',
+    heroDek:'The Desert Zone brings together the tools, the people and the services you need to take an idea from a sketch to something real. Everyone is welcome, as long as you want to leave the planet better than you found it.',
+    ctaTools:'Explore the tools',ctaJoin:'Join the community',
+    p1i:'01 · Tools',toolCount:n=>`${n} tools to build with`,toolSub:(n,a)=>`Software, guides and ${a} AI tools, with ${n} made in Latin America.`,
+    p2i:'02 · Community',p2b:'Six circles to join',p2s:'Meet people working on the same problems you are.',
+    p3i:'03 · Services',p3b:'Help when you need it',p3s:'Mentors and specialists for the hard parts.',
+    toolsTitle:'Tools',toolsLead:'A curated list from around the world: AI for every part of your business, plus a strong set made in Latin America for founders who sell, get paid and grow in the region.',
+    lblType:'Type',lblArea:'AI area',search:'Search tools',
+    cats:{all:'All',AI:'AI',Build:'Build',Launch:'Launch',Money:'Money',Learn:'Learn',Planet:'Planet'},
+    areas:{all:'All AI',writing:'Writing',research:'Research',marketing:'Marketing',images:'Images',audio:'Audio',video:'Video',organize:'Organize',code:'Code & apps',support:'Customer support'},
+    empty:'No tools match. Try another word, or choose All.',
+    showing:(a,b,n)=>`Showing ${a}–${b} of ${n} tools`,prev:'Previous',next:'Next',page:n=>`Page ${n}`,
+    commTitle:'Community',commLead:'Ideas grow faster around other people. Pick the circles that match your work, share what you are building and learn from those a step ahead.',
+    servTitle:'Services',servLead:'When a task is bigger than your team, we connect you with people who have done it before.',
+    ask:s=>`Ask about ${s.toLowerCase()}`,
+    pledgeTitle:'The Zone pledge',pledgeLead:'Everyone who joins agrees to three simple commitments. They keep the community generous and the work pointed in the right direction.',
+    joinTitle:'Your idea belongs here.',joinLead:'Tell us who you are and what you are working on. We will match you with a circle and the tools and services that fit your stage.',
+    fName:'Your name',fEmail:'Email',fPhone:'Phone (optional)',fRole:'I am a',fInterest:'Most interested in',fProject:'What are you building? (optional)',fSubmit:'Join the Zone',
+    phProject:'Solar-powered water filters for rural schools',
+    roles:['Founder with a project','Maker or creator','Expert who wants to help','Investor or funder','Curious, just starting'],
+    interestCommunity:'The community',circlePrefix:'Circle',servicePrefix:'Service',
+    errName:'Enter your name',errEmail:'Enter an email like name@project.com',
+    doneTitle:f=>`Thanks, ${f}. Sign-ups open at launch.`,doneText:i=>`This is a preview of the site, so your details were not saved. Please come back when we launch to join ${i}.`,
+    footTag:'A home for entrepreneurs building a better way to live on this planet.',footLegal:'Tools listed here are independent products. We are not paid to include them.',
+    footReq:'Request a service',footCtaTitle:'Are you a professional?',footCtaText:'Mentors, designers, lawyers and developers: get client requests from founders across the region.',footCtaBtn:'Apply →',footTop:'Back to top ↑'
+  },
+  es: {
+    reqTitle:'Solicita un servicio',reqLead:'Cuéntanos qué necesitas. Revisamos cada solicitud y te conectamos con un profesional aprobado de la Zona, que te escribirá por correo.',
+    reqPoints:['Cada profesional pasa por una revisión antes de entrar','Acuerdas el precio y los tiempos directamente con él','Enviar una solicitud es gratis'],
+    rName:'Tu nombre',rEmail:'Correo',rPhone:'Teléfono (opcional)',rService:'Servicio',rBudget:'Presupuesto',rDesc:'Cuéntanos de tu proyecto',rDescPh:'Qué necesitas, para cuándo y cualquier detalle importante.',rSubmit:'Enviar solicitud',
+    budgets:['Aún no lo sé','Menos de $500','De $500 a $2,000','De $2,000 a $5,000','Más de $5,000'],reqAsk:'Solicitar este servicio',
+    proEyebrow:'Para profesionales',proTitle:'Trabaja con nosotros',
+    proLead:'¿Eres mentor, diseñador, abogado, desarrollador o especialista en impacto? Únete a la Zona y recibe solicitudes de emprendedores que están construyendo algo que importa.',
+    proSteps:[['Postúlate','Cuéntanos qué haces, tu tarifa y dónde podemos ver tu trabajo.'],['Revisamos tu perfil','Revisamos tu portafolio y experiencia, y te enviamos el contrato.'],['Recibe solicitudes por correo','Cuando un cliente pide tu servicio y lo aprobamos, te enviamos sus datos.'],['Trabaja y cobra','Acuerdas el trabajo con el cliente. La Zona recibe la comisión que fija tu contrato.']],
+    proFormTitle:'Postúlate a la Zona',proFormLead:'Toma unos cinco minutos. Respondemos todas las postulaciones.',
+    proPoints:['La comisión queda escrita en tu contrato antes de empezar','Tú pones tus tarifas','Puedes pausar o salir cuando quieras'],
+    pCountry:'País',pService:'Servicio que ofreces',pLang:'Idiomas en que trabajas',pLangs:['Español','Inglés','Español e inglés'],pRate:'Tarifa por hora (USD)',pYears:'Años de experiencia',pPortfolio:'Portafolio o sitio web',pSpecialty:'¿En qué eres mejor?',pSpecialtyPh:'Tu especialidad, el tipo de clientes que ayudas y un proyecto del que estés orgulloso.',
+    pTerms:'Entiendo que The Desert Zone recibe una comisión por los trabajos que llegan a través del sitio, y que el porcentaje quedará fijado en mi contrato.',pSubmit:'Enviar postulación',
+    errTerms:'Acepta las condiciones de la comisión para postularte.',errFields:'Completa los campos obligatorios.',
+    sentReqTitle:'Recibimos tu solicitud.',sentReqText:'La revisaremos y te conectaremos con un profesional por correo.',
+    sentProTitle:'Recibimos tu postulación.',sentMemText:'Pronto te escribiremos con tu círculo y la próxima noche de trabajo.',sentProText:'Revisaremos tu perfil y te escribiremos pronto.',
+    previewTitle:'Solo vista previa.',previewText:'Este formulario aún no está conectado, así que no se envió nada.',
+    failTitle:'No pudimos enviarlo.',failText:'Revisa tu conexión e inténtalo de nuevo.',
+    backHome:'← Volver a The Desert Zone',footExplore:'Explora',footPros:'Para profesionales',footWork:'Trabaja con nosotros',footHow:'Cómo funciona la comisión',
+    navTools:'Herramientas',navCommunity:'Comunidad',navServices:'Servicios',navPledge:'Nuestro compromiso',navJoin:'Únete',joinPill:'Únete a la Zona',
+    eyebrow:'Para emprendedores, creadores y soñadores',heroTitle:'Construye lo que el <em>futuro</em> necesita.',
+    heroDek:'The Desert Zone reúne las herramientas, las personas y los servicios que necesitas para llevar una idea del boceto a la realidad. Todos son bienvenidos, siempre que quieran dejar el planeta mejor de lo que lo encontraron.',
+    ctaTools:'Explora las herramientas',ctaJoin:'Únete a la comunidad',
+    p1i:'01 · Herramientas',toolCount:n=>`${n} herramientas para construir`,toolSub:(n,a)=>`Software, guías y ${a} herramientas de IA, con ${n} hechas en Latinoamérica.`,
+    p2i:'02 · Comunidad',p2b:'Seis círculos para unirte',p2s:'Conoce a personas que trabajan en los mismos problemas que tú.',
+    p3i:'03 · Servicios',p3b:'Ayuda cuando la necesites',p3s:'Mentores y especialistas para las partes difíciles.',
+    toolsTitle:'Herramientas',toolsLead:'Una lista seleccionada de todo el mundo: IA para cada área de tu negocio y muchas opciones hechas en Latinoamérica para quienes venden, cobran y crecen en la región.',
+    lblType:'Tipo',lblArea:'Área de IA',search:'Buscar herramientas',
+    cats:{all:'Todas',AI:'IA',Build:'Construir',Launch:'Lanzar',Money:'Dinero',Learn:'Aprender',Planet:'Planeta'},
+    areas:{all:'Toda la IA',writing:'Escritura',research:'Investigación',marketing:'Marketing',images:'Imágenes',audio:'Audio',video:'Video',organize:'Organización',code:'Código y apps',support:'Atención al cliente'},
+    empty:'Ninguna herramienta coincide. Prueba otra palabra o elige Todas.',
+    showing:(a,b,n)=>`Mostrando ${a}–${b} de ${n} herramientas`,prev:'Anterior',next:'Siguiente',page:n=>`Página ${n}`,
+    commTitle:'Comunidad',commLead:'Las ideas crecen más rápido rodeadas de otras personas. Elige los círculos que van con tu trabajo, comparte lo que construyes y aprende de quienes van un paso adelante.',
+    servTitle:'Servicios',servLead:'Cuando una tarea es más grande que tu equipo, te conectamos con personas que ya lo han hecho.',
+    ask:s=>`Pregunta por ${s.toLowerCase()}`,
+    pledgeTitle:'El compromiso de la Zona',pledgeLead:'Todos los que se unen aceptan tres compromisos sencillos. Mantienen a la comunidad generosa y el trabajo en la dirección correcta.',
+    joinTitle:'Tu idea tiene un lugar aquí.',joinLead:'Cuéntanos quién eres y en qué trabajas. Te conectaremos con un círculo y con las herramientas y servicios adecuados para tu etapa.',
+    fName:'Tu nombre',fEmail:'Correo',fPhone:'Teléfono (opcional)',fRole:'Soy',fInterest:'Me interesa más',fProject:'¿Qué estás construyendo? (opcional)',fSubmit:'Únete a la Zona',
+    phProject:'Filtros de agua solares para escuelas rurales',
+    roles:['Emprendedor con un proyecto','Creador o artesano','Experto que quiere ayudar','Inversionista o financiador','Curioso, apenas empiezo'],
+    interestCommunity:'La comunidad',circlePrefix:'Círculo',servicePrefix:'Servicio',
+    errName:'Escribe tu nombre',errEmail:'Escribe un correo como nombre@proyecto.com',
+    doneTitle:f=>`Gracias, ${f}. Las inscripciones abren con el lanzamiento.`,doneText:i=>`Esta es una vista previa del sitio, así que tus datos no se guardaron. Vuelve cuando lancemos para unirte a ${i}.`,
+    footTag:'Un hogar para emprendedores que construyen una mejor forma de vivir en este planeta.',footLegal:'Las herramientas de esta lista son productos independientes. No nos pagan por incluirlas.',
+    footReq:'Solicitar un servicio',footCtaTitle:'¿Eres profesional?',footCtaText:'Mentores, diseñadores, abogados y desarrolladores: recibe solicitudes de emprendedores de toda la región.',footCtaBtn:'Postúlate →',footTop:'Volver arriba ↑'
+  }
+};
+
+const PRICE = {
+  free:{en:'Free',es:'Gratis'},freePlan:{en:'Free plan available',es:'Plan gratuito disponible'},freeStart:{en:'Free to start',es:'Gratis para empezar'},
+  freeTrial:{en:'Free trial, then monthly plans',es:'Prueba gratis, luego planes mensuales'},monthly:{en:'Monthly plans',es:'Planes mensuales'},
+  perTx:{en:'Pay per transaction',es:'Pagas por transacción'},freeData:{en:'Free data',es:'Datos gratuitos'},freeRes:{en:'Free resources',es:'Recursos gratuitos'},
+  freeCourses:{en:'Free and paid courses',es:'Cursos gratuitos y de pago'},paidCourses:{en:'Subscription',es:'Suscripción'},freePublish:{en:'Free to publish',es:'Gratis para publicar'},
+  ifFunded:{en:'Fee only if funded',es:'Comisión solo si se financia'},share:{en:'Share of earnings',es:'Porcentaje de las ganancias'},
+  lowFee:{en:'Low fees per transfer',es:'Comisiones bajas por envío'},member:{en:'Membership',es:'Membresía'},freeAssess:{en:'Free assessment',es:'Evaluación gratuita'},
+  webflow:{en:'Free to design, paid to publish a domain',es:'Gratis para diseñar, de pago para usar tu dominio'},loans:{en:'0% interest loans',es:'Préstamos al 0 % de interés'},
+  free4ind:{en:'Free for individuals',es:'Gratis para uso individual'},freeRepos:{en:'Free for public and private repos',es:'Gratis para repos públicos y privados'},
+  freeCanvas:{en:'Free canvas templates',es:'Plantillas del canvas gratuitas'},freeBrowse:{en:'Free to browse',es:'Gratis para explorar'},
+  freeApp:{en:'Free app for customers',es:'App gratis para clientes'},freeTraining:{en:'Free training',es:'Capacitación gratuita'},
+  program:{en:'Application-based program',es:'Programa con convocatoria'},quote:{en:'Pricing on request',es:'Precio a consultar'},
+  hire:{en:'Pay per project',es:'Pagas por proyecto'},gov:{en:'Free public program',es:'Programa público gratuito'},
+  percent:{en:'Commission per sale',es:'Comisión por venta'}
+};
+
+const PLACE = {
+  AR:{en:'Argentina',es:'Argentina'},BR:{en:'Brazil',es:'Brasil'},CL:{en:'Chile',es:'Chile'},CO:{en:'Colombia',es:'Colombia'},EC:{en:'Ecuador',es:'Ecuador'},
+  MX:{en:'Mexico',es:'México'},PE:{en:'Peru',es:'Perú'},UY:{en:'Uruguay',es:'Uruguay'},SV:{en:'El Salvador',es:'El Salvador'},CR:{en:'Costa Rica',es:'Costa Rica'},
+  PA:{en:'Panama',es:'Panamá'},LA:{en:'Latin America',es:'Latinoamérica'},
+  US:{en:'United States',es:'Estados Unidos'},CA:{en:'Canada',es:'Canadá'},GB:{en:'United Kingdom',es:'Reino Unido'},DE:{en:'Germany',es:'Alemania'},AU:{en:'Australia',es:'Australia'},ES:{en:'Spain',es:'España'},CH:{en:'Switzerland',es:'Suiza'},DK:{en:'Denmark',es:'Dinamarca'},NL:{en:'Netherlands',es:'Países Bajos'},UA:{en:'Ukraine',es:'Ucrania'},PL:{en:'Poland',es:'Polonia'},AT:{en:'Austria',es:'Austria'},CN:{en:'China',es:'China'},SE:{en:'Sweden',es:'Suecia'},IE:{en:'Ireland',es:'Irlanda'}
+};
+const CENTRAL = ['SV','CR','PA','GT','HN','NI','BZ'];
+
+// n: name, c: category, r: where it was made (empty = global), p: price key, u: link
+const T = (n,c,r,p,u,en,es) => ({n,c,r,p,u,d:{en,es}});
+const TOOLS = [
+  // Build
+  T('Figma','Build','','freePlan','https://www.figma.com','Design screens, logos and prototypes together with your team in the browser.','Diseña pantallas, logos y prototipos con tu equipo desde el navegador.'),
+  T('Notion','Build','','free4ind','https://www.notion.so','One workspace for notes, plans, wikis and simple databases for your project.','Un solo espacio para notas, planes, wikis y bases de datos sencillas de tu proyecto.'),
+  T('GitHub','Build','','freeRepos','https://github.com','Host your code, track issues and collaborate with developers anywhere.','Guarda tu código, organiza tareas y colabora con desarrolladores de cualquier lugar.'),
+  T('Trello','Build','','freePlan','https://trello.com','Simple boards and cards to plan tasks and see who is doing what.','Tableros y tarjetas sencillas para planificar tareas y ver quién hace qué.'),
+  T('Airtable','Build','','freePlan','https://www.airtable.com','A spreadsheet that works like a database, for customers, inventory or projects.','Una hoja de cálculo que funciona como base de datos, para clientes, inventario o proyectos.'),
+  T('Zapier','Build','','freePlan','https://zapier.com','Connect your apps and automate repetitive work without writing code.','Conecta tus aplicaciones y automatiza el trabajo repetitivo sin programar.'),
+  T('Slack','Build','','freePlan','https://slack.com','Team chat organized by channels, so conversations stay out of your inbox.','Chat de equipo organizado por canales, para sacar las conversaciones del correo.'),
+  T('Miro','Build','','freePlan','https://miro.com','An online whiteboard for brainstorming, mapping journeys and planning with your team.','Una pizarra en línea para lluvias de ideas, mapas de procesos y planificación en equipo.'),
+  T('Bubble','Build','','freeStart','https://bubble.io','Build a full web app visually, with logins, databases and payments, no code needed.','Crea una aplicación web completa de forma visual, con usuarios, datos y pagos, sin programar.'),
+  T('Cloudflare','Build','','freePlan','https://www.cloudflare.com','Host websites and apps, and keep them fast and protected from attacks.','Aloja sitios y aplicaciones, y mantenlos rápidos y protegidos de ataques.'),
+  T('Pipefy','Build','BR','freePlan','https://www.pipefy.com','Turn approvals, purchases and onboarding into automated workflows.','Convierte aprobaciones, compras y procesos de ingreso en flujos automáticos.'),
+  T('Workana','Build','AR','hire','https://www.workana.com','Hire freelance developers, designers and marketers from across Latin America.','Contrata desarrolladores, diseñadores y especialistas en marketing independientes de toda Latinoamérica.'),
+  // Launch
+  T('Canva','Launch','','freePlan','https://www.canva.com','Make social posts, pitch decks and flyers fast, even without design training.','Crea publicaciones, presentaciones y volantes rápido, aunque no sepas diseñar.'),
+  T('Webflow','Launch','','webflow','https://webflow.com','Build a professional website visually, without writing code.','Construye un sitio web profesional de forma visual, sin escribir código.'),
+  T('Shopify','Launch','','freeTrial','https://www.shopify.com','Open an online store and sell products locally or worldwide.','Abre una tienda en línea y vende en tu país o en todo el mundo.'),
+  T('Mailchimp','Launch','','freePlan','https://mailchimp.com','Send newsletters and email campaigns to the people who follow your project.','Envía boletines y campañas de correo a quienes siguen tu proyecto.'),
+  T('Substack','Launch','','freePublish','https://substack.com','Start a newsletter and build an audience, with optional paid subscriptions.','Lanza un boletín y crea una audiencia, con suscripciones de pago si quieres.'),
+  T('Google Business Profile','Launch','','free','https://www.google.com/business/','Put your business on Google Search and Maps so local customers can find you.','Pon tu negocio en Google y Maps para que los clientes cercanos te encuentren.'),
+  T('WordPress.com','Launch','','freePlan','https://wordpress.com','Launch a blog or website from thousands of themes, and grow it over time.','Lanza un blog o sitio con miles de diseños y hazlo crecer con el tiempo.'),
+  T('Buffer','Launch','','freePlan','https://buffer.com','Plan and schedule your social media posts across networks from one place.','Planifica y programa tus publicaciones en redes sociales desde un solo lugar.'),
+  T('Product Hunt','Launch','','free','https://www.producthunt.com','Launch a new product to a community of early adopters and get first feedback.','Presenta un producto nuevo a una comunidad de primeros usuarios y recibe opiniones.'),
+  T('Typeform','Launch','','freePlan','https://www.typeform.com','Friendly forms and surveys to validate an idea or collect sign-ups.','Formularios y encuestas amigables para validar una idea o recibir inscripciones.'),
+  T('Calendly','Launch','','freePlan','https://calendly.com','Let customers and partners book a meeting with you without the back-and-forth.','Deja que clientes y socios agenden reuniones contigo sin tantos mensajes.'),
+  T('Tiendanube','Launch','AR','freeStart','https://www.tiendanube.com','The online store platform built for Latin American brands, with local payments and shipping.','La plataforma de tiendas en línea creada para marcas latinoamericanas, con pagos y envíos locales.'),
+  T('VTEX','Launch','BR','quote','https://vtex.com','Commerce platform for growing brands that sell across many channels and countries.','Plataforma de comercio para marcas en crecimiento que venden en muchos canales y países.'),
+  T('Hotmart','Launch','BR','percent','https://hotmart.com','Sell online courses, ebooks and memberships, with payments across the region.','Vende cursos en línea, libros digitales y membresías, con cobros en toda la región.'),
+  T('RD Station','Launch','BR','monthly','https://www.rdstation.com','Marketing automation and CRM made for small and mid-size Latin American companies.','Automatización de marketing y CRM para pequeñas y medianas empresas de Latinoamérica.'),
+  T('Zenvia','Launch','BR','quote','https://www.zenvia.com','Reach customers on WhatsApp, SMS and other channels from one platform.','Llega a tus clientes por WhatsApp, SMS y otros canales desde una sola plataforma.'),
+  T('PROCOMER','Launch','CR','gov','https://www.procomer.com','Costa Rica\'s export promotion agency: training, market data and trade missions.','La promotora de exportaciones de Costa Rica: capacitación, datos de mercado y misiones comerciales.'),
+  // Money
+  T('Stripe','Money','','perTx','https://stripe.com','Accept card payments and subscriptions online with a few lines of code.','Acepta pagos con tarjeta y suscripciones en línea con pocas líneas de código.'),
+  T('Kiva','Money','','loans','https://www.kiva.org','Crowdfunded, zero-interest microloans for small businesses and entrepreneurs.','Microcréditos sin interés financiados por la gente, para pequeños negocios y emprendedores.'),
+  T('Wave','Money','','freePlan','https://www.waveapps.com','Invoicing and simple bookkeeping built for small businesses and freelancers.','Facturación y contabilidad sencilla para pequeños negocios e independientes.'),
+  T('QuickBooks','Money','','monthly','https://quickbooks.intuit.com','Accounting, expenses and tax-ready reports as your business grows.','Contabilidad, gastos e informes listos para impuestos a medida que creces.'),
+  T('PayPal','Money','','perTx','https://www.paypal.com','Get paid online by customers in many countries, with a widely trusted checkout.','Recibe pagos de clientes en muchos países con un método de pago de confianza.'),
+  T('Square','Money','','perTx','https://squareup.com','Take card payments in person or online, with a point-of-sale app.','Cobra con tarjeta en persona o en línea, con una aplicación de punto de venta.'),
+  T('Wise','Money','','lowFee','https://wise.com','Send and receive money across borders with low, transparent fees.','Envía y recibe dinero entre países con comisiones bajas y claras.'),
+  T('Kickstarter','Money','','ifFunded','https://www.kickstarter.com','Crowdfund a creative project and pre-sell to your first supporters.','Financia un proyecto creativo con la gente y prevende a tus primeros seguidores.'),
+  T('Patreon','Money','','share','https://www.patreon.com','Monthly support from fans for creators, educators and communities.','Apoyo mensual de tus seguidores para creadores, educadores y comunidades.'),
+  T('n1co','Money','SV','perTx','https://n1co.com','Salvadoran fintech with a payment gateway, payment links and tools for local businesses.','Fintech salvadoreña con pasarela de pagos, enlaces de cobro y herramientas para negocios locales.'),
+  T('Wompi El Salvador','Money','SV','perTx','https://wompi.sv','Online payments for Salvadoran businesses, with plugins for WooCommerce and Shopify.','Cobros en línea para negocios salvadoreños, con complementos para WooCommerce y Shopify.'),
+  T('Pagadito','Money','SV','perTx','https://www.pagadito.com','A Salvadoran payment gateway for accepting cards in your online store.','Pasarela de pagos salvadoreña para aceptar tarjetas en tu tienda en línea.'),
+  T('Mercado Pago','Money','AR','perTx','https://www.mercadopago.com','Payments, QR codes and payment links used by millions across Latin America.','Pagos, códigos QR y enlaces de cobro que usan millones de personas en Latinoamérica.'),
+  T('dLocal','Money','UY','quote','https://www.dlocal.com','Accept local payment methods in emerging markets through one integration.','Acepta métodos de pago locales en mercados emergentes con una sola integración.'),
+  T('Kushki','Money','EC','perTx','https://www.kushki.com','Payment gateway for cards, transfers and cash payments in several Latin American countries.','Pasarela de pagos con tarjetas, transferencias y efectivo en varios países de Latinoamérica.'),
+  T('Clip','Money','MX','perTx','https://www.clip.mx','Card readers and payment links for small shops in Mexico.','Terminales y enlaces de pago para pequeños negocios en México.'),
+  T('Conekta','Money','MX','perTx','https://www.conekta.com','Online payments in Mexico by card, bank transfer and cash at convenience stores.','Pagos en línea en México con tarjeta, transferencia y efectivo en tiendas.'),
+  T('Belvo','Money','MX','quote','https://belvo.com','Open finance API to connect bank and fiscal data in Mexico and Brazil.','API de finanzas abiertas para conectar datos bancarios y fiscales en México y Brasil.'),
+  T('Alegra','Money','CO','monthly','https://www.alegra.com','Cloud accounting and electronic invoicing for small businesses in the region.','Contabilidad en la nube y facturación electrónica para pequeños negocios de la región.'),
+  T('Siigo','Money','CO','monthly','https://www.siigo.com','Accounting, payroll and electronic invoicing software for small companies.','Software de contabilidad, nómina y facturación electrónica para pequeñas empresas.'),
+  T('Treinta','Money','CO','free','https://treinta.co','A free app to record sales, expenses and debts in small shops.','Una app gratuita para anotar ventas, gastos y deudas en pequeños negocios.'),
+  T('Start-Up Chile','Money','CL','program','https://www.startupchile.org','Government accelerator with equity-free funding for startups from anywhere.','Aceleradora del gobierno chileno con capital sin pedir acciones, para startups de cualquier país.'),
+  // Learn
+  T('SCORE','Learn','','free','https://www.score.org','Free one-to-one business mentoring from experienced volunteers.','Mentoría empresarial gratuita y personalizada de voluntarios con experiencia.'),
+  T('Startup School','Learn','','free','https://www.startupschool.org','Y Combinator\'s free online course on starting and growing a company.','El curso en línea gratuito de Y Combinator para crear y hacer crecer una empresa.'),
+  T('Khan Academy','Learn','','free','https://www.khanacademy.org','Free lessons in math, economics, finance and more, at your own pace.','Lecciones gratuitas de matemáticas, economía, finanzas y más, a tu ritmo.'),
+  T('Coursera','Learn','','freeCourses','https://www.coursera.org','Online courses from universities and companies on business, tech and design.','Cursos en línea de universidades y empresas sobre negocios, tecnología y diseño.'),
+  T('Grow with Google','Learn','','freeTraining','https://grow.google','Training on digital marketing, online selling and career skills.','Capacitación en marketing digital, ventas en línea y habilidades profesionales.'),
+  T('HubSpot Academy','Learn','','free','https://academy.hubspot.com','Short courses on marketing, sales and customer service.','Cursos cortos de marketing, ventas y servicio al cliente.'),
+  T('freeCodeCamp','Learn','','free','https://www.freecodecamp.org','Learn to code by building real projects, from web pages to data analysis.','Aprende a programar con proyectos reales, desde páginas web hasta análisis de datos.'),
+  T('Strategyzer','Learn','','freeCanvas','https://www.strategyzer.com','The Business Model Canvas and tools to test whether your idea can make money.','El Business Model Canvas y herramientas para probar si tu idea puede generar dinero.'),
+  T('U.S. SBA','Learn','','free','https://www.sba.gov','Official guides on planning, launching, funding and managing a small business in the US.','Guías oficiales para planificar, lanzar, financiar y manejar un pequeño negocio en EE. UU.'),
+  T('Platzi','Learn','CO','paidCourses','https://platzi.com','Online school in Spanish for programming, design, marketing and business.','Escuela en línea en español de programación, diseño, marketing y negocios.'),
+  T('Crehana','Learn','PE','paidCourses','https://www.crehana.com','Practical courses in Spanish on design, marketing and management.','Cursos prácticos en español de diseño, marketing y gestión.'),
+  T('Laboratoria','Learn','PE','program','https://www.laboratoria.la','Trains women in Latin America for tech careers and connects them with employers.','Forma a mujeres de Latinoamérica para carreras en tecnología y las conecta con empresas.'),
+  T('CONAMYPE','Learn','SV','gov','https://www.conamype.gob.sv','El Salvador\'s agency for micro and small businesses: training, advice and programs.','La agencia de El Salvador para la micro y pequeña empresa: capacitación, asesoría y programas.'),
+  T('Ciudad del Saber','Learn','PA','program','https://ciudaddelsaber.org','An innovation hub in Panama for startups, research and international organizations.','Un centro de innovación en Panamá para startups, investigación y organismos internacionales.'),
+  T('iNNpulsa Colombia','Learn','CO','gov','https://www.innpulsacolombia.com','Colombia\'s government agency for entrepreneurship and innovation programs.','La agencia del gobierno de Colombia para programas de emprendimiento e innovación.'),
+  // Planet
+  T('Project Drawdown','Planet','','freeData','https://drawdown.org','Research on the climate solutions that cut the most emissions, ready to build on.','Investigación sobre las soluciones climáticas que más reducen emisiones, lista para usar.'),
+  T('Ellen MacArthur Foundation','Planet','','freeRes','https://www.ellenmacarthurfoundation.org','Guides and case studies for designing products that waste less and last longer.','Guías y casos para diseñar productos que desperdicien menos y duren más.'),
+  T('B Lab','Planet','','freeAssess','https://www.bcorporation.net','The B Impact Assessment measures how your business treats workers, community and environment.','La Evaluación de Impacto B mide cómo tu empresa trata a sus trabajadores, la comunidad y el ambiente.'),
+  T('1% for the Planet','Planet','','member','https://www.onepercentfortheplanet.org','Commit 1% of sales to environmental groups and join a network of businesses that do.','Dona el 1 % de tus ventas a causas ambientales y únete a una red de empresas que lo hacen.'),
+  T('Ecosia','Planet','','free','https://www.ecosia.org','A search engine that uses its profits to plant trees around the world.','Un buscador que usa sus ganancias para plantar árboles en todo el mundo.'),
+  T('Our World in Data','Planet','','freeData','https://ourworldindata.org','Charts and research on the world\'s largest problems, from energy to health.','Gráficos e investigación sobre los mayores problemas del mundo, de la energía a la salud.'),
+  T('Climate TRACE','Planet','','freeData','https://climatetrace.org','Independent tracking of greenhouse gas emissions by sector and country.','Seguimiento independiente de las emisiones de gases de efecto invernadero por sector y país.'),
+  T('Global Forest Watch','Planet','','free','https://www.globalforestwatch.org','Maps and alerts that track forests and land use around the world.','Mapas y alertas que siguen los bosques y el uso de la tierra en todo el mundo.'),
+  T('Climatebase','Planet','','freeBrowse','https://climatebase.org','Find climate jobs, hire for your project and explore climate organizations.','Encuentra empleos climáticos, contrata para tu proyecto y explora organizaciones del clima.'),
+  T('Too Good To Go','Planet','','freeApp','https://www.toogoodtogo.com','Sell surplus food from your café, bakery or shop instead of throwing it away.','Vende la comida que te sobra en tu café, panadería o tienda en lugar de tirarla.'),
+  T('Ecologi','Planet','','monthly','https://ecologi.com','Fund tree planting and climate projects for your business with a monthly plan.','Financia la siembra de árboles y proyectos climáticos para tu empresa con un plan mensual.'),
+  T('Sistema B','Planet','LA','freeAssess','https://www.sistemab.org','The B Corp movement in Latin America: certification, community and tools for impact companies.','El movimiento de Empresas B en Latinoamérica: certificación, comunidad y herramientas para empresas de impacto.'),
+  T('Algramo','Planet','CL','quote','https://www.algramo.com','Refill and reusable-packaging system that brands and shops can join to cut plastic.','Sistema de recarga y envases reutilizables al que marcas y tiendas pueden sumarse para reducir plástico.'),
+  T('Fundación Avina','Planet','LA','freeRes','https://www.avina.net','A Latin American foundation that backs collaborative projects on climate, water and fair economies.','Una fundación latinoamericana que impulsa proyectos colaborativos en clima, agua y economías justas.')
+];
+
+// AI tools: a = business area
+const A = (n,a,p,u,en,es) => Object.assign(T(n,'AI','',p,u,en,es), {a});
+TOOLS.push(
+  A('ChatGPT','writing','freePlan','https://chatgpt.com','An AI assistant for drafting, brainstorming, summarizing and answering questions.','Un asistente de IA para redactar, generar ideas, resumir y responder preguntas.'),
+  A('Claude','writing','freePlan','https://claude.ai','An AI assistant for long documents, careful writing, analysis and building files.','Un asistente de IA para documentos largos, redacción cuidadosa, análisis y creación de archivos.'),
+  A('Gemini','writing','freePlan','https://gemini.google.com','Google\'s AI assistant, connected to Gmail, Docs and the rest of Google Workspace.','El asistente de IA de Google, conectado a Gmail, Docs y el resto de Google Workspace.'),
+  A('Grammarly','writing','freePlan','https://www.grammarly.com','Fixes grammar, tone and clarity in your emails, posts and documents as you type.','Corrige gramática, tono y claridad en tus correos, publicaciones y documentos mientras escribes.'),
+  A('DeepL','writing','freePlan','https://www.deepl.com','Natural-sounding AI translation between Spanish, English and dozens of other languages.','Traducción con IA que suena natural entre español, inglés y decenas de idiomas.'),
+  A('Perplexity','research','freePlan','https://www.perplexity.ai','AI search that answers questions with sources, useful for market and competitor research.','Buscador con IA que responde con fuentes, útil para investigar mercados y competencia.'),
+  A('NotebookLM','research','free','https://notebooklm.google.com','Upload your documents and get summaries, answers and even audio overviews from them.','Sube tus documentos y obtén resúmenes, respuestas e incluso resúmenes en audio.'),
+  A('Jasper','marketing','monthly','https://www.jasper.ai','AI for marketing teams: campaigns, ads, blog posts and copy in your brand voice.','IA para equipos de marketing: campañas, anuncios, blogs y textos con la voz de tu marca.'),
+  A('Copy.ai','marketing','freePlan','https://www.copy.ai','Generate sales emails, product descriptions and social posts in seconds.','Genera correos de venta, descripciones de productos y publicaciones en segundos.'),
+  A('AdCreative.ai','marketing','monthly','https://www.adcreative.ai','Creates ad images and copy for social media and search campaigns.','Crea imágenes y textos de anuncios para redes sociales y campañas de búsqueda.'),
+  A('Gamma','marketing','freePlan','https://gamma.app','Turn an idea or outline into a polished presentation, document or one-page site.','Convierte una idea o un esquema en una presentación, documento o sitio de una página.'),
+  A('Midjourney','images','monthly','https://www.midjourney.com','Create striking images and illustrations from a text description.','Crea imágenes e ilustraciones impactantes a partir de una descripción en texto.'),
+  A('Adobe Firefly','images','freePlan','https://firefly.adobe.com','Generate and edit images with AI trained to be safe for commercial use.','Genera y edita imágenes con IA pensada para uso comercial.'),
+  A('Ideogram','images','freePlan','https://ideogram.ai','Image generator that handles text well, good for logos, posters and social graphics.','Generador de imágenes que maneja bien el texto, ideal para logos, afiches y redes.'),
+  A('remove.bg','images','freePlan','https://www.remove.bg','Remove the background from product photos in one click.','Quita el fondo de tus fotos de producto con un clic.'),
+  A('ElevenLabs','audio','freePlan','https://elevenlabs.io','Realistic AI voices and voiceovers in many languages, including Spanish.','Voces y locuciones con IA realistas en muchos idiomas, incluido el español.'),
+  A('Suno','audio','freePlan','https://suno.com','Make original songs and jingles for your brand from a short prompt.','Crea canciones y jingles originales para tu marca a partir de una descripción.'),
+  A('Descript','audio','freePlan','https://www.descript.com','Edit podcasts and videos by editing the text transcript, like a document.','Edita pódcasts y videos editando su transcripción, como si fuera un documento.'),
+  A('Adobe Podcast','audio','freePlan','https://podcast.adobe.com','Clean up voice recordings so they sound like they were made in a studio.','Limpia grabaciones de voz para que suenen como hechas en un estudio.'),
+  A('Runway','video','freePlan','https://runwayml.com','Generate and edit video clips with AI for ads, social posts and short films.','Genera y edita videos con IA para anuncios, redes sociales y cortometrajes.'),
+  A('Synthesia','video','monthly','https://www.synthesia.io','Make training and explainer videos with AI presenters, no camera needed.','Crea videos de capacitación y explicativos con presentadores de IA, sin cámara.'),
+  A('HeyGen','video','freePlan','https://www.heygen.com','AI avatars and video translation to speak to customers in their own language.','Avatares con IA y traducción de video para hablarle a tus clientes en su idioma.'),
+  A('CapCut','video','freePlan','https://www.capcut.com','Easy video editing with AI captions, effects and templates for short videos.','Edición de video fácil con subtítulos automáticos, efectos y plantillas para videos cortos.'),
+  A('OpusClip','video','freePlan','https://www.opus.pro','Turns long videos into short clips ready for TikTok, Reels and Shorts.','Convierte videos largos en clips cortos listos para TikTok, Reels y Shorts.'),
+  A('Otter.ai','organize','freePlan','https://otter.ai','Records and transcribes meetings, then writes the summary and action items.','Graba y transcribe reuniones, y luego escribe el resumen y las tareas pendientes.'),
+  A('Fireflies.ai','organize','freePlan','https://fireflies.ai','A meeting assistant that takes notes on Zoom, Meet and Teams calls.','Un asistente que toma notas en tus llamadas de Zoom, Meet y Teams.'),
+  A('Motion','organize','monthly','https://www.usemotion.com','An AI calendar that plans your day around tasks, deadlines and meetings.','Un calendario con IA que organiza tu día según tareas, fechas límite y reuniones.'),
+  A('Reclaim.ai','organize','freePlan','https://reclaim.ai','Protects time for focus work, habits and breaks on your Google or Outlook calendar.','Reserva tiempo para trabajo concentrado, hábitos y descansos en tu calendario.'),
+  A('GitHub Copilot','code','freePlan','https://github.com/features/copilot','An AI pair programmer that suggests and writes code inside your editor.','Un compañero de programación con IA que sugiere y escribe código en tu editor.'),
+  A('Cursor','code','freePlan','https://cursor.com','A code editor with AI built in, for building and changing software faster.','Un editor de código con IA integrada para crear y modificar software más rápido.'),
+  A('Lovable','code','freePlan','https://lovable.dev','Describe an app in plain words and get a working web app you can launch.','Describe una aplicación con palabras y obtén una app web funcional para lanzar.'),
+  A('Intercom Fin','support','monthly','https://www.intercom.com','An AI agent that answers customer questions using your help articles.','Un agente de IA que responde a tus clientes usando tus artículos de ayuda.'),
+  A('Tidio','support','freePlan','https://www.tidio.com','Live chat and AI chatbot for small online stores and websites.','Chat en vivo y chatbot con IA para tiendas en línea y sitios pequeños.')
+);
+
+const CIRCLES = [
+  {n:{en:'Climate & Energy',es:'Clima y energía'},d:{en:'Solar, storage, efficiency and the business models that make clean power affordable.',es:'Energía solar, almacenamiento, eficiencia y los modelos de negocio que hacen accesible la energía limpia.'},i:'<circle cx="20" cy="20" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 3v6M20 31v6M3 20h6M31 20h6M8 8l4 4M28 28l4 4M8 32l4-4M28 12l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'},
+  {n:{en:'Food & Water',es:'Alimentos y agua'},d:{en:'Farming, food systems and clean water for growing communities.',es:'Agricultura, sistemas alimentarios y agua limpia para comunidades que crecen.'},i:'<path d="M20 5c6 8 10 13 10 19a10 10 0 0 1-20 0c0-6 4-11 10-19z" fill="none" stroke="currentColor" stroke-width="2"/>'},
+  {n:{en:'Fintech & Inclusion',es:'Fintech e inclusión'},d:{en:'Payments, savings and credit for the people banks have left out.',es:'Pagos, ahorro y crédito para las personas que los bancos han dejado fuera.'},i:'<rect x="5" y="11" width="30" height="20" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 18h30" stroke="currentColor" stroke-width="2"/>'},
+  {n:{en:'Creators & Culture',es:'Creadores y cultura'},d:{en:'Artists, writers and media makers turning their craft into a business.',es:'Artistas, escritores y creadores de medios que convierten su oficio en un negocio.'},i:'<path d="M8 32l6-16 12 6-6 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 16l8-10 10 8-6 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>'},
+  {n:{en:'Builders',es:'Constructores'},d:{en:'Software, hardware and AI. Bring your prototype and get it reviewed.',es:'Software, hardware e inteligencia artificial. Trae tu prototipo y recibe opiniones.'},i:'<path d="M14 12l-8 8 8 8M26 12l8 8-8 8M23 8l-6 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'},
+  {n:{en:'First-time founders',es:'Primeros emprendedores'},d:{en:'No experience needed. Validate the idea, find a first customer, take the first step.',es:'No necesitas experiencia. Valida la idea, encuentra tu primer cliente y da el primer paso.'},i:'<path d="M20 4l4 10 10 1-8 7 3 11-9-6-9 6 3-11-8-7 10-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>'}
+];
+const RHYTHM = [
+  {i:{en:'Every week',es:'Cada semana'},b:{en:'Build nights',es:'Noches de trabajo'},p:{en:'Two focused hours online, working side by side on your own project. Share a goal at the start and your progress at the end.',es:'Dos horas de enfoque en línea, trabajando lado a lado en tu propio proyecto. Comparte una meta al inicio y tu avance al final.'}},
+  {i:{en:'Every month',es:'Cada mes'},b:{en:'Show & tell',es:'Muestra tu avance'},p:{en:'Five-minute demos of real work in progress, followed by honest feedback from the circle.',es:'Demostraciones de cinco minutos de trabajo real en curso, seguidas de opiniones sinceras del círculo.'}},
+  {i:{en:'Every quarter',es:'Cada trimestre'},b:{en:'Impact review',es:'Revisión de impacto'},p:{en:'Look back at what your project changed for people and for the planet, and set the next target.',es:'Revisa qué cambió tu proyecto para las personas y el planeta, y fija la siguiente meta.'}}
+];
+const SERVICES = [
+  {n:{en:'Mentorship',es:'Mentoría'},d:{en:'Regular sessions with an operator who has built and run a company.',es:'Sesiones periódicas con alguien que ya creó y dirigió una empresa.'},b:{en:['Matched by industry and stage','Monthly one-hour calls','Help with priorities and hard decisions'],es:['Asignada según tu industria y etapa','Llamadas mensuales de una hora','Ayuda con prioridades y decisiones difíciles']}},
+  {n:{en:'Brand & design',es:'Marca y diseño'},d:{en:'A clear identity that people remember and trust.',es:'Una identidad clara que la gente recuerde y en la que confíe.'},b:{en:['Logo, colors and type','Website and pitch deck design','Packaging with lower-impact materials'],es:['Logo, colores y tipografía','Diseño de sitio web y presentación para inversionistas','Empaques con materiales de menor impacto']}},
+  {n:{en:'Legal setup',es:'Asesoría legal'},d:{en:'Start on solid ground and protect what you create.',es:'Empieza con bases sólidas y protege lo que creas.'},b:{en:['Choosing and registering your company','Founder and partner agreements','Trademarks and simple contracts'],es:['Elegir y registrar tu empresa','Acuerdos entre socios fundadores','Marcas y contratos sencillos']}},
+  {n:{en:'Funding readiness',es:'Preparación para financiamiento'},d:{en:'Get ready to raise money from grants, loans or investors.',es:'Prepárate para conseguir fondos, préstamos o inversionistas.'},b:{en:['Financial model and budget','Pitch deck review and practice','Introductions to aligned funders'],es:['Modelo financiero y presupuesto','Revisión y práctica de tu presentación','Contactos con financiadores afines']}},
+  {n:{en:'Impact measurement',es:'Medición de impacto'},d:{en:'Show, with numbers, the good your project does.',es:'Demuestra con números el bien que hace tu proyecto.'},b:{en:['Choosing the metrics that matter','Carbon footprint estimate','An impact report you can share'],es:['Elegir los indicadores que importan','Estimación de huella de carbono','Un informe de impacto para compartir']}},
+  {n:{en:'Tech build',es:'Desarrollo tecnológico'},d:{en:'Turn the plan into a working product.',es:'Convierte el plan en un producto que funcione.'},b:{en:['Websites and online stores','Apps and prototypes','Automation and AI tools'],es:['Sitios web y tiendas en línea','Aplicaciones y prototipos','Automatización y herramientas de IA']}}
+];
+const PLEDGE = [
+  {b:{en:'Build for people and planet',es:'Construye para las personas y el planeta'},s:{en:'Ask what your project costs the earth, and work to make that number smaller each year.',es:'Pregúntate cuánto le cuesta tu proyecto a la Tierra y trabaja para reducir esa cifra cada año.'}},
+  {b:{en:'Share what you learn',es:'Comparte lo que aprendes'},s:{en:'Your mistakes and shortcuts can save someone else months. Post them in your circle.',es:'Tus errores y atajos pueden ahorrarle meses a otra persona. Compártelos en tu círculo.'}},
+  {b:{en:'Open the door behind you',es:'Abre la puerta a quien viene detrás'},s:{en:'When you get help, give some back. Mentor, review or introduce someone new.',es:'Cuando recibas ayuda, devuelve un poco. Sé mentor, revisa proyectos o presenta a alguien nuevo.'}}
+];
+
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const PER_PAGE = 12;
+const CATS = ['all','AI','Build','Launch','Money','Learn','Planet'];
+const AREAS = ['all','writing','research','marketing','images','audio','video','organize','code','support'];
+const ORIGIN = {"US": ["Figma", "Notion", "GitHub", "Trello", "Airtable", "Zapier", "Bubble", "Cloudflare", "Webflow", "Mailchimp", "Substack", "Google Business Profile", "WordPress.com", "Product Hunt", "Calendly", "Stripe", "Kiva", "QuickBooks", "PayPal", "Square", "Kickstarter", "Patreon", "SCORE", "Startup School", "Khan Academy", "Coursera", "Grow with Google", "HubSpot Academy", "freeCodeCamp", "U.S. SBA", "Project Drawdown", "B Lab", "1% for the Planet", "Climate TRACE", "Global Forest Watch", "Climatebase", "ChatGPT", "Claude", "Gemini", "Perplexity", "NotebookLM", "Jasper", "Copy.ai", "AdCreative.ai", "Gamma", "Midjourney", "Adobe Firefly", "Suno", "Descript", "Adobe Podcast", "Runway", "HeyGen", "OpusClip", "Otter.ai", "Fireflies.ai", "Motion", "Reclaim.ai", "GitHub Copilot", "Cursor"], "CA": ["Slack", "Shopify", "Wave", "Ideogram"], "GB": ["Buffer", "Wise", "Ellen MacArthur Foundation", "Our World in Data", "Ecologi", "Synthesia"], "DE": ["Ecosia", "DeepL"], "AU": ["Canva"], "ES": ["Typeform"], "CH": ["Strategyzer"], "DK": ["Too Good To Go"], "NL": ["Miro"], "UA": ["Grammarly"], "PL": ["ElevenLabs", "Tidio"], "AT": ["remove.bg"], "CN": ["CapCut"], "SE": ["Lovable"], "IE": ["Intercom Fin"]};
+for (const [c, names] of Object.entries(ORIGIN)) for (const t of TOOLS) if (names.includes(t.n)) t.r = c;
+let lang = 'en', cat = 'all', area = 'all', query = '', page = 1;
+TOOLS.sort((x, y) => CATS.indexOf(x.c) - CATS.indexOf(y.c));
+try { const saved = localStorage.getItem('tdz-lang'); lang = saved || ((navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en'); } catch (e) { lang = (navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en'; }
+
+function filtered(){
+  const q = query.trim().toLowerCase();
+  return TOOLS.filter(t => (cat === 'all' || t.c === cat) && (cat !== 'AI' || area === 'all' || t.a === area) &&
+    (!q || [t.n, t.d.en, t.d.es, t.r && PLACE[t.r].en, t.r && PLACE[t.r].es, t.a && STR.en.areas[t.a], t.a && STR.es.areas[t.a]].join(' ').toLowerCase().includes(q)));
+}
+
+function renderFilters(){
+  const S = STR[lang];
+  document.getElementById('cat-filters').innerHTML = CATS.map(c => {
+    const n = TOOLS.filter(t => c === 'all' || t.c === c).length;
+    return `<button class="filter" type="button" data-cat="${c}" aria-pressed="${c === cat}">${S.cats[c]} <span class="num">${n}</span></button>`;
+  }).join('');
+  document.getElementById('area-line').hidden = cat !== 'AI';
+  document.getElementById('area-filters').innerHTML = AREAS.map(a => {
+    const n = TOOLS.filter(t => t.c === 'AI' && (a === 'all' || t.a === a)).length;
+    return `<button class="filter" type="button" data-area="${a}" aria-pressed="${a === area}">${S.areas[a]} <span class="num">${n}</span></button>`;
+  }).join('');
+}
+
+function renderTools(){
+  const S = STR[lang], list = filtered(), pages = Math.max(1, Math.ceil(list.length / PER_PAGE));
+  page = Math.min(page, pages);
+  const start = (page - 1) * PER_PAGE, slice = list.slice(start, start + PER_PAGE);
+  document.getElementById('tool-grid').innerHTML = slice.length ? slice.map(t => `
+    <article class="tool"><div class="row"><span class="tag${t.c === 'Planet' ? ' planet' : t.c === 'AI' ? ' ai' : ''}">${esc(S.cats[t.c])}${t.a ? ' · ' + esc(S.areas[t.a]) : ''}</span>${t.r ? `<span class="tag place">${esc(PLACE[t.r][lang])}</span>` : ''}</div>
+      <h3><a href="${esc(t.u)}" target="_blank" rel="noopener">${esc(t.n)} ↗</a></h3>
+      <p>${esc(t.d[lang])}</p><span class="meta">${esc(PRICE[t.p][lang])}</span></article>`).join('')
+    : `<p class="empty">${esc(S.empty)}</p>`;
+  document.getElementById('page-count').textContent = list.length ? S.showing(start + 1, start + slice.length, list.length) : '';
+  const btns = [];
+  btns.push(`<button type="button" data-page="${page - 1}" ${page === 1 ? 'disabled' : ''}>← ${S.prev}</button>`);
+  for (let i = 1; i <= pages; i++) btns.push(`<button type="button" data-page="${i}" aria-label="${S.page(i)}" ${i === page ? 'aria-current="page"' : ''}>${i}</button>`);
+  btns.push(`<button type="button" data-page="${page + 1}" ${page === pages ? 'disabled' : ''}>${S.next} →</button>`);
+  document.getElementById('pages').innerHTML = pages > 1 ? btns.join('') : '';
+}
+
+function renderStatic(){
+  const S = STR[lang];
+  document.documentElement.lang = lang;
+  document.title = 'The Desert Zone';
+  document.querySelectorAll('[data-t]').forEach(el => { const v = S[el.dataset.t]; if (typeof v === 'string') el.textContent = v; });
+  document.querySelectorAll('[data-h]').forEach(el => { el.innerHTML = S[el.dataset.h]; });
+  document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+  const LATAM = ['AR','BR','CL','CO','EC','MX','PE','UY','SV','CR','PA','LA'];
+  const latam = TOOLS.filter(t => LATAM.includes(t.r)).length;
+  document.getElementById('tool-count').textContent = S.toolCount(TOOLS.length);
+  document.getElementById('tool-sub').textContent = S.toolSub(latam, TOOLS.filter(t => t.c === 'AI').length);
+  const search = document.getElementById('tool-search');
+  search.placeholder = S.search; search.setAttribute('aria-label', S.search);
+  document.getElementById('circles').innerHTML = CIRCLES.map(c => `<div class="circle"><svg viewBox="0 0 40 40" aria-hidden="true">${c.i}</svg><h3>${esc(c.n[lang])}</h3><p>${esc(c.d[lang])}</p></div>`).join('');
+  document.getElementById('rhythm').innerHTML = RHYTHM.map(r => `<div><i>${esc(r.i[lang])}</i><b>${esc(r.b[lang])}</b><p>${esc(r.p[lang])}</p></div>`).join('');
+  document.getElementById('service-grid').innerHTML = SERVICES.map((s, k) => `<article class="service"><h3>${esc(s.n[lang])}</h3><p>${esc(s.d[lang])}</p><ul>${s.b[lang].map(x => `<li>${esc(x)}</li>`).join('')}</ul><button type="button" data-service="${k}">${esc(S.reqAsk)}</button></article>`).join('');
+  document.getElementById('pledge-list').innerHTML = PLEDGE.map(p => `<li><div><b>${esc(p.b[lang])}</b><span>${esc(p.s[lang])}</span></div></li>`).join('');
+  const role = document.getElementById('j-role'), ri = role.selectedIndex;
+  role.innerHTML = S.roles.map((r, k) => `<option value="${k}">${esc(r)}</option>`).join(''); if (ri >= 0) role.selectedIndex = ri;
+  const interest = document.getElementById('j-interest'), iv = interest.value;
+  interest.innerHTML = [`<option value="community">${esc(S.interestCommunity)}</option>`,
+    ...CIRCLES.map((c, k) => `<option value="c${k}">${esc(S.circlePrefix + ': ' + c.n[lang])}</option>`),
+    ...SERVICES.map((s, k) => `<option value="s${k}">${esc(S.servicePrefix + ': ' + s.n[lang])}</option>`)].join('');
+  if (iv) interest.value = iv;
+  document.getElementById('j-project').placeholder = S.phProject;
+  const pts = (id, list) => { document.getElementById(id).innerHTML = list.map(x => `<li>${esc(x)}</li>`).join(''); };
+  pts('req-points', S.reqPoints); pts('pro-points', S.proPoints);
+  document.getElementById('pro-steps').innerHTML = S.proSteps.map(([b, t]) => `<li><b>${esc(b)}</b><span>${esc(t)}</span></li>`).join('');
+  const fillSelect = (id, opts) => { const el = document.getElementById(id), v = el.value; el.innerHTML = opts.map(([val, label]) => `<option value="${esc(val)}">${esc(label)}</option>`).join(''); if (v) el.value = v; };
+  fillSelect('r-service', SERVICES.map((x, k) => [k, x.n[lang]]));
+  fillSelect('p-service', SERVICES.map((x, k) => [k, x.n[lang]]));
+  fillSelect('r-budget', S.budgets.map((b, k) => [k, b]));
+  fillSelect('p-lang', S.pLangs.map((b, k) => [k, b]));
+  document.getElementById('r-desc').placeholder = S.rDescPh;
+  document.getElementById('p-specialty').placeholder = S.pSpecialtyPh;
+}
+
+function renderAll(){ renderStatic(); renderFilters(); renderTools(); }
+
+document.querySelectorAll('.lang').forEach(g => g.addEventListener('click', e => {
+  const b = e.target.closest('button[data-lang]'); if (!b || b.dataset.lang === lang) return;
+  lang = b.dataset.lang; try { localStorage.setItem('tdz-lang', lang); } catch (err) {}
+  document.getElementById('done').hidden = true; document.getElementById('join-form').hidden = false;
+  renderAll();
+}));
+document.getElementById('cat-filters').addEventListener('click', e => { const b = e.target.closest('button[data-cat]'); if (!b) return; cat = b.dataset.cat; area = 'all'; page = 1; renderFilters(); renderTools(); });
+document.getElementById('area-filters').addEventListener('click', e => { const b = e.target.closest('button[data-area]'); if (!b) return; area = b.dataset.area; page = 1; renderFilters(); renderTools(); });
+document.getElementById('tool-search').addEventListener('input', e => { query = e.target.value; page = 1; renderTools(); });
+document.getElementById('pages').addEventListener('click', e => {
+  const b = e.target.closest('button[data-page]'); if (!b || b.disabled) return;
+  page = +b.dataset.page; renderTools();
+  document.getElementById('tools-title').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start'});
+});
+document.getElementById('service-grid').addEventListener('click', e => {
+  const b = e.target.closest('button[data-service]'); if (!b) return;
+  document.getElementById('r-service').value = b.dataset.service;
+  document.getElementById('request-form').hidden = false; document.getElementById('request-done').hidden = true;
+  document.getElementById('request').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start'});
+  document.getElementById('r-name').focus({preventScroll:true});
+});
+document.getElementById('join-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const S = STR[lang], f = e.target, E = f.elements, name = E.name.value.trim(), email = E.email.value.trim();
+  if (!name || !/^\S+@\S+\.\S+$/.test(email)) {
+    const el = name ? E.email : E.name;
+    el.setCustomValidity(name ? S.errEmail : S.errName); f.reportValidity(); el.focus(); return;
+  }
+  const iv = E.interest.value;
+  const interestEs = iv === 'community' ? STR.es.interestCommunity : iv[0] === 'c' ? 'Círculo: ' + CIRCLES[+iv.slice(1)].n.es : 'Servicio: ' + SERVICES[+iv.slice(1)].n.es;
+  const btn = f.querySelector('button'); btn.disabled = true;
+  const result = await sendToSheet({type:'member', name, email, phone:E.phone.value, role: STR.es.roles[+E.role.value], interest: interestEs, project: E.project.value, lang});
+  btn.disabled = false;
+  if (result === 'sent') { STR.en.sentMemTitle = 'Welcome to the Zone, ' + name.split(/\s+/)[0] + '.'; STR.es.sentMemTitle = 'Bienvenido a la Zona, ' + name.split(/\s+/)[0] + '.'; }
+  showResult('join-form', 'done', result, 'Mem');
+});
+['j-name','j-email'].forEach(id => document.getElementById(id).addEventListener('input', e => e.target.setCustomValidity('')));
+
+
+// Pega aquí la URL /exec de tu Apps Script (ver Codigo.gs). Vacía = vista previa.
+const SHEET_ENDPOINT = '';
+const ES_LANG = ['Español','Inglés','Español e inglés'];
+const ES_BUDGET = ['Aún no lo sé','Menos de $500','De $500 a $2,000','De $2,000 a $5,000','Más de $5,000'];
+
+async function sendToSheet(data){
+  if (!SHEET_ENDPOINT) return 'preview';
+  try {
+    await fetch(SHEET_ENDPOINT, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(data)});
+    return 'sent';
+  } catch (err) { return 'error'; }
+}
+function showResult(formId, boxId, result, kind){
+  const S = STR[lang], box = document.getElementById(boxId);
+  const [t, x] = result === 'sent' ? [S['sent' + kind + 'Title'], S['sent' + kind + 'Text']] : result === 'preview' ? [S.previewTitle, S.previewText] : [S.failTitle, S.failText];
+  box.querySelector('b').textContent = t; box.querySelector('span').textContent = x;
+  box.classList.toggle('warn', result !== 'sent');
+  box.hidden = false;
+  if (result !== 'error') document.getElementById(formId).hidden = true;
+}
+function checkForm(f, extra){
+  const S = STR[lang];
+  for (const el of f.querySelectorAll('[required]')) {
+    el.setCustomValidity('');
+    const bad = !el.value.trim() || (el.type === 'email' && !/^\S+@\S+\.\S+$/.test(el.value.trim()));
+    if (bad) { el.setCustomValidity(el.type === 'email' ? S.errEmail : S.errFields); f.reportValidity(); el.focus(); return false; }
+  }
+  return extra ? extra() : true;
+}
+document.querySelectorAll('form.pform [required]').forEach(el => el.addEventListener('input', () => el.setCustomValidity('')));
+
+document.getElementById('request-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = e.target; if (!checkForm(f)) return;
+  const btn = f.querySelector('button'); btn.disabled = true;
+  const k = +f.elements.service.value;
+  const result = await sendToSheet({type:'request', name:f.elements.name.value, email:f.elements.email.value, phone:f.elements.phone.value,
+    service: SERVICES[k].n.es, budget: ES_BUDGET[+f.elements.budget.value], description: f.elements.description.value, lang, website: f.elements.website.value});
+  btn.disabled = false; showResult('request-form', 'request-done', result, 'Req');
+});
+
+document.getElementById('pro-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = e.target, terms = f.elements.terms;
+  if (!checkForm(f, () => { terms.setCustomValidity(terms.checked ? '' : STR[lang].errTerms); if (!terms.checked) { f.reportValidity(); return false; } return true; })) return;
+  const btn = f.querySelector('button'); btn.disabled = true;
+  const result = await sendToSheet({type:'professional', name:f.elements.name.value, email:f.elements.email.value, phone:f.elements.phone.value, country:f.elements.country.value,
+    service: SERVICES[+f.elements.service.value].n.es, specialty:f.elements.specialty.value, portfolio:f.elements.portfolio.value, rate:f.elements.rate.value, years:f.elements.years.value,
+    lang: ES_LANG[+f.elements.lang.value], website: f.elements.website.value});
+  btn.disabled = false; showResult('pro-form', 'pro-done', result, 'Pro');
+});
+document.getElementById('p-terms').addEventListener('change', e => e.target.setCustomValidity(''));
+
+// Two views: the home page and "Work with us" (#trabaja)
+function route(){
+  const pro = location.hash === '#trabaja';
+  document.querySelectorAll('.home').forEach(el => { el.hidden = pro; });
+  document.getElementById('trabaja').hidden = !pro;
+  if (pro) { window.scrollTo(0, 0); return; }
+  const target = location.hash && location.hash.length > 1 && document.getElementById(location.hash.slice(1));
+  if (target) requestAnimationFrame(() => target.scrollIntoView({block: 'start'}));
+}
+window.addEventListener('hashchange', route);
+
+document.getElementById('year').textContent = new Date().getFullYear();
+renderAll();
+route();
+</script>
+
+</body>
+</html>
