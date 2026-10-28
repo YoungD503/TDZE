@@ -48,5 +48,5 @@ Todo está en `index.html`:
 
 - **Herramientas base:** la lista `TOOLS` (y las de IA en `TOOLS.push(...)`), con nombre, categoría, país, precio, enlace y descripción en inglés y español. El país de cada una está en `ORIGIN`.
 - **Textos:** el objeto `STR`, con una sección `en` y otra `es`.
-- **Newsletter:** el enlace del pie de página lleva a noticias.youngdesert.com.
+- **Newsletter:** el popup aparece al entrar (una vez; si lo cierran, vuelve en 7 días) y envía al formulario real de noticias.youngdesert.com: `/suscribirse` en español y `/en/subscribe` en inglés. Las direcciones están en `NEWSLETTER`.
 - **Gratis para empezar:** el filtro usa el precio de cada herramienta (`PRICE`); cuenta como gratis todo precio que empieza con `free` y los programas públicos (`gov`).

@@ -216,6 +216,42 @@ footer.site .wrap{padding-block:56px 36px;display:flex;flex-direction:column;gap
 .foot-bar .legal{flex:1 1 320px;min-width:0}
 .foot-bar a{color:var(--ink2);text-decoration:none}.foot-bar a:hover{color:var(--ink)}
 
+
+/* Newsletter modal */
+dialog.nl{border:1px solid var(--line2);padding:0;margin:auto;width:min(540px,calc(100% - 32px));max-height:calc(100% - 32px);border-radius:26px;background:var(--card);color:var(--ink);box-shadow:0 40px 120px rgba(0,8,30,.7),0 0 0 1px rgba(77,157,255,.08);overflow:auto}
+dialog.nl::backdrop{background:rgba(2,6,16,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.nl-top{position:relative;padding:30px 30px 0;background:radial-gradient(90% 120% at 100% 0%,rgba(31,95,214,.45),transparent 60%),radial-gradient(70% 80% at 0% 100%,rgba(77,157,255,.14),transparent 60%),var(--surface);overflow:hidden}
+.nl-top::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:36px 36px;opacity:.35;-webkit-mask-image:linear-gradient(180deg,#000,transparent 85%);mask-image:linear-gradient(180deg,#000,transparent 85%);pointer-events:none}
+.nl-top > *{position:relative}
+.nl-tag{display:inline-flex;align-items:center;gap:10px}
+.nl-tag .mono{height:26px;width:auto;color:var(--ink)}
+.nl-tag .label{color:var(--sand)}
+.nl-top h2{margin:18px 0 10px;font-size:clamp(28px,5vw,38px);line-height:1;font-weight:800;letter-spacing:-.04em}
+.nl-top p{margin:0;color:var(--ink2);font-size:16px;line-height:1.5;max-width:44ch}
+.nl-top svg.nl-ridge{display:block;width:calc(100% + 60px);margin:22px -30px 0;height:40px}
+.nl-top svg.nl-ridge polyline{stroke:var(--sand)}
+.nl-body{padding:22px 30px 26px;display:flex;flex-direction:column;gap:16px;border-top:1px solid var(--line)}
+.nl-body ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:15px;color:var(--ink2)}
+.nl-body li{display:flex;gap:10px}
+.nl-body li::before{content:"";flex:none;width:6px;height:6px;margin-top:9px;border-radius:50%;background:var(--sand)}
+form.nl-form{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:10px}
+form.nl-form label{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--ink2);min-width:0}
+form.nl-form input,form.nl-form select{font:inherit;font-size:16px;height:50px;padding:0 16px;border:1px solid var(--line2);border-radius:12px;background:var(--bg);color:var(--ink);width:100%}
+form.nl-form input::placeholder{color:#5f7392}
+form.nl-form button{grid-column:1/-1;font:inherit;font-weight:600;font-size:17px;height:52px;border:0;border-radius:999px;background:var(--sand);color:var(--sand-ink);cursor:pointer}
+form.nl-form button:hover{background:#7ab6ff}
+.nl-skip{align-self:center;font:inherit;font-size:14px;background:none;border:0;color:var(--muted);cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:4px}
+.nl-skip:hover{color:var(--ink)}
+.nl-close{position:absolute;top:14px;right:14px;z-index:2;width:38px;height:38px;border-radius:50%;border:1px solid var(--line2);background:rgba(5,10,20,.5);color:var(--ink);font-size:20px;line-height:1;cursor:pointer;display:grid;place-items:center}
+.nl-close:hover{border-color:var(--ink)}
+.nl-fine{margin:0;font-size:12px;color:var(--muted);text-align:center}
+.nl-fine a{color:var(--ink2)}
+.nl-done{display:flex;flex-direction:column;gap:6px;padding:18px 20px;border-radius:16px;border:1px solid var(--sand);background:var(--sand-soft)}
+.nl-done b{font-size:18px}
+@media (prefers-reduced-motion:no-preference){dialog.nl[open]{animation:nlIn .4s cubic-bezier(.2,.8,.2,1)}}
+@keyframes nlIn{from{transform:translateY(18px) scale(.98)}to{transform:none}}
+@media (max-width:480px){form.nl-form{grid-template-columns:1fr}.nl-top{padding:26px 22px 0}.nl-top svg.nl-ridge{width:calc(100% + 44px);margin:18px -22px 0}.nl-body{padding:20px 22px 24px}}
+
 @media (prefers-reduced-motion:no-preference){
   .hero h1 .ln{display:block;animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
   .hero h1 .ln:nth-child(2){animation-delay:.08s}.hero h1 .ln:nth-child(3){animation-delay:.16s}
@@ -332,7 +368,7 @@ footer.site .wrap{padding-block:56px 36px;display:flex;flex-direction:column;gap
         <p data-t="footTag"></p>
       </div>
       <nav class="foot-links" aria-label="Footer">
-        <a href="#top10" data-t="navTop">Top 10</a><a href="#tools" data-t="navTools">Tools</a><a href="#suggest" data-t="navSuggest">Suggest</a><a href="https://noticias.youngdesert.com/" target="_blank" rel="noopener" data-t="navNews">Newsletter ↗</a>
+        <a href="#top10" data-t="navTop">Top 10</a><a href="#tools" data-t="navTools">Tools</a><a href="#suggest" data-t="navSuggest">Suggest</a><a href="#newsletter" data-t="navNews">Newsletter</a>
       </nav>
       <div class="lang" role="group" aria-label="Language / Idioma"><button type="button" data-lang="es" lang="es" aria-pressed="false">ES</button><button type="button" data-lang="en" lang="en" aria-pressed="true">EN</button></div>
     </div>
@@ -345,6 +381,29 @@ footer.site .wrap{padding-block:56px 36px;display:flex;flex-direction:column;gap
   </div>
 </footer>
 
+<dialog class="nl" id="nl" aria-labelledby="nl-title">
+  <div class="nl-top">
+    <button class="nl-close" type="button" id="nl-x" data-t-aria="nlClose" aria-label="Close">×</button>
+    <span class="nl-tag"><svg class="mono" viewBox="0 0 99 219" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M3.25 216.34C2.28 215.95 2.00 207.51 2.00 178.92L2.00 142.00L8.25 142.01L14.50 142.01L47.22 167.01C65.22 180.75 80.17 192.00 80.45 192.00C80.73 192.00 81.08 181.31 81.23 168.25L81.50 144.50L89.00 144.50L96.50 144.50L96.76 180.25L97.03 216.00L90.62 216.00L84.22 216.00L50.86 190.54L17.50 165.08L17.23 191.04L16.97 217.00L10.73 216.92C7.31 216.88 3.94 216.62 3.25 216.34ZM40.58 136.95C27.02 134.84 13.93 125.40 8.08 113.51C3.16 103.52 2.04 96.14 2.02 73.75L2.00 54.00L41.50 54.00C80.33 54.00 81.00 53.97 81.00 52.00C81.00 50.03 80.33 50.00 41.50 50.00L2.00 50.00L2.00 41.50L2.00 33.00L41.47 33.00L80.95 33.00L81.22 17.75L81.50 2.50L89.33 2.21L97.17 1.91L96.73 49.21C96.36 88.98 96.03 97.51 94.64 102.82C90.04 120.44 80.77 131.03 66.19 135.35C59.27 137.40 48.01 138.11 40.58 136.95ZM64.79 117.04C67.83 115.71 71.54 113.02 73.49 110.74C78.75 104.60 80.20 99.30 80.75 84.25L81.23 71.00L48.96 71.00L16.70 71.00L17.27 83.25C18.27 104.41 23.27 113.54 36.41 118.23C43.65 120.81 57.51 120.23 64.79 117.04Z"/></svg><span class="label" data-t="nlTag">The Desert Zone · News</span></span>
+    <h2 id="nl-title" data-t="nlTitle">What moves the region. Every morning.</h2>
+    <p data-t="nlText"></p>
+    <svg class="nl-ridge" viewBox="0 0 600 40" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,40 210,30 245,35 300,6 355,35 390,30 600,40" fill="none" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
+  </div>
+  <div class="nl-body">
+    <ul id="nl-points"></ul>
+    <form class="nl-form" id="nl-form" novalidate>
+      <label><span data-t="nlEmail">Your email</span><input id="nl-email" name="email" type="email" required autocomplete="email" placeholder="name@company.com"></label>
+      <label><span data-t="nlLang">Language</span><select id="nl-lang" name="lang"></select></label>
+      <div class="hp" aria-hidden="true"><label>Web<input type="text" id="nl-web" name="website" tabindex="-1" autocomplete="off"></label></div>
+      <button type="submit" data-t="nlSubmit">Subscribe</button>
+    </form>
+    <div class="nl-done" id="nl-done" role="status" hidden><b></b><span></span></div>
+    <button class="nl-skip" type="button" id="nl-skip" data-t="nlSkip">No thanks, take me to the tools</button>
+    <p class="nl-fine"><span data-t="nlFine">Free. Unsubscribe anytime.</span> <a id="nl-see" href="https://noticias.youngdesert.com/" target="_blank" rel="noopener" data-t="nlSee">See today's edition ↗</a></p>
+  </div>
+</dialog>
+
+
 
 <script>
 // Pega aquí la URL /exec de tu Apps Script (ver Codigo.gs). Vacía = vista previa (los votos se guardan solo en este navegador).
@@ -352,7 +411,13 @@ const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxy60TcSkbyFPeNE
 
 const STR = {
   en: {
-    navTop:'Top 10',navTools:'Tools',navSuggest:'Suggest',navNews:'Newsletter ↗',pill:'Add a tool',
+    nlClose:'Close',nlTag:'The Desert Zone · News',nlTitle:'What moves the region. Every morning.',
+    nlText:'Up to eight stories on tech, fintech and business in El Salvador and Central America, checked against their sources. Free, in Spanish, English or both.',
+    nlPoints:['Every morning in your inbox','The news founders in the region need to know','Unsubscribe with one click'],
+    nlEmail:'Your email',nlLang:'Language',nlLangs:[['both','Both'],['es','Spanish'],['en','English']],nlSubmit:'Subscribe',nlEmailPh:'name@company.com',
+    nlSkip:'No thanks, take me to the tools',nlFine:'Free. Unsubscribe anytime.',nlSee:'See today\'s edition ↗',
+    nlOkTitle:'Almost done.',nlOkText:e=>`We opened the newsletter in a new tab to finish. Then check ${e} and confirm your subscription.`,
+    navTop:'Top 10',navTools:'Tools',navSuggest:'Suggest',navNews:'Newsletter',pill:'Add a tool',
     eyebrow:'Community tools · Built by entrepreneurs',h1a:'Anyone',h1b:'can build.',h1c:'Start now.',
     heroDek:'The tools to create a business, an app or a project already exist, and most of them are free to start. The community shares the ones that work and votes for the best. You just have to begin.',
     ctaTools:'Find your tools',ctaTop:'See the community Top 10',
@@ -387,7 +452,13 @@ const STR = {
     footLegal:'Tools listed here are independent products. We are not paid to include them, and the ranking comes only from community votes.',footTop:'Back to top ↑'
   },
   es: {
-    navTop:'Top 10',navTools:'Herramientas',navSuggest:'Proponer',navNews:'Newsletter ↗',pill:'Agregar herramienta',
+    nlClose:'Cerrar',nlTag:'The Desert Zone · Noticias',nlTitle:'Lo que mueve a la región. Cada mañana.',
+    nlText:'Hasta ocho historias de tecnología, fintech y negocios de El Salvador y Centroamérica, verificadas contra sus fuentes. Gratis, en español, inglés o ambos.',
+    nlPoints:['Cada mañana en tu correo','Las noticias que un emprendedor de la región necesita saber','Te das de baja con un clic'],
+    nlEmail:'Tu correo',nlLang:'Idioma',nlLangs:[['both','Ambos'],['es','Español'],['en','Inglés']],nlSubmit:'Suscribirme',nlEmailPh:'nombre@empresa.com',
+    nlSkip:'No, gracias, ver las herramientas',nlFine:'Gratis. Puedes darte de baja cuando quieras.',nlSee:'Ver la edición de hoy ↗',
+    nlOkTitle:'Ya casi.',nlOkText:e=>`Abrimos el newsletter en una pestaña nueva para terminar. Luego revisa ${e} y confirma tu suscripción.`,
+    navTop:'Top 10',navTools:'Herramientas',navSuggest:'Proponer',navNews:'Newsletter',pill:'Agregar herramienta',
     eyebrow:'Herramientas de la comunidad · Hecho por emprendedores',h1a:'Todos',h1b:'pueden construir.',h1c:'Empieza hoy.',
     heroDek:'Las herramientas para crear un negocio, una app o un proyecto ya existen, y la mayoría son gratis para empezar. La comunidad comparte las que funcionan y vota por las mejores. Solo tienes que empezar.',
     ctaTools:'Encuentra tus herramientas',ctaTop:'Ver el Top 10 de la comunidad',
@@ -741,6 +812,11 @@ function renderStatic(){
   sa.innerHTML = AREAS.filter((a) => a !== 'all').map((a) => `<option value="${a}">${esc(S.areas[a])}</option>`).join(''); if (av) sa.value = av;
   document.getElementById('s-area-wrap').hidden = sc.value !== 'AI';
   document.getElementById('s-desc').placeholder = S.descPh;
+  document.getElementById('nl-points').innerHTML = S.nlPoints.map((x) => `<li>${esc(x)}</li>`).join('');
+  { const sel = document.getElementById('nl-lang'), v = sel.dataset.touched ? sel.value : (lang === 'es' ? 'es' : 'en');
+    sel.innerHTML = S.nlLangs.map(([val, l]) => `<option value="${val}">${esc(l)}</option>`).join(''); sel.value = v; }
+  document.getElementById('nl-email').placeholder = S.nlEmailPh;
+  document.getElementById('nl-see').href = NEWSLETTER[lang].home;
   document.getElementById('manifesto').innerHTML = S.manifesto.map(([b, x]) => `<li><b>${esc(b)}</b><span>${esc(x)}</span></li>`).join('');
   checkDup();
 }
@@ -804,6 +880,53 @@ sf.addEventListener('submit', async (e) => {
 });
 document.getElementById('sg-again').addEventListener('click', () => { sf.hidden = false; document.getElementById('sg-done').hidden = true; sf.elements.name.focus(); });
 
+
+
+/* ---------- Newsletter popup: submits to the real form on noticias.youngdesert.com ---------- */
+const NEWSLETTER = {
+  es: { action: 'https://noticias.youngdesert.com/suscribirse', home: 'https://noticias.youngdesert.com/' },
+  en: { action: 'https://noticias.youngdesert.com/en/subscribe', home: 'https://noticias.youngdesert.com/en' },
+};
+const NL_KEY = 'tdz-newsletter', NL_SNOOZE_DAYS = 7, NL_DELAY_MS = 0;
+const nl = document.getElementById('nl');
+const nlState = () => store.get(NL_KEY, null);
+function openNewsletter(){
+  if (!nl || nl.open) return;
+  try { nl.showModal(); } catch (e) { nl.setAttribute('open', ''); }
+  setTimeout(() => document.getElementById('nl-email').focus(), 60);
+}
+function closeNewsletter(){
+  const st = nlState();
+  if (!(st && st.v === 'subscribed')) store.set(NL_KEY, { v: 'closed', at: Date.now() });
+  if (nl.open) nl.close(); else nl.removeAttribute('open');
+}
+document.getElementById('nl-x').addEventListener('click', closeNewsletter);
+document.getElementById('nl-skip').addEventListener('click', closeNewsletter);
+nl.addEventListener('cancel', (e) => { e.preventDefault(); closeNewsletter(); });
+nl.addEventListener('click', (e) => { if (e.target === nl) closeNewsletter(); });
+document.querySelectorAll('a[href="#newsletter"]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); openNewsletter(); }));
+document.getElementById('nl-lang').addEventListener('change', (e) => { e.target.dataset.touched = '1'; });
+document.getElementById('nl-email').addEventListener('input', (e) => e.target.setCustomValidity(''));
+document.getElementById('nl-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const S = STR[lang], f = e.target, email = f.elements.email.value.trim();
+  if (!/^\S+@\S+\.\S+$/.test(email)) { f.elements.email.setCustomValidity(S.errEmail); f.reportValidity(); return; }
+  if (f.elements.website.value) return; // bots
+  // Same fields as the newsletter's own form (email, lang, website), posted in a new tab
+  const post = document.createElement('form');
+  post.method = 'post'; post.action = NEWSLETTER[lang].action; post.target = '_blank'; post.hidden = true;
+  [['email', email], ['lang', f.elements.lang.value], ['website', '']].forEach(([n, v]) => { const i = document.createElement('input'); i.type = 'hidden'; i.name = n; i.value = v; post.append(i); });
+  document.body.append(post); post.submit(); post.remove();
+  const box = document.getElementById('nl-done');
+  box.querySelector('b').textContent = S.nlOkTitle; box.querySelector('span').textContent = S.nlOkText(email);
+  box.hidden = false; f.hidden = true;
+  store.set(NL_KEY, { v: 'subscribed', at: Date.now() });
+});
+(() => {
+  const st = nlState();
+  if (st && (st.v === 'subscribed' || Date.now() - st.at < NL_SNOOZE_DAYS * 864e5)) return;
+  setTimeout(openNewsletter, NL_DELAY_MS);
+})();
 
 document.getElementById('year').textContent = new Date().getFullYear();
 renderAll();
